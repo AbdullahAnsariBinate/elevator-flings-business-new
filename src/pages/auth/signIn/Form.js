@@ -7,7 +7,7 @@ import AuthStyle from "../Auth.style";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import Auth from "../../../store/constants/Auth.constant";
-import '../../../utils/i18n/lan';
+// import '../../../utils/i18n/lan';
 import {useTranslation} from 'react-i18next';
 function CForm(props) {
     // const {t, i18n} = useTranslation();

@@ -5,10 +5,10 @@ import Styles from './TabBar.style';
 import Icon from '../../assets/icons/CustomIcon';
 import {MappedElement, getLayoutDirection} from "../../utils/methods";
 import {themes} from "../../theme/colors";
-import {CText} from "../../uiComponents";
+// import {CText} from "../../uiComponents";
 import posed from "react-native-pose";
-import '../../utils/i18n/lan';
-import {useTranslation} from 'react-i18next';
+// import '../../utils/i18n/lan';
+// import {useTranslation} from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Icon as MyIcon } from 'react-native-elements';
 

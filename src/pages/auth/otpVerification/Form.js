@@ -7,7 +7,7 @@ import AuthStyle from '../Auth.style';
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 import {themes} from "../../../theme/colors";
-import '../../../utils/i18n/lan';
+// import '../../../utils/i18n/lan';
 import {useTranslation} from 'react-i18next';
 function CForm(props) {
     const {t, i18n} = useTranslation();

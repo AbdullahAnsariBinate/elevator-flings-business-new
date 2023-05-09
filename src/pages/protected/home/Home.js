@@ -1,20 +1,13 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
-import { Dimensions, View, Text, StyleSheet } from "react-native";
+import React, {useLayoutEffect, useRef, useState, useEffect} from 'react';
+import {Dimensions, View, Text, StyleSheet} from 'react-native';
 
-
-// import { Header } from "../../../containers";
 
 function Home(props) {
-
-
-    return (
-        <View style={{ flex: 1 }}>
-            {/* <Header {...headerProps} /> */}
-            <Text>hhhh</Text>
-        </View>
-    );
+  return (
+    <View style={{backgroundColor:'red', flex:1}}>
+      <Text>jjkgh;jkh;jkfh;jksfhbhjjj</Text>
+    </View>
+  );
 }
 export default Home;
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});

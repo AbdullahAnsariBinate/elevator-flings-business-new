@@ -4,7 +4,7 @@ import Validations from "./Validations";
 import { View } from "react-native";
 import { CButton, CInput, CText } from "../../../uiComponents";
 import AuthStyle from "../Auth.style";
-import '../../../utils/i18n/lan';
+// import '../../../utils/i18n/lan';
 import {useTranslation} from 'react-i18next';
 import { useSelector } from "react-redux";
 function CForm(props) {
