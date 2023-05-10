@@ -1,9 +1,10 @@
 import React, {memo} from 'react';
 import {ScrollView, View} from 'react-native';
 import Styles from './Container.style';
-// import {ProgressiveImage, CLoading} from "../../uiComponents";
+import {ProgressiveImage, CLoading} from "../../uiComponents";
 import {Header, SafeAreaView, ViewContainer} from "../../containers";
 import {themes as theme} from "../../theme/colors";
+import {imgs} from '../../assets/imgs'
 
 
 function Container(props) {
@@ -40,7 +41,7 @@ function Container(props) {
         }, style]}>
             {showPattern ? <ProgressiveImage
                 style={Styles.backgroundPattern}
-                source={require('../../assets/images/background_pattern.png')}
+                source={imgs.BG}
             /> : null}
             {renderHeader()}
             <SafeAreaView edges={getEdges()} style={[Styles.backgroundContainer, SafeAreaViewStyle]}>

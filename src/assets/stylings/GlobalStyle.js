@@ -86,7 +86,7 @@ export default StyleSheet.create({
     errorTextStyle: {
         color: themes['light'].colors.danger,
         fontFamily: themes.font.regular,
-        marginTop: 10,
+        marginTop: 5,
         fontSize: 16,
         textAlign: 'left'
     },

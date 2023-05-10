@@ -7,6 +7,7 @@ import Icons from '../../assets/icons/CustomIcon';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {getLayoutDirection} from '../../utils/methods';
+import { CText } from '../../uiComponents';
 // import {CText, ProgressiveImage} from "../../uiComponents";
 
 function Header(props) {

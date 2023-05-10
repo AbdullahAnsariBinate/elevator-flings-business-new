@@ -5,7 +5,7 @@ export default StyleSheet.create({
 
     container: {
         flexGrow: 1,
-        paddingHorizontal: 20
+        paddingHorizontal: 15
     },
 
     header: {

@@ -18,7 +18,7 @@ const myLan = reduxState.language
 console.log('my--Data', myLan)
     return <Animated.Text
         allowFontScaling={false}
-        {...props} style={[props.style, {fontFamily:myLan === 'en' ? themes.font.regular : themes.font2.regular }]}>
+        {...props} style={[props.style, {fontFamily:themes.font.regular }]}>
         {props.children}
     </Animated.Text>
 };
