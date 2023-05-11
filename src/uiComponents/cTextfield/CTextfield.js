@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   inputField: {
     backgroundColor: themes['light'].colors.white,
     marginTop: 5,
-    height: responsiveScreenHeight(2),
+    height: responsiveScreenHeight(6),
     
   }
 });
