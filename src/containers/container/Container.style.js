@@ -4,7 +4,7 @@ import {themes as theme, themes} from "../../theme/colors";
 export default StyleSheet.create({
     background: {
         position: 'relative',
-        backgroundColor: theme['light'].colors.tertiary,
+        backgroundColor: themes['light'].colors.white,
         overflow: 'hidden',
         flex: 1
     },
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     homeHeaderContentSubTitle: {
         fontSize: 14,
         fontFamily: themes.font.regular,
-        color: theme['light'].colors.gray1,
+        color: theme['light'].colors.black,
         textAlign: 'left'
     },
     homeHeaderButtons: {

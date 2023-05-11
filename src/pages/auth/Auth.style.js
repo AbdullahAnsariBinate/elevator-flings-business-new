@@ -1,11 +1,12 @@
-import {StyleSheet} from 'react-native';
-import {themes as theme, themes} from "../../theme/colors";
+import { StyleSheet } from 'react-native';
+import { themes as theme, themes } from "../../theme/colors";
+import { responsiveHeight, responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions';
 
 export default StyleSheet.create({
 
     container: {
         flexGrow: 1,
-        paddingHorizontal: 15
+        paddingHorizontal: responsiveScreenWidth(6)
     },
 
     header: {
@@ -18,10 +19,10 @@ export default StyleSheet.create({
     },
 
     card: {
-        borderRadius: 20,
-        backgroundColor: theme['light'].colors.tertiary,
-        paddingHorizontal: 30,
-        paddingVertical: 30
+        // borderRadius: 20,
+        // backgroundColor: theme['light'].colors.tertiary,
+        // paddingHorizontal: 30,
+        // paddingVertical: 30
     },
     cardHeader: {
         marginBottom: 30
@@ -40,7 +41,7 @@ export default StyleSheet.create({
     },
 
     cardBody: {
-        marginBottom: 15
+        // marginBottom: 15
     },
 
     cardBottomText: {
@@ -72,18 +73,18 @@ export default StyleSheet.create({
     },
 
     bottomButton: {
-      marginBottom: 20
+        marginBottom: 20
     },
 
 
 
     otpContainer: {
-        alignItems:'stretch',
+        alignItems: 'stretch',
         marginBottom: 30,
 
     },
 
-    otpInputView : {
+    otpInputView: {
         height: 62,
         // width: '100%',
         marginBottom: 10,
@@ -99,7 +100,7 @@ export default StyleSheet.create({
         fontFamily: themes.font.regular,
         color: themes['light'].colors.primary,
         borderRadius: 10,
-        backgroundColor:  themes['light'].colors.secondary3,
+        backgroundColor: themes['light'].colors.secondary3,
         height: 62,
         // marginHorizontal: 5,
         minWidth: 62,
@@ -146,5 +147,46 @@ export default StyleSheet.create({
         backgroundColor: theme['light'].colors.tertiary,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+    },
+    logo: {
+        height: responsiveHeight(11),
+        width: '100%'
+    },
+    logoView: {
+        paddingTop: responsiveScreenHeight(10),
+        paddingBottom: responsiveScreenHeight(5)
+    },
+    bottomlink: {
+        flexDirection: 'row',
+        marginTop: responsiveScreenHeight(18),
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    bottomlinkText: {
+        color: themes['light'].colors?.black
+    },
+    bottomlinkTextNav: {
+        color: themes['light'].colors?.pink,
+        fontSize: themes?.fontSize?.medium,
+        fontFamily: themes?.font?.bold
+    },
+    forgotLink: {
+        paddingVertical: responsiveScreenHeight(0.9)
+    },
+    forgotLinkText:{
+        color: themes['light'].colors?.black,
+        fontSize: themes?.fontSize?.small,
+        fontFamily: themes?.font?.bold,
+        textDecorationLine:'underline',
+        textAlign:'center'
+    },
+    bottomlinkSignup:{
+        flexDirection: 'row',
+        // marginTop: responsiveScreenHeight(18),
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    signupCard:{
+        marginBottom: 15
     }
 });

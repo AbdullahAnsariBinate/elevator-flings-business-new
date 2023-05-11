@@ -4,7 +4,7 @@ import Validations from './Validations';
 import {View, TouchableOpacity} from 'react-native';
 import {CButton, CInput, CText, CountDownTimer} from '../../../uiComponents';
 import AuthStyle from '../Auth.style';
-import OTPInputView from '@twotalltotems/react-native-otp-input'
+// import OTPInputView from '@twotalltotems/react-native-otp-input'
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 import {themes} from "../../../theme/colors";
 // import '../../../utils/i18n/lan';

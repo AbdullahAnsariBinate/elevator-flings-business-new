@@ -10,7 +10,7 @@ export default StyleSheet.create({
 
     //input style
     inputContainer: {
-        marginBottom: 30,
+        // marginBottom: 30,
     },
     inputLabel: {
         fontSize: 18,

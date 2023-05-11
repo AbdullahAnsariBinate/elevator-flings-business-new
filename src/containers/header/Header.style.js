@@ -1,5 +1,6 @@
 import {StyleSheet, Platform} from "react-native";
-import {themes as theme} from "../../theme/colors";
+import {themes as theme, themes} from "../../theme/colors";
+import { responsiveScreenHeight } from "react-native-responsive-dimensions";
 export const headerHeight = Platform.OS === 'ios' ? 44 : 56;
 
 const styles = StyleSheet.create({
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     },
     headerStyle: {
         backgroundColor: theme['light'].colors.tertiary,
-        paddingVertical: 10,
+        paddingVertical: responsiveScreenHeight(1),
         position: 'relative',
         zIndex: 1
     },
@@ -30,17 +31,16 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     headerLight: {
-        color: theme['light'].colors.tertiary,
+        color: theme['light'].colors.black,
     },
     headerCartLight: {
         borderColor: 'rgba(227, 227, 224, 0.2)',
         backgroundColor: 'rgba(227, 227, 224, 0.1)',
     },
     headerTitleStyle: {
-        color: theme['light'].colors.fontColor,
-        fontFamily: theme.font.medium,
-        fontSize: 24,
-        lineHeight: 24,
+        color: themes['light'].colors.fontColor,
+        fontFamily: themes?.font?.bold,
+        fontSize: themes?.fontSize?.large,
         marginTop: 3,
         marginHorizontal: 15,
         flex: 1,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     headerButton: {},
     headerButtonIcon: {
         fontSize: 24,
-        color: theme['light'].colors.primary,
+        color: theme['light'].colors.pink,
     },
     otherOptions: {
         flexDirection: 'row',

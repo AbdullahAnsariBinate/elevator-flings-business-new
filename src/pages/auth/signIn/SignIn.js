@@ -1,22 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {Modal, Text, View} from 'react-native';
-import {Container, SafeAreaView} from '../../../containers';
-import {themes} from '../../../theme/colors';
+import { Pressable,  View } from 'react-native';
+import { Container } from '../../../containers';
 import AuthStyle from '../Auth.style';
 import CForm from './Form';
-import { ProgressiveImage } from '../../../uiComponents';
+import { CText, ProgressiveImage } from '../../../uiComponents';
 import { imgs } from '../../../assets/imgs';
+import { useNavigation } from '@react-navigation/native';
 
 function SignIn(props) {
+  const navigation = useNavigation();
   const [phoneError, setPhoneError] = useState('');
-  const submit = () => {};
+  const submit = () => { };
 
-  const headerProps={
-    hideBackButton:true
+  const handleSignup = () => {
+   navigation.navigate('signup')
+  }
+
+  const headerProps = {
+    hideBackButton: false,
+    headerTitle: 'Login'
   }
   return (
     <Container
+    
       backgroundColor={'red'}
       showPattern={false}
       scrollView={true}
@@ -25,43 +32,21 @@ function SignIn(props) {
         contentContainerStyle: AuthStyle.container,
       }}
       headerProps={headerProps}
-      >
-      <ProgressiveImage source={imgs?.Logo} style={{height:80, width:'100%'}} resizeMode='contain'/>
-
-      {/* <CForm
+    >
+      <View style={AuthStyle.logoView}>
+        <ProgressiveImage source={imgs?.Logo} style={AuthStyle.logo} resizeMode='contain' />
+      </View>
+      <CForm
         submit={submit}
-        phoneErr={phoneError}
+        // phoneErr={phoneError}
         onLoginPress={() => navigation.navigate('login')}
-      /> */}
-     
-      <Text style={{
-        fontFamily:themes?.font?.regular,
-        fontSize:themes?.fontSize?.extraSmall
-      }}>extraSmall</Text>
-      <Text style={{
-        fontFamily:themes?.font?.bold,
-        fontSize:themes?.fontSize?.large
-      }}>large</Text>
-      <Text style={{
-        fontFamily:themes?.font?.regular,
-        fontSize:themes?.fontSize?.extraLarge
-      }}>extraLarge</Text>
-      <Text style={{
-        fontFamily:themes?.font?.regular,
-        fontSize:themes?.fontSize?.extraVSmall
-      }}>extraVSmall</Text>
-      <Text style={{
-        fontFamily:themes?.font?.regular,
-        fontSize:themes?.fontSize?.regular
-      }}>regular</Text>
-      <Text style={{
-        fontFamily:themes?.font?.regular,
-        fontSize:themes?.fontSize?.medium
-      }}>medium</Text>
-      <Text style={{
-        fontFamily:themes?.font?.regular,
-        fontSize:themes?.fontSize?.small
-      }}>small</Text>
+      />
+      <View style={AuthStyle.bottomlink}>
+        <CText style={AuthStyle.bottomlinkText}>Don't have an account? </CText>
+        <Pressable onPress={handleSignup}>
+        <CText style={AuthStyle.bottomlinkTextNav}>Register Now</CText>
+        </Pressable>
+      </View>
     </Container>
   );
 }

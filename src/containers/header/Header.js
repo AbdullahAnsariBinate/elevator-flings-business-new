@@ -9,6 +9,7 @@ import {useSelector} from 'react-redux';
 import {getLayoutDirection} from '../../utils/methods';
 import { CText } from '../../uiComponents';
 // import {CText, ProgressiveImage} from "../../uiComponents";
+import Entypo from 'react-native-vector-icons/Entypo'
 
 function Header(props) {
   const navigation = useNavigation();
@@ -69,8 +70,8 @@ function Header(props) {
   const backButton = () => {
     return hideBackButton ? (
       <TouchableOpacity style={Styles.headerButton} onPress={() => backPress()}>
-        <Icons
-          name={backButtonIcon}
+        <Entypo
+          name={'chevron-left'}
           style={[
             Styles.headerButtonIcon,
             {transform: [{scaleX: getLayoutDirection() ? -1 : 1}]},

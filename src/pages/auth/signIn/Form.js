@@ -1,12 +1,13 @@
-import React, {useRef, memo, useEffect, useState} from 'react';
-import {Formik} from 'formik';
+import React, { useRef, memo, useEffect, useState } from 'react';
+import { Formik } from 'formik';
 import Validations from './Validations';
-import {View} from 'react-native';
-import {CButton, CInput, CText, CTextfield} from '../../../uiComponents';
+import { View } from 'react-native';
+import { CButton, CText, CTextfield } from '../../../uiComponents';
 import AuthStyle from '../Auth.style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Auth from '../../../store/constants/Auth.constant';
+import { themes } from '../../../theme/colors';
+import { icons } from '../../../assets/imgs';
 function CForm(props) {
   const {
     submit,
@@ -14,13 +15,12 @@ function CForm(props) {
     selectedCountry,
     toggleCountryModal,
     phoneErr,
-    onLoginPress,
-    onGooglePress,
-    onFacebookPress,
+
   } = props;
 
   const form = useRef(null);
-  const phone = useRef(null);
+  const password = useRef(null);
+  const email = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -32,13 +32,6 @@ function CForm(props) {
       isLoggedIn: true,
     });
   };
-  const reduxState = useSelector(({language}) => {
-    return {
-      language: language?.language?.lan,
-    };
-  });
-
-  const languageTrans = reduxState.language;
   return (
     <Formik
       innerRef={form}
@@ -46,39 +39,53 @@ function CForm(props) {
       initialValues={{
         phone: '',
       }}
-      validationSchema={Validations(selectedCountry)}>
-      {({handleChange, values, handleSubmit, errors}) => {
+      validationSchema={Validations}>
+      {({ handleChange, values, handleSubmit, errors }) => {
         return (
           <View>
             <View style={AuthStyle.card}>
               <View style={AuthStyle.cardBody}>
-                <CInput
-                  ref={phone}
-                  type="view"
-                  selectedCountry={selectedCountry}
-                  onPress={() => toggleCountryModal()}
-                  keyboardType={'numeric'}
-                  inputLabel={'phone no'}
-                  placeholder={'000-000-0000'}
-                  value={values?.phone}
-                  onChangeText={val => {
-                    let phone = val;
-                    // let reg = /^0+/gi;
-                    if (phone.match(reg)) {
-                      phone = phone.replace(reg, '');
-                    }
-                    handleChange('phone')(phone);
-                  }}
-                  error={errors.phone || phoneErr}
-                  returnKeyType="next"
-                  onSubmitEditing={() => handleSubmit()}
+                <CTextfield
+                  ref={email}
+                  secureTextEntry={false}
+                  inputLabel='Email'
+                  placeholder='email@example.com'
+                  placeholderTextColor={themes?.light?.colors?.grey}
+                  mode={'outlined'}
+                  multiLine={false}
+                  numberOfLines={1}
+                  icon={icons?.Email}
+                  iconColor={themes?.light?.colors?.red}
+                  outlineColor={themes?.light?.colors?.grey}
+                  bgColor={themes?.light?.colors?.black}
+                  activeOutlineColor={themes['light'].colors.pink}
+                  toggleSecure
+                  values={values}
+                  error={errors?.email}
                 />
-              <CTextfield />
-              <CTextfield />
-              <CTextfield />
-              <CTextfield />
-
+                <CTextfield
+                  ref={password}
+                  secureTextEntry={true}
+                  inputLabel='Password'
+                  placeholder='Password'
+                  placeholderTextColor={themes?.light?.colors?.grey}
+                  mode={'outlined'}
+                  multiLine={false}
+                  activeOutlineColor={themes['light'].colors.pink}
+                  numberOfLines={1}
+                  icon={icons?.Lock}
+                  iconColor={themes?.light?.colors?.red}
+                  outlineColor={themes?.light?.colors?.grey}
+                  bgColor={themes?.light?.colors?.bgBlue}
+                  toggleSecure
+                  values={values}
+                  error={errors?.password}
+                />
+                <View style={AuthStyle.forgotLink}>
+                <CText style={AuthStyle.forgotLinkText}>Forgot Password?</CText>
+                </View>
               </View>
+              <CButton title='Login' colorType='pink' onPress={() => handleSubmit()} />
             </View>
           </View>
         );

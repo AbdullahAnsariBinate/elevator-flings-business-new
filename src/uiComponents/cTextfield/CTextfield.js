@@ -1,28 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { TextInput } from 'react-native-paper';
 import { ImageSource } from 'react-native-vector-icons/Icon';
 import { themes } from '../../theme/colors';
 import { CText } from '../../uiComponents'
 import GlobalStyle from '../../assets/stylings/GlobalStyle';
+import { icons } from '../../assets/imgs';
+import { responsiveFontSize, responsiveScreenHeight } from 'react-native-responsive-dimensions';
 
 const CTextfield = props => {
   const [color, setColor] = React.useState(themes.light.colors.grey);
   const {
-    placeHolder,
-    icon,
-    secure,
-    supportSecure,
-    toggleSecure,
-    spacing,
-    label,
-    bgColor,
-    mode,
-    outlineColor,
-    newColor,
-    multiLine,
-    numberOfLines,
-    text,
     inputContainerStyle,
     inputInnerContainerStyle,
     inputLabel,
@@ -39,7 +27,7 @@ const CTextfield = props => {
     leftIconButtonStyle,
     iconStyle,
     inputErrorStyle,
-    error='type right input',
+    error,
     toggleRightIconFunc,
     rightIconButtonStyle,
     rightIconName,
@@ -49,7 +37,18 @@ const CTextfield = props => {
     countryView,
     countryViewLoading = false,
     placeholder,
-    secureTextEntry = false,
+    secureTextEntry,
+    placeholderTextColor,
+    mode,
+    multiLine,
+    numberOfLines,
+    icon,
+    iconColor,
+    outlineColor,
+    bgColor,
+    toggleSecure,
+    activeOutlineColor
+
   } = props;
 
 
@@ -63,65 +62,79 @@ const CTextfield = props => {
   const renderInputView = () => {
     return (
       <TextInput
-        label={label}
-        value={text}
-        placeholder={placeHolder}
-        placeholderTextColor={themes?.light?.colors?.black}
-        onChangeText={text => setText(text)}
-        mode={mode ? 'flat' : 'outlined'}
+        value={value}
+        label={inputLabel}
+        placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
+        mode={mode}
         multiline={multiLine}
         numberOfLines={numberOfLines}
+
         left={
           icon && (
             <TextInput.Icon
               icon={icon}
-              iconColor={outlineColor ? 'blue' : 'green'}
+              iconColor={iconColor}
               style={styles.leftIcon}
-              size={16}
+              size={responsiveFontSize(2.6)}
             />
           )
         }
-        activeOutlineColor={themes?.light?.colors?.pink}
+
+        activeOutlineColor={activeOutlineColor}
         outlineColor={outlineColor}
-        outlineStyle={{ borderRadius: 12 }}
-        style={[
-          { backgroundColor: themes?.light?.colors?.white, marginTop: 5 },
-          bgColor,
-        ]}
-        secureTextEntry={secure}
+        outlineStyle={{ borderRadius: 10 }}
+        style={[styles.inputField, bgColor]}
+        secureTextEntry={secureTextEntry}
         onFocus={() => {
-          setColor(themes?.light?.colors?.red);
+          setColor(themes['light'].colors.red)
         }}
         right={
-          supportSecure && (
+          secureTextEntry && (
             <TextInput.Icon
-              icon={secure ? icons.Eye : icons.CutEye}
-              iconColor={themes?.light?.colors?.grey}
+              icon={secureTextEntry ? icons.Eye : icons.CutEye}
+              iconColor={themes['light'].colors.grey}
               onPress={toggleSecure}
-              size={16}
+              size={responsiveFontSize(2.6)}
+              style={styles.rightIcon}
             />
           )
         }
       />
     );
   };
+  const renderSelectionView = () => {
+    return (
+      <TouchableOpacity
+        style={[
+          { ...GlobalStyle.inputStyle, ...style },
+          { justifyContent: 'center' },
+        ]}
+        onPress={onPress}>
+        <CText
+          style={[
+            { ...GlobalStyle.inputTextStyle, ...textStyle },
+            !value && { color: themes['light'].colors.bgBlue },
+          ]}>
+          {value ? value : placeholder}
+        </CText>
+      </TouchableOpacity>
+    );
+  };
   return (
-    <View style={{ ...GlobalStyle.inputContainer, ...inputContainerStyle }}>
+    <View style={{ ...GlobalStyle.inputContainer, ...inputContainerStyle, }}>
       {/* {inputLabel ? renderLabel() : null} */}
       {/* {inputSubLabel ? renderSubLabel() : null} */}
       {/* <View
         style={{
-          ...GlobalStyle.inputInnerContainer,
-          ...inputInnerContainerStyle,
-          ...(error && GlobalStyle.errorBorder),
-        }}> */}
-        {/* {leftIconName ? renderLeftIcon() : null} */}
-        {type === 'view' ? renderSelectionView() : renderInputView()}
-        {/* {selectedCountry && Object.keys(selectedCountry).length
+          // ...GlobalStyle.inputInnerContainer,
+          // ...inputInnerContainerStyle,
+          // ...(error && GlobalStyle.errorBorder),
+        }}>  */}
+      {type === 'view' ? renderSelectionView() : renderInputView()}
+      {/* {selectedCountry && Object.keys(selectedCountry).length
           ? renderCountryView()
           : null} */}
-        {/* {rightIconName ? renderRightIcon() : null} */}
-        {/* {rightButton ? rightButton() : null} */}
       {/* </View> */}
       {error ? renderErrorView() : null}
     </View>
@@ -130,4 +143,21 @@ const CTextfield = props => {
 
 export default CTextfield;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  leftIcon: {
+    borderRightWidth: 1,
+    borderRadius: 0,
+    borderColor: themes['light'].colors.grey,
+    paddingRight: 8,
+    marginTop: responsiveScreenHeight(1.4)
+  },
+  rightIcon: {
+    marginTop: responsiveScreenHeight(1.4)
+  },
+  inputField: {
+    backgroundColor: themes['light'].colors.white,
+    marginTop: 5,
+    height: responsiveScreenHeight(2),
+    
+  }
+});

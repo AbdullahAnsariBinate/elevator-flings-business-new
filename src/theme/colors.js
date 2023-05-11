@@ -24,6 +24,7 @@ export const themes = {
     },
     light: {
         colors: {
+            fontColor:'#000000',
             imgBorder: '#888888',
             lightRed: '#EE313B',
             lightPink: '#F954B6',
