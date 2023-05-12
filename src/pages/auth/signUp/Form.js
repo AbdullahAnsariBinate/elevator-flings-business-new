@@ -52,7 +52,7 @@ function CForm(props) {
                   mode={'outlined'}
                   multiLine={false}
                   numberOfLines={1}
-                  icon={icons?.Email}
+                  icon={icons?.Users}
                   iconColor={themes?.light?.colors?.red}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.black}
@@ -71,7 +71,7 @@ function CForm(props) {
                   multiLine={false}
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
-                  icon={icons?.Lock}
+                  icon={icons?.Email}
                   iconColor={themes?.light?.colors?.red}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
@@ -89,7 +89,7 @@ function CForm(props) {
                   multiLine={false}
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
-                  icon={icons?.Lock}
+                  icon={icons?.Business}
                   iconColor={themes?.light?.colors?.red}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
@@ -107,7 +107,7 @@ function CForm(props) {
                   multiLine={false}
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
-                  icon={icons?.Lock}
+                  icon={icons?.Smartphone}
                   iconColor={themes?.light?.colors?.red}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
@@ -153,7 +153,7 @@ function CForm(props) {
                 />
         
               </View>
-              <CButton title='Login' colorType='pink' onPress={() => handleSubmit()} />
+              <CButton title='Sign Up' colorType='pink' onPress={() => handleSubmit()} />
             </View>
           </View>
         );

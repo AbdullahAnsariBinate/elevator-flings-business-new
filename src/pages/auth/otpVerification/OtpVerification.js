@@ -8,52 +8,49 @@ import { useNavigation } from "@react-navigation/native";
 import { sendOtp, verifyOtp } from "../../../store/actions/Auth.action";
 import ApiSauce from '../../../utils/network'
 import { SEND_CODE, VERIFY_CODE } from "../../../config/webservices";
-import  Auth  from "../../../store/constants/Auth.constant";
+import Auth from "../../../store/constants/Auth.constant";
+import { Pressable } from "react-native";
+import { CText } from "../../../uiComponents";
 function OtpVerification({ route }) {
     const { phone } = route?.params || {};
-    console.log("🚀 ~ file: OtpVerification.js ~ line 13 ~ OtpVerification ~ phone", phone)
-    const dispatch = useDispatch();
+
 
     const navigation = useNavigation();
 
-    const reduxState = useSelector(({ auth, global }) => {
-        return {
-            loading: auth?.verifyOtpLoading,
-        };
-    });
 
-    const submit = async  (values) => {
+
+    const submit = async (values) => {
         console.log("values", values);
-        const payload = {
-            local_storage_phone: phone,
-            verification: values.otp,
-        };
-        try {
-        const resp  = await ApiSauce.post(VERIFY_CODE, payload)
-        navigation.navigate("user_information" ,{
-            phone:phone
-        })
-        // dispatch({
-        //             type: Auth.LOGIN_USER_API,
-        //             loading: false,
-        //             user: response?.data
-        //             isLoggedIn: true,
-        //         });
-        console.log('respresprespresprespresprespresprespresp', resp)
+        // const payload = {
+        //     local_storage_phone: phone,
+        //     verification: values.otp,
+        // };
+        // try {
+        //     const resp = await ApiSauce.post(VERIFY_CODE, payload)
+        //     navigation.navigate("user_information", {
+        //         phone: phone
+        //     })
+        //     // dispatch({
+        //     //             type: Auth.LOGIN_USER_API,
+        //     //             loading: false,
+        //     //             user: response?.data
+        //     //             isLoggedIn: true,
+        //     //         });
+        //     console.log('respresprespresprespresprespresprespresp', resp)
 
-            
-        } catch (error) {
-        alert(error.message.response);
 
-            // dispatch({
-            //     type: Auth.LOGIN_USER_API,
-            //     loading: false,
-            //     // user: response?.data?.data?.data,
-            //     isLoggedIn: true,
-            // });
-            console.log('errorerrorerrorerror', error)
-            
-        }
+        // } catch (error) {
+        //     alert(error.message.response);
+
+        //     // dispatch({
+        //     //     type: Auth.LOGIN_USER_API,
+        //     //     loading: false,
+        //     //     // user: response?.data?.data?.data,
+        //     //     isLoggedIn: true,
+        //     // });
+        //     console.log('errorerrorerrorerror', error)
+
+        // }
         // dispatch(verifyOtp(payload)).then((response) => {
         //     console.log(response);
         //     // if (response?.response.data?.success) {
@@ -68,26 +65,32 @@ function OtpVerification({ route }) {
     };
 
     const headerProps = {
-        showCenterLogo: false,
-        headerRight: true,
-        transparent: true,
+        hideBackButton: true,
+        headerTitle: 'Otp Verification'
+
     };
+    const handleResetPw = () => {
+        navigation.navigate('changepass')
+    }
 
     return (
         <Container
-            headerProps={headerProps}
-            backgroundColor={"theme-color"}
-            showPattern={true}
+            backgroundColor={'red'}
+            showPattern={false}
             scrollView={true}
-            loading={reduxState?.loading}
+            loading={false}
             scrollViewProps={{
                 contentContainerStyle: AuthStyle.container,
             }}
+            headerProps={headerProps}
         >
+            <Pressable onPress={handleResetPw}>
+                <CText style={AuthStyle.bottomlinkTextNav}>Reset Password</CText>
+            </Pressable>
             <CForm
                 submit={submit}
                 resendOtp={resendOtp}
-                loading={reduxState?.loading}
+            // loading={reduxState?.loading}
             />
         </Container>
     );

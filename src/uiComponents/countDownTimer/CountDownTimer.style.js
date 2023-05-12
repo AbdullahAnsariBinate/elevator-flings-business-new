@@ -13,7 +13,7 @@ export default StyleSheet.create({
     timeContainerText: {
         fontSize: 14,
         fontFamily: themes.font.regular,
-        color: theme['light'].colors.lightGray
+        color: theme['light'].colors.black
     },
     timeContainerTextBlue: {
         color: theme['light'].colors.fontColor,

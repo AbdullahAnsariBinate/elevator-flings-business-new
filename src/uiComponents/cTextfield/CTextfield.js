@@ -8,7 +8,7 @@ import GlobalStyle from '../../assets/stylings/GlobalStyle';
 import { icons } from '../../assets/imgs';
 import { responsiveFontSize, responsiveScreenHeight } from 'react-native-responsive-dimensions';
 
-const CTextfield = props => {
+const CTextfield = React.forwardRef((props, ref) => {
   const [color, setColor] = React.useState(themes.light.colors.grey);
   const {
     inputContainerStyle,
@@ -62,6 +62,7 @@ const CTextfield = props => {
   const renderInputView = () => {
     return (
       <TextInput
+        ref={ref}
         value={value}
         label={inputLabel}
         placeholder={placeholder}
@@ -139,7 +140,7 @@ const CTextfield = props => {
       {error ? renderErrorView() : null}
     </View>
   );
-};
+});
 
 export default CTextfield;
 
@@ -158,6 +159,6 @@ const styles = StyleSheet.create({
     backgroundColor: themes['light'].colors.white,
     marginTop: 5,
     height: responsiveScreenHeight(6),
-    
+
   }
 });

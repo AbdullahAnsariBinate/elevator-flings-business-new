@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CLoading } from "../uiComponents";
 import { createStackNavigator } from "@react-navigation/stack";
-import {SignIn, SignUp } from '../pages/auth'
+import {ChangePass, ForgotPass, OtpVerification, SignIn, SignUp } from '../pages/auth'
 
 
 
@@ -38,6 +38,12 @@ function Auth({ initial }) {
                     {/* <Stack.Screen name="welcome" component={Welcome} /> */}
                     <Stack.Screen name="signin" component={SignIn} />
                     <Stack.Screen name="signup" component={SignUp} />
+                    <Stack.Screen name="forgotpass" component={ForgotPass} />
+                    <Stack.Screen name="otpverify" component={OtpVerification} />
+                    <Stack.Screen name="changepass" component={ChangePass} />
+
+
+
 
                     {/* <Stack.Screen name="login" component={Signup} /> */}
 

@@ -19,10 +19,8 @@ export default StyleSheet.create({
     },
 
     card: {
-        // borderRadius: 20,
-        // backgroundColor: theme['light'].colors.tertiary,
-        // paddingHorizontal: 30,
-        // paddingVertical: 30
+        gap:responsiveHeight(1.8)
+   
     },
     cardHeader: {
         marginBottom: 30
@@ -173,20 +171,45 @@ export default StyleSheet.create({
     forgotLink: {
         paddingVertical: responsiveScreenHeight(0.9)
     },
-    forgotLinkText:{
+    forgotLinkText: {
         color: themes['light'].colors?.black,
         fontSize: themes?.fontSize?.small,
         fontFamily: themes?.font?.bold,
-        textDecorationLine:'underline',
-        textAlign:'center'
+        textDecorationLine: 'underline',
+        textAlign: 'center'
     },
-    bottomlinkSignup:{
+    bottomlinkSignup: {
         flexDirection: 'row',
         // marginTop: responsiveScreenHeight(18),
         justifyContent: 'center',
         alignItems: 'center'
     },
-    signupCard:{
+    signupCard: {
         marginBottom: 15
-    }
+    },
+    imagesContainer: {
+        position: 'relative',
+    },
+    uploadProImg: {
+        height: '100%',
+        width: '100%',
+    },
+    uploadIcon: {
+        borderWidth: 1,
+        borderColor: themes['light'].colors.white,
+        borderRadius: 50,
+        position: 'absolute',
+        bottom: 3,
+        right: 3,
+        backgroundColor:themes['light']?.colors?.red
+      },
+      uploadIconImg: {
+        height: '50%',
+        width: '50%',
+      },
+      heading:{
+        color: themes['light'].colors?.black,
+        fontSize: themes?.fontSize?.regular,
+        fontFamily: themes?.font?.bold,
+      }
 });

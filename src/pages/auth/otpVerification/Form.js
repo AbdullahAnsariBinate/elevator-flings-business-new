@@ -1,22 +1,22 @@
-import React, {useRef, memo} from 'react';
-import {Formik} from 'formik';
+import React, { useRef, memo } from 'react';
+import { Formik } from 'formik';
 import Validations from './Validations';
-import {View, TouchableOpacity} from 'react-native';
-import {CButton, CInput, CText, CountDownTimer} from '../../../uiComponents';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { CButton, CInput, CText, CountDownTimer } from '../../../uiComponents';
 import AuthStyle from '../Auth.style';
-// import OTPInputView from '@twotalltotems/react-native-otp-input'
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
-import {themes} from "../../../theme/colors";
+import { themes } from "../../../theme/colors";
 // import '../../../utils/i18n/lan';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import { responsiveScreenWidth } from 'react-native-responsive-dimensions';
+import OtpInputs from 'react-native-otp-inputs'
 function CForm(props) {
-    const {t, i18n} = useTranslation();
-    
-    const [currentLanguage,setLanguage] = useState('ar');
+    const { t, i18n } = useTranslation();
 
 
-    
-    const {submit, loading, resendOtp} = props;
+
+
+    const { submit, loading, resendOtp } = props;
 
     const form = useRef(null);
 
@@ -31,51 +31,48 @@ function CForm(props) {
             }}
             validationSchema={Validations}
         >
-            {({handleChange, values, handleSubmit, errors, setFieldValue}) => {
+            {({ handleChange, values, handleSubmit, errors, setFieldValue }) => {
                 return (
                     <View>
-                        <View style={[AuthStyle.card,{ marginTop: 20}]}>
+                        <View style={[AuthStyle.card, { marginTop: 20 }]}>
                             <View style={AuthStyle.cardHeader}>
-                                <CText style={AuthStyle.cardHeaderTitle}>
+                                {/* <CText style={AuthStyle.cardHeaderTitle}>
                                     {t("Verification")}
                                 </CText>
                                 <CText style={AuthStyle.cardHeaderSubTitle}>
                                     {t('Digit_PIN')}
-                                </CText>
+                                </CText> */}
                             </View>
 
                             <View style={AuthStyle.cardBody}>
 
                                 <View style={AuthStyle.otpContainer}>
-                                    <OTPInputView
-                                        code={values?.otp}
-                                        onCodeChanged={handleChange('otp')}
-                                        codeInputFieldStyle={[AuthStyle.codeInputFieldStyle]}
-                                        codeInputHighlightStyle={AuthStyle.codeInputHighlightStyle}
-                                        style={AuthStyle.otpInputView}
-                                        onCodeFilled = {(code => {
-                                            setFieldValue('otp', code);
-                                            handleSubmit()
-                                        })}
-                                        pinCount={4} />
+                                    <OtpInputs
+                                        autofillFromClipboard
+                                        style={styles.otpStyles}
+                                        inputStyles={styles.inputStyles}
+                                        inputContainerStyles={styles.inputContainer}
+                                        handleChange={(code) => console.log(code)}
+                                        numberOfInputs={6}
+                                        placeholder='0'
+                                    />
                                     {errors.otp ? <CText style={GlobalStyle.errorTextStyle}>
                                         {errors.otp}
-                                    </CText>  : null}
+                                    </CText> : null}
                                 </View>
 
 
                                 <CountDownTimer text={'Request a new code in'} initialValue={5}>
                                     <View style={AuthStyle.linkButtonContainer}>
-                                        <CText style={AuthStyle.linkButtonText}>{t('Dont_receive_OTP_code')}</CText>
+                                        {/* <CText style={AuthStyle.linkButtonText}>{t('Dont_receive_OTP_code')}</CText> */}
                                         <TouchableOpacity style={AuthStyle.linkButtonWithIcon} onPress={resendOtp}>
-                                            <CText style={AuthStyle.linkButtonOtherText}>{t('Resend')}</CText>
+                                            {/* <CText style={AuthStyle.linkButtonOtherText}>{t('Resend')}</CText> */}
                                         </TouchableOpacity>
                                     </View>
                                 </CountDownTimer>
 
-                                <CButton title={t('Continue')}
-                                         loading={loading}
-                                         onPress={() => handleSubmit()}/>
+              <CButton title='Login' colorType='pink' onPress={() => handleSubmit()} />
+                             
                             </View>
 
                         </View>
@@ -87,3 +84,31 @@ function CForm(props) {
     );
 }
 export default memo(CForm);
+
+const styles = StyleSheet.create({
+    otpStyles: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+      inputStyles: {
+        backgroundColor: 'white',
+        width: responsiveScreenWidth(12),
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        borderRadius: 2,
+        fontSize: 20,
+        color: themes['light'].colors.black,
+        borderColor: themes['light'].colors.pink,
+        borderWidth: 1,
+      },
+      inputContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      tinyLogo: {
+        height: 50,
+        width: 50,
+      },
+})

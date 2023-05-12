@@ -21,7 +21,6 @@ function CForm(props) {
 
   const form = useRef(null);
   const password = useRef(null);
-  const email = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -47,24 +46,6 @@ function CForm(props) {
             <View style={AuthStyle.card}>
               <View style={AuthStyle.cardBody}>
                 <CTextfield
-                  ref={email}
-                  secureTextEntry={false}
-                  inputLabel='Email'
-                  placeholder='email@example.com'
-                  placeholderTextColor={themes?.light?.colors?.grey}
-                  mode={'outlined'}
-                  multiLine={false}
-                  numberOfLines={1}
-                  icon={icons?.Email}
-                  iconColor={themes?.light?.colors?.red}
-                  outlineColor={themes?.light?.colors?.grey}
-                  bgColor={themes?.light?.colors?.black}
-                  activeOutlineColor={themes['light'].colors.pink}
-                  toggleSecure
-                  values={values}
-                  error={errors?.email}
-                />
-                <CTextfield
                   ref={password}
                   secureTextEntry={true}
                   inputLabel='Password'
@@ -82,13 +63,27 @@ function CForm(props) {
                   values={values}
                   error={errors?.password}
                 />
-                <View style={AuthStyle.forgotLink}>
-                  <Pressable onPress={handleForgot}>
-                    <CText style={AuthStyle.forgotLinkText}>Forgot Password?</CText>
-                  </Pressable>
-                </View>
+                <CTextfield
+                  ref={password}
+                  secureTextEntry={true}
+                  inputLabel='Confirm Password'
+                  placeholder='COnfirm Password'
+                  placeholderTextColor={themes?.light?.colors?.grey}
+                  mode={'outlined'}
+                  multiLine={false}
+                  activeOutlineColor={themes['light'].colors.pink}
+                  numberOfLines={1}
+                  icon={icons?.Lock}
+                  iconColor={themes?.light?.colors?.red}
+                  outlineColor={themes?.light?.colors?.grey}
+                  bgColor={themes?.light?.colors?.bgBlue}
+                  toggleSecure
+                  values={values}
+                  error={errors?.password}
+                />
+
               </View>
-              <CButton title='Login' colorType='pink' onPress={() => handleSubmit()} />
+              <CButton title='Reset Password' colorType='pink' onPress={() => handleSubmit()} />
             </View>
           </View>
         );
