@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import Auth from './src/routing/Auth';
+import Root from './src/routing/Root';
 
 const App = () => {
   return (
-      <Auth />
+      <Root />
   );
 };
 

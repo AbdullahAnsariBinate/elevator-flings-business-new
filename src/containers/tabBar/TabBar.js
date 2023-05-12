@@ -11,6 +11,7 @@ import posed from "react-native-pose";
 // import {useTranslation} from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Icon as MyIcon } from 'react-native-elements';
+import { CText } from '../../uiComponents';
 
 const windowWidth = Dimensions.get("window").width;
 const tabWidth = windowWidth / 5;
@@ -24,7 +25,7 @@ const SpotLight = posed.View({
 });
 
 function TabBar(props) {
-    const {t, i18n} = useTranslation();
+    // const {t, i18n} = useTranslation();
     
     const [currentLanguage,setLanguage] = useState('ar');
     const reduxState = useSelector(({ auth, root, language }) => {
@@ -63,7 +64,7 @@ function TabBar(props) {
 
     const routes = [
         {
-            name: t('Home'),
+            name: 'Home',
             key: 'home',
             icon: 'home',
             onPress: () => navigation.navigate('Home'),
@@ -72,7 +73,7 @@ function TabBar(props) {
             type:"antdesign"
         },
         {
-            name: t('Search'),
+            name: 'Search',
             key: 'store',
             icon: 'search1',
             onPress: () => navigation.navigate('Store', {
@@ -84,7 +85,7 @@ function TabBar(props) {
 
         },
         {
-            name: t('Cart'),
+            name: 'Cart',
             key: 'cart',
             icon: 'shopping-basket',
             onPress: () =>  navigation.navigate('Cart', {
@@ -97,7 +98,7 @@ function TabBar(props) {
 
         },
         {
-            name: t('Location'),
+            name: 'Location',
             key: 'location',
             icon: 'location-outline',
             onPress: () => navigation.navigate('Location'),
@@ -106,7 +107,7 @@ function TabBar(props) {
 
         },
         {
-            name: t('Profile'),
+            name: 'Profile',
             key: 'profile',
             icon: 'user',
             onPress: () => navigation.navigate('Profile'),
