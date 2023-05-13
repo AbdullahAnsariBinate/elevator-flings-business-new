@@ -8,7 +8,7 @@ export default StyleSheet.create({
         borderWidth: 1,
         backgroundColor: theme['light'].colors.primary,
         padding: responsiveScreenHeight(1.5),
-        justifyContent: 'center',
+        
         alignItems: 'center',
         borderRadius: 10,
         position: 'relative',
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     },
     buttonText: {
         color: themes['light'].colors.white,
-        fontSize: themes?.fontSize?.regular,
+        fontSize: themes?.fontSize?.medium,
         fontFamily: themes.font.regular,
     },
     buttonIcon: {
@@ -34,5 +34,9 @@ export default StyleSheet.create({
         marginLeft: 10,
         marginTop: Platform.OS === 'ios' ? 2 : 4
     },
+    buttonIconR:{
+        height:responsiveScreenHeight(1.8),
+        width:responsiveScreenHeight(1.8)
+    }
 
 })

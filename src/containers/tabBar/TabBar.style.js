@@ -1,14 +1,15 @@
-import {StyleSheet} from "react-native";
-import {themes as theme, themes} from "../../theme/colors";
+import { StyleSheet } from "react-native";
+import { themes as theme, themes } from "../../theme/colors";
 
 const Styles = StyleSheet.create({
 
     tabContainer: {
-        // backgroundColor: themes['light'].colors.tertiary,
+        backgroundColor: themes['light'].colors.white,
         // position: 'relative',
-        borderTopRightRadius: 40,
-        borderTopLeftRadius: 40,
-        marginTop: -40
+        // borderTopRightRadius: 20,
+        // borderTopLeftRadius: 20,
+        marginTop: -40,
+
     },
     absoluteFillObject: {
         backgroundColor: themes['light'].colors.primary,
@@ -48,13 +49,13 @@ const Styles = StyleSheet.create({
     },
     tabIcon: {
         fontSize: 28,
-        color: themes['light'].colors.tertiary,
+        color: themes['light'].colors.pink,
     },
     tabText: {
-        fontSize: 8,
-        color: themes['light'].colors.tertiary,
+        fontSize: themes?.fontSize?.small,
+        color: themes['light'].colors.pink,
         fontFamily: themes.font.regular,
-        marginTop: 5
+        marginTop: 0
     },
 });
 export default Styles

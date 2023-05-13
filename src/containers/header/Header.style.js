@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         backgroundColor: theme['light'].colors.tertiary,
+        justifyContent:'space-between'
 
     },
     headerStyle: {
@@ -41,9 +42,6 @@ const styles = StyleSheet.create({
         color: themes['light'].colors.fontColor,
         fontFamily: themes?.font?.bold,
         fontSize: themes?.fontSize?.large,
-        marginTop: 3,
-        marginHorizontal: 15,
-        flex: 1,
         textAlign: 'center',
     },
     headerButton: {},
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
     },
     headerCartBadgeText: {
         fontSize: 8,
-        color: theme['light'].colors.tertiary,
+        color: theme['light'].colors.black,
         fontFamily: theme.font.regular
     },
     headerCartButtonIcon: {
@@ -99,6 +97,12 @@ const styles = StyleSheet.create({
         marginLeft: -5,
         fontSize: 24,
         color: theme['light'].colors.primary,
+    },
+    headerLeftTitle:{
+        fontSize:themes?.fontSize?.large,
+        color:themes['light']?.colors?.black,
+        fontFamily:themes?.font?.bold
+        
     }
 });
 

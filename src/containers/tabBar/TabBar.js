@@ -1,17 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {View, TouchableOpacity, Dimensions} from 'react-native';
-import {SafeAreaView} from "../index";
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, Dimensions } from 'react-native';
+import { SafeAreaView } from "../index";
 import Styles from './TabBar.style';
-import Icon from '../../assets/icons/CustomIcon';
-import {MappedElement, getLayoutDirection} from "../../utils/methods";
-import {themes} from "../../theme/colors";
+// import MyIcon from 'react-native-vector-icons'
+import { MappedElement, getLayoutDirection } from "../../utils/methods";
+import { themes } from "../../theme/colors";
 // import {CText} from "../../uiComponents";
 import posed from "react-native-pose";
 // import '../../utils/i18n/lan';
 // import {useTranslation} from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Icon as MyIcon } from 'react-native-elements';
-import { CText } from '../../uiComponents';
+import { CText, ProgressiveImage } from '../../uiComponents';
+import { icons } from '../../assets/imgs';
+import FastImage from 'react-native-fast-image';
 
 const windowWidth = Dimensions.get("window").width;
 const tabWidth = windowWidth / 5;
@@ -26,19 +28,19 @@ const SpotLight = posed.View({
 
 function TabBar(props) {
     // const {t, i18n} = useTranslation();
-    
-    const [currentLanguage,setLanguage] = useState('ar');
+
+    const [currentLanguage, setLanguage] = useState('ar');
     const reduxState = useSelector(({ auth, root, language }) => {
         return {
             loading: root.categoryLoadingproduct,
             data: root.subcategoryProduct,
-            language:language?.language?.lan
+            language: language?.language?.lan
 
         };
     });
 
 
-    const {navigation, state} = props;
+    const { navigation, state } = props;
 
     const [stateIndex, updateStateIndex] = useState(0);
 
@@ -46,7 +48,7 @@ function TabBar(props) {
 
     useEffect(() => {
         let currentRouteName = getCurrentRouteName(state)?.toLowerCase();
-        if(tabName.includes(currentRouteName)){
+        if (tabName.includes(currentRouteName)) {
             updateStateIndex(tabName?.indexOf(currentRouteName))
         }
     }, [state]);
@@ -70,61 +72,61 @@ function TabBar(props) {
             onPress: () => navigation.navigate('Home'),
             fontSize: 32,
             marginTop: -40,
-            type:"antdesign"
+            type: "entypo"
         },
-        {
-            name: 'Search',
-            key: 'store',
-            icon: 'search1',
-            onPress: () => navigation.navigate('Store', {
-                screen: 'store',
-                initial: false
-            }),
-            fontSize: 30,
-            type:"antdesign"
+        // {
+        //     name: 'Search',
+        //     key: 'store',
+        //     icon: 'search1',
+        //     onPress: () => navigation.navigate('Store', {
+        //         screen: 'store',
+        //         initial: false
+        //     }),
+        //     fontSize: 30,
+        //     type:"antdesign"
 
-        },
-        {
-            name: 'Cart',
-            key: 'cart',
-            icon: 'shopping-basket',
-            onPress: () =>  navigation.navigate('Cart', {
-                screen: 'cart',
-                initial: false
-            }),
-            // onPress: () =>  navigation.navigate('Cart'),
-            fontSize: 30,
-            type:"fontisto"
+        // },
+        // {
+        //     name: 'Cart',
+        //     key: 'cart',
+        //     icon: 'shopping-basket',
+        //     onPress: () =>  navigation.navigate('Cart', {
+        //         screen: 'cart',
+        //         initial: false
+        //     }),
+        //     // onPress: () =>  navigation.navigate('Cart'),
+        //     fontSize: 30,
+        //     type:"fontisto"
 
-        },
-        {
-            name: 'Location',
-            key: 'location',
-            icon: 'location-outline',
-            onPress: () => navigation.navigate('Location'),
-            fontSize: 30,
-            type:"ionicon"
+        // },
+        // {
+        //     name: 'Location',
+        //     key: 'location',
+        //     icon: 'location-outline',
+        //     onPress: () => navigation.navigate('Location'),
+        //     fontSize: 30,
+        //     type:"ionicon"
 
-        },
+        // },
         {
             name: 'Profile',
             key: 'profile',
             icon: 'user',
-            onPress: () => navigation.navigate('Profile'),
+            onPress: () => navigation.navigate('MyProfile'),
             fontSize: 30,
-            type:"antdesign"
+            type: "font-awesome"
 
         },
     ];
 
-    if(!getTabBarVisibility(state)) { return null }
+    if (!getTabBarVisibility(state)) { return null }
 
     return (
         <SafeAreaView edges={['left', 'right', 'bottom']}
-                      style={Styles.tabContainer}>
+            style={Styles.tabContainer}>
 
             <View style={Styles.absoluteFillObject}>
-                <SpotLight style={[Styles.spotLight, {width: tabWidth}]} pose={`route${state?.index}`}>
+                <SpotLight style={[Styles.spotLight, { width: tabWidth }]} pose={`route${state?.index}`}>
                     <View style={Styles.spotLightInner}>
                     </View>
                 </SpotLight>
@@ -137,22 +139,23 @@ function TabBar(props) {
                         const isRouteActive = route?.key === getCurrentRouteName(state)?.toLowerCase();
                         return (
                             <TouchableOpacity key={i} onPress={route.onPress} style={Styles.tab}>
+
                                 <MyIcon name={route.icon}
-                                           style={[Styles.tabIcon, {
-                                               fontSize: route?.fontSize,
-                                               color: isRouteActive ? themes['light'].colors.secondary : themes['light'].colors.gray8
-                                           }]}
-                                           color={isRouteActive ? themes['light'].colors.secondary : themes['light'].colors.gray8}
-                                           type={route.type}
-                                           size={route?.fontSize}
-                                            />
+                                    style={[Styles.tabIcon, {
+                                        fontSize: route?.fontSize,
+                                        color: isRouteActive ? themes['light'].colors.secondary : themes['light'].colors.gray8
+                                    }]}
+                                    color={isRouteActive ? themes['light'].colors.pink : themes['light'].colors.lightPink}
+                                    type={route.type}
+                                    size={route?.fontSize}
+                                />
                                 <CText style={Styles.tabText}>{route?.name}</CText>
                             </TouchableOpacity>
                         )
                     }}
                 />
             </View>
-       
+
 
         </SafeAreaView>
     );

@@ -5,6 +5,7 @@ import { TabBar } from "../containers";
 
 import {
     HomeStack,
+    MyProfileStack
     // CartStack,
     // LocationStack,
     // ProfileStack,
@@ -24,6 +25,8 @@ const Root = ({ initial }) => {
             screenOptions={{ headerShown: false }}
         >
             <Tab.Screen name="Home" component={HomeStack} />
+            <Tab.Screen name="MyProfile" component={MyProfileStack} />
+
             {/* <Tab.Screen name="Store" component={StoreStack} />
             <Tab.Screen name="Cart" component={CartStack} />
             <Tab.Screen name="Location" component={LocationStack} />

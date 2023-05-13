@@ -1,15 +1,16 @@
 import React from 'react';
 import SafeAreaView from '../safeAreaView/SafeAreaView';
-import {View, TouchableOpacity} from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import Styles from './Header.style';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icons from '../../assets/icons/CustomIcon';
-import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
-import {getLayoutDirection} from '../../utils/methods';
-import { CText } from '../../uiComponents';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { getLayoutDirection } from '../../utils/methods';
+import { CText, ProgressiveImage } from '../../uiComponents';
 // import {CText, ProgressiveImage} from "../../uiComponents";
 import Entypo from 'react-native-vector-icons/Entypo'
+import { View as CustomView } from 'react-native-ui-lib';
 
 function Header(props) {
   const navigation = useNavigation();
@@ -28,9 +29,10 @@ function Header(props) {
     goBackWithRoute,
     transparent,
     theme,
+    headerLeftTitle
   } = props;
 
-  const {isLoggedIn} = useSelector(({auth}) => {
+  const { isLoggedIn } = useSelector(({ auth }) => {
     return {
       isLoggedIn: auth.isLoggedIn,
     };
@@ -74,22 +76,23 @@ function Header(props) {
           name={'chevron-left'}
           style={[
             Styles.headerButtonIcon,
-            {transform: [{scaleX: getLayoutDirection() ? -1 : 1}]},
+            { transform: [{ scaleX: getLayoutDirection() ? -1 : 1 }] },
           ]}
         />
       </TouchableOpacity>
     ) : (
-      <View style={{minWidth: 24}} />
+      <View style={{ minWidth: 24 }} />
     );
   };
 
   const menuButton = () => {
     return (
-      <TouchableOpacity
+      <View
         style={Styles.headerButton}
         onPress={() => navigation.toggleDrawer()}>
-        <AntDesign name="menu" style={Styles.headerButtonIcon} />
-      </TouchableOpacity>
+        <CText style={Styles.headerLeftTitle}>{headerLeftTitle}</CText>
+
+      </View>
     );
   };
 
@@ -119,12 +122,19 @@ function Header(props) {
 
   const otherOptionsButton = () => {
     return (
-      <View
-        style={[
-          Styles.otherOptions,
-          !showCart && Styles.otherOptionsButtonSpace,
-        ]}>
-        {isLoggedIn && showCart ? cartButton() : null}
+      <View>
+        <CText style={{ color: 'black' }}>right Options</CText>
+        {/* <CustomView style={styles.leftHeader} width={'33%'} >
+          <TouchableOpacity onPress={addPress}>
+            <FastImage source={icon3} style={Styles.icons} resizeMode='contain' />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={msgPress}>
+            <FastImage source={icon1} style={styles.icon} resizeMode='contain' />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={notiPress} marginL-5>
+            <FastImage source={icon2} style={styles.icon} resizeMode='contain' />
+          </TouchableOpacity>
+        </CustomView> */}
       </View>
     );
   };
@@ -153,15 +163,21 @@ function Header(props) {
           Styles.container,
           transparent && Styles.headerTransparentStyle,
         ]}>
-        {headerLeft ? menuButton() : backButton()}
-        {showCenterLogo
-          ? centerLogo()
-          : headerTitleElement
-          ? headerTitleElement()
-          : headerTitle
-          ? renderHeaderTitle(headerTitle)
-          : null}
-        {headerRight ? otherOptionsButton() : null}
+        <CustomView width={'30%'} left centerV>
+          {headerLeft ? menuButton() : backButton()}
+        </CustomView>
+        <CustomView width={'36%'} centerH>
+          {showCenterLogo
+            ? centerLogo()
+            : headerTitleElement
+              ? headerTitleElement()
+              : headerTitle
+                ? renderHeaderTitle(headerTitle)
+                : null}
+        </CustomView>
+        <CustomView width={'30%'} right centerV>
+          {headerRight ? otherOptionsButton() : null}
+        </CustomView>
       </View>
     </SafeAreaView>
   );
