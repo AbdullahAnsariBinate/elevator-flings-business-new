@@ -1,50 +1,52 @@
-import React, { useState } from 'react';
-
+import React, { useCallback, useState, useMemo } from 'react';
 import { Pressable, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Container } from '../../../containers';
 import AuthStyle from '../Auth.style';
 import CForm from './Form';
 import { CText, ProgressiveImage } from '../../../uiComponents';
 import { imgs } from '../../../assets/imgs';
-import { useNavigation } from '@react-navigation/native';
 
-function SignIn(props) {
+const SignIn = () => {
   const navigation = useNavigation();
   const [phoneError, setPhoneError] = useState('');
-  const submit = () => { };
 
-  const handleSignup = () => {
-    navigation.navigate('signup')
-  }
-  const handleForgot = () => {
-    navigation.navigate('forgotpass')
-  }
-  const headerProps = {
+  const handleSignup = useCallback(() => {
+    navigation.navigate('signup');
+  }, [navigation]);
+
+  const handleForgot = useCallback(() => {
+    navigation.navigate('forgotpass');
+  }, [navigation]);
+
+  const handleOtp = useCallback(() => {
+    navigation.navigate('otpverify');
+  }, [navigation]);
+
+  const handleHome = useCallback(() => {
+    navigation.navigate('Home', { screen: 'home' });
+  }, [navigation]);
+
+  const headerProps = useMemo(() => ({
     hideBackButton: false,
-    headerTitle: 'Login'
-  }
-  const handleOtp = () => {
-    navigation.navigate('otpverify')
-  }
-  const handleHome = () => {
-    navigation.navigate('Home', {
-      screen: 'home',
-    });
-  }
+    headerTitle: 'Login',
+  }), []);
+
+  const submit = useCallback((values) => {
+    console.log('formikkk', values)
+    // handle form submission
+  }, []);
+
   return (
     <Container
-
-      backgroundColor={'red'}
       showPattern={false}
-      scrollView={true}
+      scrollView
       loading={false}
-      scrollViewProps={{
-        contentContainerStyle: AuthStyle.container,
-      }}
+      scrollViewProps={{ contentContainerStyle: AuthStyle.container }}
       headerProps={headerProps}
     >
       <View style={AuthStyle.logoView}>
-        <ProgressiveImage source={imgs?.Logo} style={AuthStyle.logo} resizeMode='contain' />
+        <ProgressiveImage source={imgs?.Logo} style={AuthStyle.logo} resizeMode="contain" />
       </View>
       <Pressable onPress={handleOtp}>
         <CText style={AuthStyle.bottomlinkTextNav}>Otp</CText>
@@ -63,10 +65,9 @@ function SignIn(props) {
         <Pressable onPress={handleSignup}>
           <CText style={AuthStyle.bottomlinkTextNav}>Register Now</CText>
         </Pressable>
-
       </View>
-
     </Container>
   );
-}
+};
+
 export default SignIn;

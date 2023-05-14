@@ -37,7 +37,7 @@ function Home(props) {
 
   }, [])
   const handlePropertydetail = () => {
-
+  navigation.navigate('propertydetail')
   }
   const handleEventdetail = () => {
 

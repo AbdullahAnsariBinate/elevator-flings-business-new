@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {themes as theme, themes} from "../../theme/colors";
+import { StyleSheet } from 'react-native';
+import { themes as theme, themes } from "../../theme/colors";
 
 export default StyleSheet.create({
 
@@ -16,7 +16,7 @@ export default StyleSheet.create({
         fontSize: 18,
         color: themes['light'].colors.fontColor,
         fontFamily: themes.font.regular,
-        
+
     },
     inputSubLabel: {
         fontSize: 14,
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     inputStyle: {
         fontSize: 16,
         color: themes['light'].colors.lightGray,
-        
+
 
         fontFamily: themes.font.regular,
         flex: 1,
@@ -84,10 +84,10 @@ export default StyleSheet.create({
     },
 
     errorTextStyle: {
-        color: themes['light'].colors.danger,
-        fontFamily: themes.font.regular,
+        color: themes['light'].colors.red,
+        fontFamily: themes.font?.regular,
         marginTop: 5,
-        fontSize: 16,
+        fontSize: themes.fontSize?.small,
         textAlign: 'left'
     },
     lastInput: {
@@ -206,7 +206,7 @@ export default StyleSheet.create({
     listSecondHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
         marginTop: 20,
         marginBottom: 20
     },
@@ -239,8 +239,8 @@ export default StyleSheet.create({
         zIndex: 1
     },
 
-    marginHorizontal_0: {marginHorizontal: 0},
-    paddingHorizontal_0: {paddingHorizontal: 0},
+    marginHorizontal_0: { marginHorizontal: 0 },
+    paddingHorizontal_0: { paddingHorizontal: 0 },
     errorBorder: {
         borderColor: themes['light'].colors.danger,
     },
@@ -414,7 +414,7 @@ export default StyleSheet.create({
         width: 200,
         height: 50
     },
-    centerModalCenterView : {
+    centerModalCenterView: {
         backgroundColor: themes['light'].colors.overlay,
         flex: 1,
         justifyContent: 'center',

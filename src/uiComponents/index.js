@@ -15,6 +15,8 @@ import CountDownTimer from "./countDownTimer/CountDownTimer";
 import HorizontalList from "./horizontalList/HorizontalList";
 import CTextfield from "./cTextfield/CTextfield"
 import EventPost from "./cEventPost/eventpost"
+import PastEvents from "./cPastEvents/pastevent"
+
 
 
 export {
@@ -34,5 +36,6 @@ export {
     CountDownTimer,
     HorizontalList,
     CTextfield,
-    EventPost
+    EventPost,
+    PastEvents
 }

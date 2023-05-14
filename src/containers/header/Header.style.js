@@ -1,7 +1,7 @@
 import {StyleSheet, Platform} from "react-native";
 import {themes as theme, themes} from "../../theme/colors";
 import { responsiveScreenHeight } from "react-native-responsive-dimensions";
-export const headerHeight = Platform.OS === 'ios' ? 44 : 56;
+export const headerHeight = Platform.OS === 'ios' ? responsiveScreenHeight(4) : responsiveScreenHeight(5);
 
 const styles = StyleSheet.create({
     headerLogo: {

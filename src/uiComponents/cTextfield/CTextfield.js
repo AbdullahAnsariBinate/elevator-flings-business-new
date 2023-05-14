@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { TextInput } from 'react-native-paper';
+import { DefaultTheme, TextInput } from 'react-native-paper';
 import { ImageSource } from 'react-native-vector-icons/Icon';
 import { themes } from '../../theme/colors';
 import { CText } from '../../uiComponents'
@@ -47,7 +47,8 @@ const CTextfield = React.forwardRef((props, ref) => {
     outlineColor,
     bgColor,
     toggleSecure,
-    activeOutlineColor
+    activeOutlineColor,
+    onChangeText
 
   } = props;
 
@@ -60,9 +61,22 @@ const CTextfield = React.forwardRef((props, ref) => {
     );
   };
   const renderInputView = () => {
+    const theme = {
+      ...DefaultTheme,
+      colors: {
+        ...DefaultTheme.colors,
+        primary: 'red', // change the color of the input text
+        placeholder: 'grey', // change the color of the placeholder text
+      },
+    };
     return (
       <TextInput
         ref={ref}
+        theme={{
+          colors: {
+            primary: 'red', // change the color of the input text when focused
+          },
+        }}
         value={value}
         label={inputLabel}
         placeholder={placeholder}
@@ -70,7 +84,7 @@ const CTextfield = React.forwardRef((props, ref) => {
         mode={mode}
         multiline={multiLine}
         numberOfLines={numberOfLines}
-
+        onChangeText={onChangeText}
         left={
           icon && (
             <TextInput.Icon
@@ -158,7 +172,7 @@ const styles = StyleSheet.create({
   inputField: {
     backgroundColor: themes['light'].colors.white,
     marginTop: 5,
-    height: responsiveScreenHeight(6),
+    // height: responsiveScreenHeight(6),
 
   }
 });

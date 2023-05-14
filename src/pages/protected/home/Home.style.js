@@ -114,6 +114,26 @@ const Styles = StyleSheet.create({
         // paddingTop: responsiveHeight(0.6),
         // marginBottom: responsiveHeight(2),
     },
+    postName: {
+        fontFamily: themes?.font?.bold,
+        color: themes['light']?.colors?.black,
+        fontSize: themes?.fontSize?.regular
+    },
+    postSq: {
+        fontFamily: themes?.font?.bold,
+        color: themes['light']?.colors?.black,
+        fontSize: themes?.fontSize?.small
+    },
+    postHeading: {
+        fontFamily: themes?.font?.semiBold,
+        color: themes['light']?.colors?.black,
+        fontSize: themes?.fontSize?.small,
+    },
+    postDesp: {
+        fontFamily: themes?.font?.regular,
+        color: themes['light']?.colors?.fontBlack,
+        fontSize: themes?.fontSize?.small
+    },
 
 });
 export default Styles;

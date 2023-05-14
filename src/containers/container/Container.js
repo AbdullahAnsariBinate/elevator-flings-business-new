@@ -45,7 +45,7 @@ function Container(props) {
             /> : null}
             {renderHeader()}
             <SafeAreaView edges={getEdges()} style={[Styles.backgroundContainer, SafeAreaViewStyle]}>
-                {/* <CLoading loading={loading} /> */}
+                <CLoading loading={loading} />
                 <View style={{flex: 1}}>
                     {scrollView ? <ScrollView {...scrollViewProps} scrollEventThrottle={16}>
                         {children}

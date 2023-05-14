@@ -87,7 +87,6 @@ const MyProfile = () => {
                             +123-456-789
                         </CText>
                     </View>
-                    <View style={styles.bottomArea} />
                 </View>
                 <View>
                     <View row spread style={styles.notification} marginB-5 marginT-10>

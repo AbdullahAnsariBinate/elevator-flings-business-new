@@ -25,20 +25,21 @@ function CForm(props) {
 
   const dispatch = useDispatch();
 
-  const continueWithoutLogin = () => {
-    dispatch({
-      type: Auth.LOGIN_USER_API,
-      loading: false,
-      user: null,
-      isLoggedIn: true,
-    });
-  };
+  // const continueWithoutLogin = () => {
+  //   dispatch({
+  //     type: Auth.LOGIN_USER_API,
+  //     loading: false,
+  //     user: null,
+  //     isLoggedIn: true,
+  //   });
+  // };
   return (
     <Formik
       innerRef={form}
       onSubmit={values => submit(values)}
       initialValues={{
-        phone: '',
+        email: '',
+        password: '',
       }}
       validationSchema={Validations}>
       {({ handleChange, values, handleSubmit, errors }) => {
@@ -61,14 +62,15 @@ function CForm(props) {
                   bgColor={themes?.light?.colors?.black}
                   activeOutlineColor={themes['light'].colors.pink}
                   toggleSecure
-                  values={values}
+                  values={values.email}
+                  onChangeText={handleChange('email')}
                   error={errors?.email}
                 />
                 <CTextfield
                   ref={password}
                   secureTextEntry={true}
                   inputLabel='Password'
-                  placeholder='Password'
+                  placeholder='*********** '
                   placeholderTextColor={themes?.light?.colors?.grey}
                   mode={'outlined'}
                   multiLine={false}
@@ -79,7 +81,8 @@ function CForm(props) {
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
-                  values={values}
+                  values={values.password}
+                  onChangeText={handleChange('password')}
                   error={errors?.password}
                 />
                 <View style={AuthStyle.forgotLink}>

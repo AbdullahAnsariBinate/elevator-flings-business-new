@@ -12,26 +12,40 @@ export const styles = StyleSheet.create({
         paddingVertical: responsiveHeight(1.5),
         borderBottomWidth: 0.5,
         borderBottomColor: themes['light']?.colors.borderGray,
+        paddingHorizontal: responsiveWidth(2.2)
     },
     bioLast: {
         paddingVertical: responsiveHeight(1.5),
+        paddingHorizontal: responsiveWidth(2.2),
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
+        backgroundColor: '#ffff', // Just for visualization purposes
+        borderBottomWidth: 1,
+        borderBottomColor: '#ffffff',
+        borderRightColor: '#ffff',
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 3,
+        marginBottom: 5,
     },
     container: {
         backgroundColor: '#FFFFFF',
-        // borderRadius: 10,
     },
-    bottomArea: {
-        height: 6,
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
-        opacity: 0.04,
-        backgroundColor: '#6b6b6b', // Just for visualization purposes
-    },
+
     notification: {
-        paddingVertical: responsiveHeight(2.2),
+        paddingVertical: responsiveHeight(1.8),
         backgroundColor: themes['light']?.colors?.flashWhite,
         paddingHorizontal: 10,
         borderRadius: 10,
+        alignItems: 'center'
     },
 
     centeredView: {
