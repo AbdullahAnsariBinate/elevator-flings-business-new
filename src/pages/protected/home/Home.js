@@ -40,7 +40,7 @@ function Home(props) {
   navigation.navigate('propertydetail')
   }
   const handleEventdetail = () => {
-
+    navigation.navigate('eventdetails')
   }
 
   const FirstRoute = () => (
