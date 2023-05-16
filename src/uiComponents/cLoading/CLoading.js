@@ -1,25 +1,21 @@
-import  React ,{useState}from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import React, { useState } from 'react';
+import { View, ActivityIndicator } from 'react-native';
 import styles from './CLoading.style';
-import {themes} from "../../theme/colors";
-import {CText} from "../index";
-// import '../../utils/i18n/lan';
-import {useTranslation} from 'react-i18next';
+import { themes } from "../../theme/colors";
+import { CText } from "../index";
 
-const CLoading = ({style, theme, loading, text, transparent = false}) => {
-    const {t, i18n} = useTranslation();
-    
-    const [currentLanguage,setLanguage] = useState('ar');
-    text = text === 'hide' ? '' : text ? text : t("Please_wait");
-    let color =  transparent ? themes['light'].colors.primary : themes['light'].colors.tertiary;
-    if(loading) {
+const CLoading = ({ style, theme, loading, text, transparent = false }) => {
+
+    text = text === 'hide' ? '' : text ? text : "Please wait";
+    let color = transparent ? themes['light'].colors.primary : themes['light'].colors.tertiary;
+    if (loading) {
         return (
             <View style={[styles.wrapper,
-                transparent && {backgroundColor: 'transparent'},
+            transparent && { backgroundColor: 'transparent' },
                 style]}>
                 <ActivityIndicator style={styles.loading} size="large"
-                                   color={color} />
-                {text ? <CText style={[styles.loadingText, {color: color}]}>{text}</CText> : null}
+                    color={color} />
+                {text ? <CText style={[styles.loadingText, { color: color }]}>{text}</CText> : null}
             </View>
         );
     } else {

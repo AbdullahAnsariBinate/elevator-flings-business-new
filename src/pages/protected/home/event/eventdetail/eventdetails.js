@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Carousel, View as CustomView, TouchableOpacity } from 'react-native-ui-lib'
-import { CText } from '../../../../../uiComponents'
+import { CText, Requests } from '../../../../../uiComponents'
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import { themes } from '../../../../../theme/colors'
 import { Data } from './data'
@@ -10,6 +10,8 @@ import FastImage from 'react-native-fast-image'
 import { icons, imgs as images } from '../../../../../assets/imgs'
 import { styles } from '../event.style'
 import { Container } from '../../../../../containers'
+import Styles from '../../Home.style'
+import { FlashList } from '@shopify/flash-list'
 
 const EventDetails = () => {
   const [isModalVisible, setIsModalVisible] = React.useState(false)
@@ -28,7 +30,8 @@ const EventDetails = () => {
     // screens.push(componentId, 'EditEvent')
   }, [])
   const renderItem = ({ item }) => {
-    // return <Requests imgs={item?.img} btn name2='Reject' name='Accept' />  
+    console.log("🚀 ~ file: eventdetails.js:33 ~ renderItem ~ item:", item)
+    return <Requests imgs={item?.img} btn name2='Reject' name='Accept' />  
   }
   const handleVisible = () => {
     setIsModalVisible(!isModalVisible)
@@ -74,28 +77,28 @@ const EventDetails = () => {
 
         <CustomView style={styles.descContainer}>
           <CustomView spread row paddingV-4 centerV>
-            <CText large black bold>
+            <CText style={Styles.postName}>
               Lorem Ispum
             </CText>
-            <CustomView row>
-              <CText regular black bold marginR-3>
+            <CustomView row centerV style={{ gap: 5 }}>
+              <CText style={Styles.postSq}>
                 Category:
               </CText>
-              <CText regular black>
+              <CText style={Styles.postDesp}>
                 Lorem ipsum
               </CText>
             </CustomView >
           </CustomView >
-          <CustomView row paddingV-2 centerV>
+          <CustomView row paddingV-2 centerV style={{ gap: 5 }}>
             <CustomView width={responsiveWidth(4)} height={responsiveWidth(4)}>
               <FastImage source={icons.Marker} style={styles.loc} resizeMode='contain' />
             </CustomView >
-            <CText marginL-5 black bold>
+            <CText style={Styles.postHeading}>
               Elementum nam laoreet dictumst bibendum
             </CText>
           </CustomView >
           <CustomView paddingV-2>
-            <CText numberOfLines={6} black>
+            <CText numberOfLines={7} style={Styles.postDesp}>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
               tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
               eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
@@ -103,35 +106,36 @@ const EventDetails = () => {
             </CText>
           </CustomView >
           <CustomView style={styles.timingContainer}>
-            <CustomView row>
-              <CText black marginR-3 bold>Time:</CText>
-
-              <CText black>10am to 6pm</CText>
+            <CustomView row style={{ gap: 5 }}>
+              <CText style={Styles.postSq} >Time:</CText>
+              <CText style={Styles.postDesp} >10am to 6pm</CText>
             </CustomView >
-            <CustomView row centerV>
-              <CText marginR-3 black bold>
+            <CustomView row centerV style={{ gap: 5 }} >
+              <CText style={Styles.postSq}>
                 Event:
               </CText>
-              <CText marginR-18 black>
+              <CText style={Styles.postDesp}>
                 Public
               </CText>
-              <FastImage source={images.Profile} style={styles.profile} resizeMode='contain' />
-              <FastImage source={images.Profile2} style={styles.profile} resizeMode='contain' />
-              <FastImage source={images.Profile3} style={styles.profile} resizeMode='contain' />
-              <FastImage source={images.Profile4} style={styles.profile} resizeMode='contain' />
+              <CustomView marginL-15 row>
+                <FastImage source={images.Profile} style={styles.profile} resizeMode='contain' />
+                <FastImage source={images.Profile2} style={styles.profile} resizeMode='contain' />
+                <FastImage source={images.Profile3} style={styles.profile} resizeMode='contain' />
+                <FastImage source={images.Profile4} style={styles.profile} resizeMode='contain' />
+              </CustomView>
             </CustomView >
           </CustomView >
         </CustomView >
 
         <CustomView >
           <CustomView style={styles.pastEvent} paddingH-15>
-            <CText large bold fontBlack>
+            <CText style={Styles.postName}>
               Requests
             </CText>
           </CustomView >
 
           <CustomView paddingH-15 style={styles.request}>
-            {/* <FlashList data={dummyData} renderItem={renderItem} estimatedItemSize={70} /> */}
+            <FlashList data={dummyData} renderItem={renderItem} estimatedItemSize={70} />
           </CustomView >
         </CustomView >
         {/* <Modal

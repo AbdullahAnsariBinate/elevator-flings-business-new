@@ -8,11 +8,14 @@ import { icons, imgs } from '../../../assets/imgs'
 import { Switch } from 'react-native-paper'
 import { themes } from '../../../theme/colors'
 import { styles } from './MyProfile.style'
+import { useNavigation } from '@react-navigation/native'
 
 const MyProfile = () => {
     const [isEnabled, setIsEnabled] = React.useState(true)
     const [isModalVisible, setIsModalVisible] = React.useState(false)
     const [isModalVisible2, setIsModalVisible2] = React.useState(false)
+
+    const navigation = useNavigation()
     const handleVisible = () => {
         setIsModalVisible(!isModalVisible)
     }
@@ -28,10 +31,10 @@ const MyProfile = () => {
         headerTitle: 'My Profile',
     };
     const handlePrivacy = React.useCallback(() => {
-
+        navigation.navigate('privacypolicy')
     }, [])
     const handleTerm = React.useCallback(() => {
-
+        navigation.navigate('termandcondition')
     }, [])
     const handleLogout = React.useCallback(() => {
 

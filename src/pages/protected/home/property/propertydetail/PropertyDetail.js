@@ -26,7 +26,7 @@ const PropertyDetail = () => {
     };
 
     const handleEdit = React.useCallback(() => {
-        screens.push(componentId, 'EditProperty')
+        // screens.push(componentId, 'EditProperty')
     }, [])
     const renderItem = ({ item }) => {
         return (
@@ -53,7 +53,7 @@ const PropertyDetail = () => {
                         height: responsiveHeight(32),
                     }}
                     loop
-                    autoplay={true}
+                    // autoplay={true}
                     pageControlProps={{
                         size: 7,
                         color: themes['light'].colors.pink,
@@ -61,8 +61,9 @@ const PropertyDetail = () => {
                     pageControlPosition={Carousel.pageControlPositions.UNDER}
                 >
                     {Data.map((image, i) => {
+                        console.log("🚀 ~ file: PropertyDetail.js:64 ~ {Data.map ~ image:", image)
                         return (
-                            <View key={i}>
+                            <CustomView key={i}>
                                 <FastImage style={styles.dataImg} source={image.image} resizeMode='cover' />
                                 <TouchableOpacity style={styles.edit} onPress={handleEdit}>
                                     <FastImage
@@ -78,7 +79,7 @@ const PropertyDetail = () => {
                                         resizeMode='cover'
                                     />
                                 </TouchableOpacity>
-                            </View>
+                            </CustomView>
                         )
                     })}
                 </Carousel>

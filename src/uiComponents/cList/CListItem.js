@@ -45,7 +45,7 @@ function CListItem(props) {
                     style={[
                         Styles.listItemImageContainer,
                         type === "horizontal" &&
-                            Styles.horizontalItemImageContainer,
+                        Styles.horizontalItemImageContainer,
                         imageStyle,
                     ]}
                 >
@@ -72,24 +72,24 @@ function CListItem(props) {
                     <CText style={Styles.listItemTitle} numberOfLines={1}>
                         {title}
                     </CText>
-                    <View style={{flexDirection:'row-reverse' , justifyContent:'space-between', flex:1 ,width:160, marginTop:8}}>
+                    <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', flex: 1, width: 160, marginTop: 8 }}>
 
-                    {price ? (
-                        <CText
-                            style={[Styles.listItemSubTitle, priceStyle]}
-                            numberOfLines={1}
-                        >
-                         {price}
-                        </CText>
-                    ) : null}
-                    {qun ? (
-                        <CText
-                            style={[Styles.listItemSubTitle, priceStyle]}
-                            numberOfLines={1}
-                        >
-                             Qt:{qun}
-                        </CText>
-                    ) : null}
+                        {price ? (
+                            <CText
+                                style={[Styles.listItemSubTitle, priceStyle]}
+                                numberOfLines={1}
+                            >
+                                {price}
+                            </CText>
+                        ) : null}
+                        {qun ? (
+                            <CText
+                                style={[Styles.listItemSubTitle, priceStyle]}
+                                numberOfLines={1}
+                            >
+                                Qt:{qun}
+                            </CText>
+                        ) : null}
                     </View>
 
                     {buttonText ? (

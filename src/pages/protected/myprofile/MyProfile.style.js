@@ -158,4 +158,9 @@ export const styles = StyleSheet.create({
         fontSize: themes?.fontSize?.medium,
         fontFamily: themes.font.regular,
     },
+    postDesp: {
+        fontFamily: themes?.font?.regular,
+        color: themes['light']?.colors?.fontBlack,
+        fontSize: themes?.fontSize?.small
+    },
 })

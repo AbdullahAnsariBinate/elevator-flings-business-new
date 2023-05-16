@@ -16,8 +16,8 @@ import HorizontalList from "./horizontalList/HorizontalList";
 import CTextfield from "./cTextfield/CTextfield"
 import EventPost from "./cEventPost/eventpost"
 import PastEvents from "./cPastEvents/pastevent"
-
-
+import Requests from './cRequest/request';
+import ChatComponent from './cChatComponent/ChatComponent';
 
 export {
     CInput,
@@ -37,5 +37,7 @@ export {
     HorizontalList,
     CTextfield,
     EventPost,
-    PastEvents
+    PastEvents,
+    Requests,
+    ChatComponent
 }

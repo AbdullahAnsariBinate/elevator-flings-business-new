@@ -1,25 +1,27 @@
-import React, {memo} from 'react';
-import {ScrollView, View} from 'react-native';
+import React, { memo } from 'react';
+import { ScrollView, View } from 'react-native';
 import Styles from './Container.style';
-import {ProgressiveImage, CLoading} from "../../uiComponents";
-import {Header, SafeAreaView, ViewContainer} from "../../containers";
-import {themes as theme} from "../../theme/colors";
-import {imgs} from '../../assets/imgs'
+import { ProgressiveImage, CLoading } from "../../uiComponents";
+import { Header, SafeAreaView, ViewContainer } from "../../containers";
+import { themes as theme } from "../../theme/colors";
+import { imgs } from '../../assets/imgs'
 
 
 function Container(props) {
-    const {children, headerProps = {}, scrollView = false, scrollViewProps, bottomSpace = false,
-        edges = [], style, SafeAreaViewStyle, loading, showPattern = false, backgroundColor} = props;
+
+
+    const { children, headerProps = {}, scrollView = false, scrollViewProps, bottomSpace = false,
+        edges = [], style, SafeAreaViewStyle, loading, showPattern = false, backgroundColor } = props;
 
     const renderHeader = () => {
-        if(Object.keys(headerProps).length) {
+        if (Object.keys(headerProps).length) {
             return <Header {...headerProps} />
         } else {
             return null
         }
     };
     const getEdges = () => {
-        if(Object.keys(headerProps).length) {
+        if (Object.keys(headerProps).length) {
             return edges?.length ? edges : ['left', 'right', 'bottom']
         } else {
             return edges?.length ? edges : ['top', 'left', 'right', 'bottom']
@@ -27,17 +29,17 @@ function Container(props) {
     };
 
     const getBackgroundColor = () => {
-          if(backgroundColor === 'theme-color') {
-              return theme['light'].colors.secondary
-          } else {
-              return theme['light'].colors.tertiary
-          }
+        if (backgroundColor === 'theme-color') {
+            return theme['light'].colors.secondary
+        } else {
+            return theme['light'].colors.tertiary
+        }
     };
 
-    return(
+    return (
         <ViewContainer style={[Styles.background, {
             backgroundColor: getBackgroundColor(),
-            ...(bottomSpace && {paddingBottom: 40}),
+            ...(bottomSpace && { paddingBottom: 40 }),
         }, style]}>
             {showPattern ? <ProgressiveImage
                 style={Styles.backgroundPattern}
@@ -46,7 +48,7 @@ function Container(props) {
             {renderHeader()}
             <SafeAreaView edges={getEdges()} style={[Styles.backgroundContainer, SafeAreaViewStyle]}>
                 <CLoading loading={loading} />
-                <View style={{flex: 1}}>
+                <View style={{ flex: 1 }}>
                     {scrollView ? <ScrollView {...scrollViewProps} scrollEventThrottle={16}>
                         {children}
                     </ScrollView> : children}

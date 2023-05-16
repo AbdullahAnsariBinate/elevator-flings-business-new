@@ -6,7 +6,7 @@ import { themes } from '../../../theme/colors';
 import FastImage from 'react-native-fast-image';
 import { icons, imgs } from '../../../assets/imgs';
 import Styles from './Home.style'
-import { TabView, SceneMap, TabBar, } from 'react-native-tab-view'
+import { TabView, SceneMap, TabBar, TouchableOpacity } from 'react-native-tab-view'
 import { responsiveWidth } from 'react-native-responsive-dimensions';
 import { useWindowDimensions, FlatList } from 'react-native';
 import { CButton, EventPost } from '../../../uiComponents';
@@ -17,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
 import AuthStyle from '../../auth/Auth.style';
 import { View as CustomView } from 'react-native-ui-lib'
+import { useCallback } from 'react';
 
 
 function Home(props) {
@@ -34,14 +35,17 @@ function Home(props) {
 
   };
   const handlePastEvent = React.useCallback(() => {
-
+    navigation.navigate('pastevent')
   }, [])
   const handlePropertydetail = () => {
-  navigation.navigate('propertydetail')
+    navigation.navigate('propertydetail')
   }
   const handleEventdetail = () => {
     navigation.navigate('eventdetails')
   }
+  const handleMessage = useCallback(() => {
+    navigation.navigate('chatlist')
+  }, [])
 
   const FirstRoute = () => (
     <View style={Styles.scrollBar}>
@@ -49,7 +53,6 @@ function Home(props) {
     </View>
   )
   const renderItem = ({ item }) => {
-    console.log("🚀 ~ file: Home.js:43 ~ renderItem ~ item:", item)
     return <EventPost imgs={imgs?.Property} onPress={handlePropertydetail} />
   }
   const SecondRoute = () => (
@@ -125,6 +128,8 @@ function Home(props) {
         style={Styles.search}
         icon={() => <FastImage source={icons.Search} style={Styles.img} resizeMode='contain' />}
       />
+      <CButton title="Message" onPress={handleMessage} />
+
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}

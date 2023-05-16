@@ -16,13 +16,15 @@ const EventPost = ({ imgs, img, onPress }) => {
                 <FastImage source={imgs} style={styles.postImg} resizeMode='contain' />
                 {img && (
                     <View style={styles.img}>
-                        <View>
-                            <CText >Time: 10am to 6pm</CText>
-                        </View>
+                        <View row style={{ gap: 5 }}>
+                            <CText style={styles.postTime}>Time:</CText>
+                            <CText style={styles.postTimeVal}>10am to 6pm</CText>
+                        </View >
                         <View row centerV style={styles.postPrivacy}>
-                            <CText>
-                                Time: Public
-                            </CText>
+                            <View row style={{ gap: 5 }}>
+                                <CText style={styles.postTime}>Time:</CText>
+                                <CText style={styles.postTimeVal}>Public</CText>
+                            </View>
                             <View row>
                                 <FastImage source={images.Profile} style={styles.profile} resizeMode='contain' />
                                 <FastImage source={images.Profile2} style={styles.profile} resizeMode='contain' />
@@ -38,7 +40,7 @@ const EventPost = ({ imgs, img, onPress }) => {
                 <CText style={styles.postName}>Lorem Ispum</CText>
                 <CText style={styles.postSq}>1200, SQFT</CText>
             </View>
-            <View row paddingV-2 centerV >
+            <View row paddingV-2 centerV style={{ gap: 5 }}>
                 <View width={responsiveWidth(4)} height={responsiveWidth(4)}>
                     <FastImage source={icons.Marker} style={styles.loc} resizeMode='contain' />
                 </View>
@@ -109,6 +111,16 @@ const styles = StyleSheet.create({
     },
     postPrivacy: {
         gap: 20
+    },
+    postTime: {
+        fontFamily: themes?.font?.bold,
+        color: themes['light']?.colors?.white,
+        fontSize: themes?.fontSize?.small
+    },
+    postTimeVal: {
+        fontFamily: themes?.font?.light,
+        color: themes['light']?.colors?.white,
+        fontSize: themes?.fontSize?.small
     }
 
 })

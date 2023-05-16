@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import App from './App';
 import {AppRegistry, LogBox, StatusBar, View} from 'react-native';
 import {name as appName} from './app.json';
@@ -21,7 +21,7 @@ const theme = {
 };
 const Container = () => {
 
-    // const routeNameRef = useRef();
+    const routeNameRef = useRef();
 
     return (
         <NavigationContainer theme={theme} ref={navigationRef}>

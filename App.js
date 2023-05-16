@@ -6,7 +6,6 @@ import Auth from './src/routing/Auth';
 
 const App = () => {
   return (
-      // <Root />
       <Root />
   );
 };
