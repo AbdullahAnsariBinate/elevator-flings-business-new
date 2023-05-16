@@ -11,7 +11,6 @@ import { themes } from '../../../../../theme/colors';
 import { useNavigation } from '@react-navigation/native';
 import { CButton, ChatComponent } from '../../../../../uiComponents';
 import { renderNode } from 'react-native-elements/dist/helpers';
-import ChatComp from '../chatcomp/ChatComp';
 const ChatList = () => {
 
     const navigation = useNavigation()
@@ -35,7 +34,7 @@ const ChatList = () => {
         navigation.navigate("singlechat")
     }
     const renderItem = ({ item }) => {
-        return <ChatComp imgs={item?.imgs} onPress={() => handleChat()} />
+        return <ChatComponent imgs={item?.imgs} onPress={() => handleChat()} />
     }
     return (
         <Container

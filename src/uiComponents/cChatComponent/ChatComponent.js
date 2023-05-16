@@ -4,6 +4,7 @@ import FastImage from 'react-native-fast-image'
 import { responsiveWidth } from 'react-native-responsive-dimensions'
 import { CText } from '..'
 import { themes } from '../../theme/colors'
+import { View } from 'react-native-ui-lib'
 
 const ChatComponent = ({ imgs, onPress }) => {
     return (
