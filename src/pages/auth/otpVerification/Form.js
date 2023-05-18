@@ -19,6 +19,7 @@ function CForm(props) {
     const { submit, loading, resendOtp } = props;
 
     const form = useRef(null);
+    const otp = useRef(null);
 
 
 
@@ -52,7 +53,8 @@ function CForm(props) {
                                         style={styles.otpStyles}
                                         inputStyles={styles.inputStyles}
                                         inputContainerStyles={styles.inputContainer}
-                                        handleChange={(code) => console.log(code)}
+                                        // value={values?.otp}
+                                        handleChange={(otp) => console.log('hhdhdhdh',otp)}
                                         numberOfInputs={6}
                                         placeholder='0'
                                     />
@@ -62,17 +64,18 @@ function CForm(props) {
                                 </View>
 
 
-                                <CountDownTimer text={'Request a new code in'} initialValue={5}>
+
+
+                                <CButton title='Login' colorType='pink' onPress={() => handleSubmit()} />
+                                {/* <CountDownTimer text={'Request a new code in'} initialValue={30}>
                                     <View style={AuthStyle.linkButtonContainer}>
-                                        {/* <CText style={AuthStyle.linkButtonText}>{t('Dont_receive_OTP_code')}</CText> */}
+                                        <CText style={AuthStyle.linkButtonText}>Don't receive OTP code</CText>
                                         <TouchableOpacity style={AuthStyle.linkButtonWithIcon} onPress={resendOtp}>
-                                            {/* <CText style={AuthStyle.linkButtonOtherText}>{t('Resend')}</CText> */}
+                                            <CText style={AuthStyle.linkButtonOtherText}>Resend</CText>
                                         </TouchableOpacity>
                                     </View>
-                                </CountDownTimer>
+                                </CountDownTimer> */}
 
-              <CButton title='Login' colorType='pink' onPress={() => handleSubmit()} />
-                             
                             </View>
 
                         </View>
@@ -90,8 +93,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-      },
-      inputStyles: {
+    },
+    inputStyles: {
         backgroundColor: 'white',
         width: responsiveScreenWidth(12),
         alignItems: 'center',
@@ -102,13 +105,13 @@ const styles = StyleSheet.create({
         color: themes['light'].colors.black,
         borderColor: themes['light'].colors.pink,
         borderWidth: 1,
-      },
-      inputContainer: {
+    },
+    inputContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      tinyLogo: {
+    },
+    tinyLogo: {
         height: 50,
         width: 50,
-      },
+    },
 })

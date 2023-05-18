@@ -23,7 +23,7 @@ export default StyleSheet.create({
 
     },
     cardHeader: {
-        marginBottom: 30
+        // marginBottom: 30
     },
     cardHeaderTitle: {
         fontSize: 28,

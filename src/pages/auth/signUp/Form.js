@@ -17,7 +17,6 @@ function CForm(props) {
   const [isFocusedPass, setIsFocusedPass] = useState(false);
   const [isFocusedCPass, setIsFocusedCPass] = useState(false);
   const [secure, setSecure] = useState(false)
-  console.log("🚀 ~ file: Form.js:20 ~ CForm ~ secure:", secure)
   const [secureCPass, setSecureCPass] = useState(false)
 
 

@@ -163,10 +163,10 @@ function Header(props) {
           Styles.container,
           transparent && Styles.headerTransparentStyle,
         ]}>
-        <CustomView width={'30%'} left centerV>
+        <CustomView width={'11%'} left centerV >
           {headerLeft ? menuButton() : backButton()}
         </CustomView>
-        <CustomView width={'36%'} centerH>
+        <CustomView width={'77%'} centerH >
           {showCenterLogo
             ? centerLogo()
             : headerTitleElement
@@ -175,7 +175,7 @@ function Header(props) {
                 ? renderHeaderTitle(headerTitle)
                 : null}
         </CustomView>
-        <CustomView width={'30%'} right centerV>
+        <CustomView width={'11%'} right centerV >
           {headerRight ? otherOptionsButton() : null}
         </CustomView>
       </View>

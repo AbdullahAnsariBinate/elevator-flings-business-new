@@ -21,7 +21,8 @@ function ChangePass(props) {
    }
   const headerProps = {
     hideBackButton: true,
-    headerTitle: 'Reset Password'
+    headerTitle: 'Reset Password',
+    headerRight:false
   }
   const handleOtp = () => {
     navigation.navigate('signin')

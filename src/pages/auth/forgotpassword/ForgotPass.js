@@ -11,6 +11,12 @@ import { useNavigation } from '@react-navigation/native';
 function ForgotPass(props) {
   const navigation = useNavigation();
   const [phoneError, setPhoneError] = useState('');
+
+  const headerProps = {
+    hideBackButton: true,
+    headerTitle: 'Forgot Password',
+    headerRight: false
+  }
   const submit = (values) => {
     console.log(values, 'dummy')
   };
@@ -19,10 +25,7 @@ function ForgotPass(props) {
     navigation.navigate('signup')
   }
 
-  const headerProps = {
-    hideBackButton: true,
-    headerTitle: 'Forgot Password'
-  }
+
   return (
     <Container
 
@@ -42,12 +45,12 @@ function ForgotPass(props) {
         submit={submit}
         onLoginPress={() => navigation.navigate('login')}
       />
-      <View style={AuthStyle.bottomlink}>
+      {/* <View style={AuthStyle.bottomlink}>
         <CText style={AuthStyle.bottomlinkText}>Didn't receive the code? </CText>
         <Pressable onPress={handleSignup}>
           <CText style={AuthStyle.bottomlinkTextNav}>Resend</CText>
         </Pressable>
-      </View>
+      </View> */}
     </Container>
   );
 }

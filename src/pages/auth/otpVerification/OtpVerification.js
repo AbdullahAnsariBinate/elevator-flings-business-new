@@ -10,7 +10,9 @@ import ApiSauce from '../../../utils/network'
 import { SEND_CODE, VERIFY_CODE } from "../../../config/webservices";
 import Auth from "../../../store/constants/Auth.constant";
 import { Pressable } from "react-native";
-import { CText } from "../../../uiComponents";
+import { CText, ProgressiveImage } from "../../../uiComponents";
+import { imgs } from "../../../assets/imgs";
+import { View } from "react-native-ui-lib";
 function OtpVerification({ route }) {
     const { phone } = route?.params || {};
 
@@ -66,7 +68,8 @@ function OtpVerification({ route }) {
 
     const headerProps = {
         hideBackButton: true,
-        headerTitle: 'Otp Verification'
+        headerTitle: 'Otp Verification',
+        headerRight:false
 
     };
     const handleResetPw = () => {
@@ -84,6 +87,9 @@ function OtpVerification({ route }) {
             }}
             headerProps={headerProps}
         >
+            <View style={AuthStyle.logoView}>
+                <ProgressiveImage source={imgs?.Logo} style={AuthStyle.logo} resizeMode="contain" />
+            </View>
             <Pressable onPress={handleResetPw}>
                 <CText style={AuthStyle.bottomlinkTextNav}>Reset Password</CText>
             </Pressable>

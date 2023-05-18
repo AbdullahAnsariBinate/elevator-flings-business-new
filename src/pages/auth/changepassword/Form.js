@@ -18,6 +18,11 @@ function CForm(props) {
     handleForgot
 
   } = props;
+  const [isFocusedPass, setIsFocusedPass] = useState(false);
+  const [isFocusedCPass, setIsFocusedCPass] = useState(false);
+  const [secure, setSecure] = useState(false)
+  const [secureCPass, setSecureCPass] = useState(false)
+
 
   const form = useRef(null);
   const password = useRef(null);
@@ -47,7 +52,9 @@ function CForm(props) {
               <View style={AuthStyle.cardBody}>
                 <CTextfield
                   ref={password}
-                  secureTextEntry={true}
+                  secureTextEntry={secure}
+                  handleFocus={() => { setIsFocusedPass(true) }}
+                  handleBlur={() => { setIsFocusedPass(false) }}
                   inputLabel='Password'
                   placeholder='Password'
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -56,28 +63,32 @@ function CForm(props) {
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Lock}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
-                  toggleSecure
+                  toggleSecure={() => { setSecure(!secure) }}
+                  supportPassword={true}
                   values={values}
                   error={errors?.password}
                 />
                 <CTextfield
                   ref={password}
-                  secureTextEntry={true}
-                  inputLabel='Confirm Password'
-                  placeholder='COnfirm Password'
+                  secureTextEntry={secureCPass}
+                  handleFocus={() => { setIsFocusedCPass(true) }}
+                  handleBlur={() => { setIsFocusedCPass(false) }}
+                  inputLabel='Password Confirm'
+                  placeholder='Password Confirm'
                   placeholderTextColor={themes?.light?.colors?.grey}
                   mode={'outlined'}
                   multiLine={false}
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Lock}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedCPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
-                  toggleSecure
+                  toggleSecure={() => { setSecureCPass(!secureCPass) }}
+                  supportPassword={true}
                   values={values}
                   error={errors?.password}
                 />
