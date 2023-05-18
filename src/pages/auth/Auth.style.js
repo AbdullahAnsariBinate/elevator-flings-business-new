@@ -156,7 +156,9 @@ export default StyleSheet.create({
     },
     bottomlink: {
         flexDirection: 'row',
-        marginTop: responsiveScreenHeight(18),
+        // marginTop: responsiveScreenHeight(18),
+        marginVertical: responsiveScreenHeight(2),
+
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -166,7 +168,8 @@ export default StyleSheet.create({
     bottomlinkTextNav: {
         color: themes['light'].colors?.pink,
         fontSize: themes?.fontSize?.medium,
-        fontFamily: themes?.font?.bold
+        fontFamily: themes?.font?.bold,
+        textDecorationLine:'underline'
     },
     forgotLink: {
         paddingVertical: responsiveScreenHeight(0.9)
@@ -180,15 +183,16 @@ export default StyleSheet.create({
     },
     bottomlinkSignup: {
         flexDirection: 'row',
-        // marginTop: responsiveScreenHeight(18),
+        marginVertical: responsiveScreenHeight(2),
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     signupCard: {
         marginBottom: 15
     },
     imagesContainer: {
         position: 'relative',
+        // backgroundColor:'red'
     },
     uploadProImg: {
         height: '100%',
@@ -199,8 +203,9 @@ export default StyleSheet.create({
         borderColor: themes['light'].colors.white,
         borderRadius: 50,
         position: 'absolute',
-        bottom: 3,
-        right: 3,
+        bottom: -14,
+        right: 0,
+        left:18,
         backgroundColor:themes['light']?.colors?.red
       },
       uploadIconImg: {
@@ -211,5 +216,14 @@ export default StyleSheet.create({
         color: themes['light'].colors?.black,
         fontSize: themes?.fontSize?.regular,
         fontFamily: themes?.font?.bold,
+      },
+      bottomBtn:{
+        paddingVertical:2,
+      },
+      businessProfile:{
+        borderWidth:2,
+        borderRadius:100,
+        overflow:'hidden',
+        borderColor:themes?.light?.colors?.pink
       }
 });

@@ -9,7 +9,12 @@ import { imgs } from '../../../assets/imgs';
 
 const SignIn = () => {
   const navigation = useNavigation();
-  const [phoneError, setPhoneError] = useState('');
+  // const [phoneError, setPhoneError] = useState('');
+  const headerProps = useMemo(() => ({
+    hideBackButton: false,
+    headerTitle: 'Login',
+    headerRight: false
+  }), []);
 
   const handleSignup = useCallback(() => {
     navigation.navigate('signup');
@@ -23,14 +28,7 @@ const SignIn = () => {
     navigation.navigate('otpverify');
   }, [navigation]);
 
-  const handleHome = useCallback(() => {
-    navigation.navigate('Home', { screen: 'home' });
-  }, [navigation]);
 
-  const headerProps = useMemo(() => ({
-    hideBackButton: false,
-    headerTitle: 'Login',
-  }), []);
 
   const submit = useCallback((values) => {
     console.log('formikkk', values)
@@ -51,7 +49,7 @@ const SignIn = () => {
       <Pressable onPress={handleOtp}>
         <CText style={AuthStyle.bottomlinkTextNav}>Otp</CText>
       </Pressable>
-      <Pressable onPress={handleHome}>
+      <Pressable>
         <CText style={AuthStyle.bottomlinkTextNav}>Home</CText>
       </Pressable>
       <CForm
@@ -62,7 +60,7 @@ const SignIn = () => {
       />
       <View style={AuthStyle.bottomlink}>
         <CText style={AuthStyle.bottomlinkText}>Don't have an account? </CText>
-        <Pressable onPress={handleSignup}>
+        <Pressable onPress={handleSignup} style={AuthStyle.bottomlinkTextNav}>
           <CText style={AuthStyle.bottomlinkTextNav}>Register Now</CText>
         </Pressable>
       </View>

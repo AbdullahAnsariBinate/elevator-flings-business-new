@@ -9,9 +9,17 @@ import { icons } from "../../../assets/imgs";
 
 function CForm(props) {
 
-
-
   const { submit, selectedCountry, } = props;
+  const [isFocusedName, setIsFocusedName] = useState(false);
+  const [isFocusedEmail, setIsFocusedEmail] = useState(false);
+  const [isFocusedBusiness, setIsFocusedPassBusiness] = useState(false);
+  const [isFocusedPhone, setIsFocusedPhone] = useState(false);
+  const [isFocusedPass, setIsFocusedPass] = useState(false);
+  const [isFocusedCPass, setIsFocusedCPass] = useState(false);
+  const [secure, setSecure] = useState(false)
+  console.log("🚀 ~ file: Form.js:20 ~ CForm ~ secure:", secure)
+  const [secureCPass, setSecureCPass] = useState(false)
+
 
   const form = useRef(null);
   const fullName = useRef(null);
@@ -46,6 +54,8 @@ function CForm(props) {
                 <CTextfield
                   ref={fullName}
                   secureTextEntry={false}
+                  handleFocus={() => { setIsFocusedName(true) }}
+                  handleBlur={() => { setIsFocusedName(false) }}
                   inputLabel='Full Name'
                   placeholder='John Smith'
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -53,7 +63,7 @@ function CForm(props) {
                   multiLine={false}
                   numberOfLines={1}
                   icon={icons?.Users}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedName ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.black}
                   activeOutlineColor={themes['light'].colors.pink}
@@ -64,6 +74,8 @@ function CForm(props) {
                 <CTextfield
                   ref={email}
                   secureTextEntry={false}
+                  handleFocus={() => { setIsFocusedEmail(true) }}
+                  handleBlur={() => { setIsFocusedEmail(false) }}
                   inputLabel='Email'
                   placeholder='email@example.com'
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -72,7 +84,7 @@ function CForm(props) {
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Email}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedEmail ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
@@ -82,6 +94,8 @@ function CForm(props) {
                 <CTextfield
                   ref={businessName}
                   secureTextEntry={false}
+                  handleFocus={() => { setIsFocusedPassBusiness(true) }}
+                  handleBlur={() => { setIsFocusedPassBusiness(false) }}
                   inputLabel='Business Name'
                   placeholder='Business Name'
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -90,7 +104,7 @@ function CForm(props) {
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Business}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedBusiness ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
@@ -100,6 +114,8 @@ function CForm(props) {
                 <CTextfield
                   ref={phone}
                   secureTextEntry={false}
+                  handleFocus={() => { setIsFocusedPhone(true) }}
+                  handleBlur={() => { setIsFocusedPhone(false) }}
                   inputLabel='Phone Number'
                   placeholder='Phone Number'
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -108,7 +124,7 @@ function CForm(props) {
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Smartphone}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedPhone ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
@@ -117,7 +133,9 @@ function CForm(props) {
                 />
                 <CTextfield
                   ref={password}
-                  secureTextEntry={true}
+                  secureTextEntry={secure}
+                  handleFocus={() => { setIsFocusedPass(true) }}
+                  handleBlur={() => { setIsFocusedPass(false) }}
                   inputLabel='Password'
                   placeholder='Password'
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -126,16 +144,19 @@ function CForm(props) {
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Lock}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
-                  toggleSecure
+                  toggleSecure={() => { setSecure(!secure) }}
+                  supportPassword={true}
                   values={values}
                   error={errors?.password}
                 />
                 <CTextfield
                   ref={password}
-                  secureTextEntry={true}
+                  secureTextEntry={secureCPass}
+                  handleFocus={() => { setIsFocusedCPass(true) }}
+                  handleBlur={() => { setIsFocusedCPass(false) }}
                   inputLabel='Password Confirm'
                   placeholder='Password Confirm'
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -144,14 +165,15 @@ function CForm(props) {
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Lock}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedCPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
-                  toggleSecure
+                  toggleSecure={() => { setSecureCPass(!secureCPass) }}
+                  supportPassword={true}
                   values={values}
                   error={errors?.password}
                 />
-        
+
               </View>
               <CButton title='Sign Up' colorType='pink' onPress={() => handleSubmit()} />
             </View>

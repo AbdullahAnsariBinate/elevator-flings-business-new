@@ -1,4 +1,4 @@
-import React, { useRef, memo, useEffect, useState } from 'react';
+import React, { useRef, memo, useEffect, useState, useCallback } from 'react';
 import { Formik } from 'formik';
 import Validations from './Validations';
 import { Pressable, View } from 'react-native';
@@ -9,6 +9,7 @@ import Auth from '../../../store/constants/Auth.constant';
 import { themes } from '../../../theme/colors';
 import { icons } from '../../../assets/imgs';
 function CForm(props) {
+
   const {
     submit,
     loading,
@@ -18,12 +19,24 @@ function CForm(props) {
     handleForgot
 
   } = props;
+  const [isFocusedEmail, setIsFocusedEmail] = useState(false);
+  const [isFocusedPass, setIsFocusedPass] = useState(false);
+  const [secure, setSecure] = useState(false)
+
 
   const form = useRef(null);
   const password = useRef(null);
   const email = useRef(null);
 
-  const dispatch = useDispatch();
+  const toggleSecure = () => {
+    console.log("hhhhhhhh")
+    setSecure(!secure)
+  }
+
+
+
+
+  // const dispatch = useDispatch();
 
   // const continueWithoutLogin = () => {
   //   dispatch({
@@ -48,8 +61,9 @@ function CForm(props) {
             <View style={AuthStyle.card}>
               <View style={AuthStyle.cardBody}>
                 <CTextfield
+                  handleFocus={() => { setIsFocusedEmail(true) }}
+                  handleBlur={() => { setIsFocusedEmail(false) }}
                   ref={email}
-                  secureTextEntry={false}
                   inputLabel='Email'
                   placeholder='email@example.com'
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -57,18 +71,19 @@ function CForm(props) {
                   multiLine={false}
                   numberOfLines={1}
                   icon={icons?.Email}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedEmail ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.black}
                   activeOutlineColor={themes['light'].colors.pink}
-                  toggleSecure
                   values={values.email}
                   onChangeText={handleChange('email')}
                   error={errors?.email}
                 />
                 <CTextfield
                   ref={password}
-                  secureTextEntry={true}
+                  handleFocus={() => { setIsFocusedPass(true) }}
+                  handleBlur={() => { setIsFocusedPass(false) }}
+                  secureTextEntry={secure}
                   inputLabel='Password'
                   placeholder='*********** '
                   placeholderTextColor={themes?.light?.colors?.grey}
@@ -77,10 +92,11 @@ function CForm(props) {
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Lock}
-                  iconColor={themes?.light?.colors?.red}
+                  iconColor={isFocusedPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
-                  toggleSecure
+                  toggleSecure={toggleSecure}
+                  supportPassword={true}
                   values={values.password}
                   onChangeText={handleChange('password')}
                   error={errors?.password}

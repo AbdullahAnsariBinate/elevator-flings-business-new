@@ -8,21 +8,39 @@ import AuthStyle from "../Auth.style";
 import { CText } from "../../../uiComponents";
 import FastImage from "react-native-fast-image";
 import { icons, imgs } from '../../../assets/imgs'
-import { View as RNView } from "react-native-ui-lib";
+import { View as RNView, TouchableOpacity } from "react-native-ui-lib";
 import { responsiveHeight } from "react-native-responsive-dimensions";
+import { useCallback } from "react";
+import ImageCropPicker from "react-native-image-crop-picker";
 function SignUp(props) {
+  const [image, setImage] = useState(null)
+  console.log("🚀 ~ file: Signup.js:17 ~ SignUp ~ image:", image)
   const navigation = useNavigation();
 
   const submit = () => {
 
   }
-  const handleSignup = () => {
-
-  }
+  const handleSignup = useCallback(() => {
+    navigation.navigate('signin')
+  }, [])
   const headerProps = {
     hideBackButton: true,
     headerTitle: 'Sign Up',
-    
+    headerRight: false
+  }
+  const handleSelectImage = () => {
+    console.log('jello')
+    ImageCropPicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    })
+      .then((selectedImage) => {
+        setImage(selectedImage.path)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -38,17 +56,19 @@ function SignUp(props) {
     >
 
       <RNView center>
-        <RNView center width={responsiveHeight(20)} style={AuthStyle.imagesContainer}>
-          <RNView center height={responsiveHeight(20)} width={responsiveHeight(20)} >
+        <RNView center width={responsiveHeight(16)} style={AuthStyle.imagesContainer}>
+          <RNView center height={responsiveHeight(16)} width={responsiveHeight(16)} style={AuthStyle?.businessProfile}>
             <FastImage
-              source={imgs.UploadImg}
+              source={{uri:image}}
               style={AuthStyle.uploadProImg}
-              resizeMode='contain'
+              resizeMode='cover'
             />
           </RNView>
-          <RNView center height={responsiveHeight(4.5)} width={responsiveHeight(4.5)} style={AuthStyle.uploadIcon}>
+          <Pressable onPress={handleSelectImage}>
+          <RNView center height={responsiveHeight(4.5)} width={responsiveHeight(4.5)} style={AuthStyle.uploadIcon} >
             <FastImage source={icons.Upload} style={AuthStyle.uploadIconImg} resizeMode='contain' />
           </RNView>
+          </Pressable>
         </RNView>
       </RNView>
 
@@ -62,7 +82,7 @@ function SignUp(props) {
       />
       <View style={AuthStyle.bottomlinkSignup}>
         <CText style={AuthStyle.bottomlinkText}>Already have an account? </CText>
-        <Pressable onPress={handleSignup}>
+        <Pressable onPress={handleSignup} style={AuthStyle.bottomBtn}>
           <CText style={AuthStyle.bottomlinkTextNav}>Login</CText>
         </Pressable>
       </View>

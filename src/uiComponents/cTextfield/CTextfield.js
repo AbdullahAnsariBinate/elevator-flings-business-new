@@ -1,40 +1,25 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { memo } from 'react';
 import { DefaultTheme, TextInput } from 'react-native-paper';
 import { ImageSource } from 'react-native-vector-icons/Icon';
 import { themes } from '../../theme/colors';
 import { CText } from '../../uiComponents'
 import GlobalStyle from '../../assets/stylings/GlobalStyle';
 import { icons } from '../../assets/imgs';
-import { responsiveFontSize, responsiveScreenHeight } from 'react-native-responsive-dimensions';
+import { responsiveFontSize } from 'react-native-responsive-dimensions';
 
 const CTextfield = React.forwardRef((props, ref) => {
-  const [color, setColor] = React.useState(themes.light.colors.grey);
   const {
     inputContainerStyle,
-    inputInnerContainerStyle,
     inputLabel,
-    inputLabelStyle,
-    inputSubLabel,
-    inputSubLabelStyle,
     type,
     onPress,
-    selectedCountry,
     textStyle,
     disabled,
-    leftIconName,
-    toggleLeftIconFunc,
-    leftIconButtonStyle,
-    iconStyle,
     inputErrorStyle,
     error,
-    toggleRightIconFunc,
-    rightIconButtonStyle,
-    rightIconName,
-    rightButton,
     style,
     value,
-    countryView,
     countryViewLoading = false,
     placeholder,
     secureTextEntry,
@@ -48,8 +33,10 @@ const CTextfield = React.forwardRef((props, ref) => {
     bgColor,
     toggleSecure,
     activeOutlineColor,
-    onChangeText
-
+    onChangeText,
+    supportPassword,
+    handleFocus,
+    handleBlur
   } = props;
 
 
@@ -72,6 +59,8 @@ const CTextfield = React.forwardRef((props, ref) => {
     return (
       <TextInput
         ref={ref}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         theme={{
           colors: {
             primary: 'red', // change the color of the input text when focused
@@ -100,14 +89,11 @@ const CTextfield = React.forwardRef((props, ref) => {
         outlineColor={outlineColor}
         outlineStyle={{ borderRadius: 10 }}
         style={[styles.inputField, bgColor]}
-        secureTextEntry={secureTextEntry}
-        onFocus={() => {
-          setColor(themes['light'].colors.red)
-        }}
+        secureTextEntry={!secureTextEntry}
         right={
-          secureTextEntry && (
+          supportPassword && (
             <TextInput.Icon
-              icon={secureTextEntry ? icons.Eye : icons.CutEye}
+              icon={!secureTextEntry ? icons.CutEye : icons.Eye}
               iconColor={themes['light'].colors.grey}
               onPress={toggleSecure}
               size={responsiveFontSize(2.6)}
@@ -156,7 +142,7 @@ const CTextfield = React.forwardRef((props, ref) => {
   );
 });
 
-export default CTextfield;
+export default memo(CTextfield);
 
 const styles = StyleSheet.create({
   leftIcon: {
@@ -164,15 +150,10 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     borderColor: themes['light'].colors.grey,
     paddingRight: 8,
-    marginTop: responsiveScreenHeight(1.4)
   },
-  rightIcon: {
-    marginTop: responsiveScreenHeight(1.4)
-  },
+
   inputField: {
     backgroundColor: themes['light'].colors.white,
     marginTop: 5,
-    // height: responsiveScreenHeight(6),
-
   }
 });
