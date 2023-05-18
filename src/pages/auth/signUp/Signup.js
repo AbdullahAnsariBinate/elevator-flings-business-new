@@ -12,9 +12,9 @@ import { View as RNView, TouchableOpacity } from "react-native-ui-lib";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { useCallback } from "react";
 import ImageCropPicker from "react-native-image-crop-picker";
+
 function SignUp(props) {
   const [image, setImage] = useState(null)
-  console.log("🚀 ~ file: Signup.js:17 ~ SignUp ~ image:", image)
   const navigation = useNavigation();
 
   const submit = () => {
@@ -59,8 +59,8 @@ function SignUp(props) {
         <RNView center width={responsiveHeight(16)} style={AuthStyle.imagesContainer}>
           <RNView center height={responsiveHeight(16)} width={responsiveHeight(16)} style={AuthStyle?.businessProfile}>
             <FastImage
-              source={{uri:image}}
-              style={AuthStyle.uploadProImg}
+              source={image== null ? icons?.NoPhoto : {uri:image}}
+              style={[image== null ? {height:'50%', width:'50%'} : AuthStyle.uploadProImg]}
               resizeMode='cover'
             />
           </RNView>

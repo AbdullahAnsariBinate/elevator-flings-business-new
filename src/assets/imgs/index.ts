@@ -38,6 +38,7 @@ export const imgs = {
 }
 
 export const icons = {
+  NoPhoto: require('./icons/nophoto.png'),
   Cross: require('./icons/cross.png'),
   CrossRed: require('./icons/crossred.png'),
   Smile: require('./icons/smile.png'),

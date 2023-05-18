@@ -19,8 +19,8 @@ export default StyleSheet.create({
     },
 
     card: {
-        gap:responsiveHeight(1.8)
-   
+        gap: responsiveHeight(1.8)
+
     },
     cardHeader: {
         marginBottom: 30
@@ -169,7 +169,7 @@ export default StyleSheet.create({
         color: themes['light'].colors?.pink,
         fontSize: themes?.fontSize?.medium,
         fontFamily: themes?.font?.bold,
-        textDecorationLine:'underline'
+        textDecorationLine: 'underline'
     },
     forgotLink: {
         paddingVertical: responsiveScreenHeight(0.9)
@@ -203,27 +203,27 @@ export default StyleSheet.create({
         borderColor: themes['light'].colors.white,
         borderRadius: 50,
         position: 'absolute',
-        bottom: -14,
+        bottom: -6,
         right: 0,
-        left:18,
-        backgroundColor:themes['light']?.colors?.red
-      },
-      uploadIconImg: {
+        left: 18,
+        backgroundColor: themes['light']?.colors?.red
+    },
+    uploadIconImg: {
         height: '50%',
         width: '50%',
-      },
-      heading:{
+    },
+    heading: {
         color: themes['light'].colors?.black,
         fontSize: themes?.fontSize?.regular,
         fontFamily: themes?.font?.bold,
-      },
-      bottomBtn:{
-        paddingVertical:2,
-      },
-      businessProfile:{
-        borderWidth:2,
-        borderRadius:100,
-        overflow:'hidden',
-        borderColor:themes?.light?.colors?.pink
-      }
+    },
+    bottomBtn: {
+        paddingVertical: 2,
+    },
+    businessProfile: {
+        borderWidth: 2,
+        borderRadius: 100,
+        overflow: 'hidden',
+        borderColor: themes?.light?.colors?.pink
+    }
 });
