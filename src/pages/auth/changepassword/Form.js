@@ -26,23 +26,26 @@ function CForm(props) {
 
   const form = useRef(null);
   const password = useRef(null);
+  const cpass = useRef(null);
 
-  const dispatch = useDispatch();
 
-  const continueWithoutLogin = () => {
-    dispatch({
-      type: Auth.LOGIN_USER_API,
-      loading: false,
-      user: null,
-      isLoggedIn: true,
-    });
-  };
+  // const dispatch = useDispatch();
+
+  // const continueWithoutLogin = () => {
+  //   dispatch({
+  //     type: Auth.LOGIN_USER_API,
+  //     loading: false,
+  //     user: null,
+  //     isLoggedIn: true,
+  //   });
+  // };
   return (
     <Formik
       innerRef={form}
       onSubmit={values => submit(values)}
       initialValues={{
-        phone: '',
+        password: '',
+        cpass: ''
       }}
       validationSchema={Validations}>
       {({ handleChange, values, handleSubmit, errors }) => {
@@ -52,7 +55,7 @@ function CForm(props) {
               <View style={AuthStyle.cardBody}>
                 <CTextfield
                   ref={password}
-                  secureTextEntry={secure}
+                  secureTextEntry={!secure}
                   handleFocus={() => { setIsFocusedPass(true) }}
                   handleBlur={() => { setIsFocusedPass(false) }}
                   inputLabel='Password'
@@ -68,12 +71,13 @@ function CForm(props) {
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure={() => { setSecure(!secure) }}
                   supportPassword={true}
-                  values={values}
+                  values={values?.password}
+                  onChangeText={handleChange('password')}
                   error={errors?.password}
                 />
                 <CTextfield
-                  ref={password}
-                  secureTextEntry={secureCPass}
+                  ref={cpass}
+                  secureTextEntry={!secureCPass}
                   handleFocus={() => { setIsFocusedCPass(true) }}
                   handleBlur={() => { setIsFocusedCPass(false) }}
                   inputLabel='Password Confirm'
@@ -89,8 +93,9 @@ function CForm(props) {
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure={() => { setSecureCPass(!secureCPass) }}
                   supportPassword={true}
-                  values={values}
-                  error={errors?.password}
+                  values={values.cpass}
+                  onChangeText={handleChange('cpass')}
+                  error={errors?.cpass}
                 />
 
               </View>

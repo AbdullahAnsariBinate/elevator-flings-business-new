@@ -6,12 +6,9 @@ import { CButton, CInput, CText, CountDownTimer } from '../../../uiComponents';
 import AuthStyle from '../Auth.style';
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 import { themes } from "../../../theme/colors";
-// import '../../../utils/i18n/lan';
-import { useTranslation } from 'react-i18next';
 import { responsiveScreenWidth } from 'react-native-responsive-dimensions';
 import OtpInputs from 'react-native-otp-inputs'
 function CForm(props) {
-    const { t, i18n } = useTranslation();
 
 
 

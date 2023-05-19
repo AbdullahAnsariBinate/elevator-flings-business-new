@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
   View,
   TouchableOpacity,
@@ -8,17 +8,18 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icons from '../../assets/icons/CustomIcon';
 import GlobalStyle from '../../assets/stylings/GlobalStyle';
-import {themes} from '../../theme/colors';
+import { themes } from '../../theme/colors';
 import ProgressiveImage from '../progressiveImage/ProgressiveImage';
-import {TextInput as Texttt} from 'react-native-paper';
+import { TextInput as Texttt } from 'react-native-paper';
 import CText from '../cText/CText';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { forwardRef } from 'react';
 TextInput.defaultProps = {
   ...(TextInput.defaultProps || {}),
   allowFontScaling: false,
 };
 
-const CInput = React.forwardRef((props, ref) => {
+const CInput = forwardRef((props, ref) => {
   const {
     inputContainerStyle,
     inputInnerContainerStyle,
@@ -48,7 +49,7 @@ const CInput = React.forwardRef((props, ref) => {
     placeholder,
     secureTextEntry = false,
   } = props;
-  const reduxState = useSelector(({auth, language}) => {
+  const reduxState = useSelector(({ auth, language }) => {
     return {
       loading: false,
       user: auth.user,
@@ -60,8 +61,8 @@ const CInput = React.forwardRef((props, ref) => {
     return (
       <CText
         style={[
-          {...GlobalStyle.inputLabel, ...inputLabelStyle},
-          {textAlign: 'left'},
+          { ...GlobalStyle.inputLabel, ...inputLabelStyle },
+          { textAlign: 'left' },
         ]}>
         {inputLabel}
       </CText>
@@ -69,7 +70,7 @@ const CInput = React.forwardRef((props, ref) => {
   };
   const renderSubLabel = () => {
     return (
-      <CText style={{...GlobalStyle.inputSubLabel, ...inputSubLabelStyle}}>
+      <CText style={{ ...GlobalStyle.inputSubLabel, ...inputSubLabelStyle }}>
         {inputSubLabel}
       </CText>
     );
@@ -86,7 +87,7 @@ const CInput = React.forwardRef((props, ref) => {
         }}>
         <AntDesign
           name={leftIconName}
-          style={{...GlobalStyle.inputIcon, ...iconStyle}}
+          style={{ ...GlobalStyle.inputIcon, ...iconStyle }}
         />
       </TouchableOpacity>
     );
@@ -103,7 +104,7 @@ const CInput = React.forwardRef((props, ref) => {
         }}>
         <Icons
           name={rightIconName}
-          style={{...GlobalStyle.inputIcon, ...iconStyle}}
+          style={{ ...GlobalStyle.inputIcon, ...iconStyle }}
         />
       </TouchableOpacity>
     );
@@ -111,7 +112,7 @@ const CInput = React.forwardRef((props, ref) => {
 
   const renderErrorView = () => {
     return (
-      <CText style={{...GlobalStyle.errorTextStyle, ...inputErrorStyle}}>
+      <CText style={{ ...GlobalStyle.errorTextStyle, ...inputErrorStyle }}>
         {error}
       </CText>
     );
@@ -128,8 +129,8 @@ const CInput = React.forwardRef((props, ref) => {
         secureTextEntry={secureTextEntry}
         placeholderTextColor={themes['light'].colors.gray4}
         style={[
-          {...GlobalStyle.inputStyle, ...style},
-          {textAlign: languageStyle == 'en' ? 'left' : 'right'},
+          { ...GlobalStyle.inputStyle, ...style },
+          { textAlign: languageStyle == 'en' ? 'left' : 'right' },
         ]}
         autoCapitalize="none"
         value={value}
@@ -142,14 +143,14 @@ const CInput = React.forwardRef((props, ref) => {
     return (
       <TouchableOpacity
         style={[
-          {...GlobalStyle.inputStyle, ...style},
-          {justifyContent: 'center'},
+          { ...GlobalStyle.inputStyle, ...style },
+          { justifyContent: 'center' },
         ]}
         onPress={onPress}>
         <CText
           style={[
-            {...GlobalStyle.inputTextStyle, ...textStyle},
-            !value && {color: themes['light'].colors.gray4},
+            { ...GlobalStyle.inputTextStyle, ...textStyle },
+            !value && { color: themes['light'].colors.gray4 },
           ]}>
           {value ? value : placeholder}
         </CText>
@@ -174,7 +175,7 @@ const CInput = React.forwardRef((props, ref) => {
             <ProgressiveImage
               resizeMode={'contain'}
               style={GlobalStyle.countryViewImage}
-              source={{uri: selectedCountry?.flags?.png}}
+              source={{ uri: selectedCountry?.flags?.png }}
             />
             <CText style={GlobalStyle.countryViewText}>
               {selectedCountry?.detail?.code}
@@ -190,7 +191,7 @@ const CInput = React.forwardRef((props, ref) => {
   };
 
   return (
-    <View style={{...GlobalStyle.inputContainer, ...inputContainerStyle}}>
+    <View style={{ ...GlobalStyle.inputContainer, ...inputContainerStyle }}>
       {inputLabel ? renderLabel() : null}
       {inputSubLabel ? renderSubLabel() : null}
       <View

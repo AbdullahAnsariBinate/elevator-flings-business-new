@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {themes as theme} from "../../theme/colors";
+import {themes as theme, themes} from "../../theme/colors";
 
 export default StyleSheet.create({
     wrapper:  {
@@ -11,7 +11,8 @@ export default StyleSheet.create({
         bottom: 0,
         right: 0,
         left: 0,
-        backgroundColor: 'rgba(124, 128, 97, 0.7)',
+        // backgroundColor: 'rgba(124, 128, 97, 0.7)','rgb(0, 0, 0)'
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
         zIndex: 3,
     },
     loading: {
@@ -19,9 +20,9 @@ export default StyleSheet.create({
         fontSize: 32,
     },
     loadingText: {
-        fontSize: 20,
+        fontSize: themes?.fontSize?.medium,
         color: theme['light'].colors.tertiary,
-        fontFamily: theme.font.medium,
+        fontFamily: theme?.font?.medium,
         marginTop: 15
     },
     animation: {

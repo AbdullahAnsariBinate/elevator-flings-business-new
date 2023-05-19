@@ -83,7 +83,7 @@ function CForm(props) {
                   ref={password}
                   handleFocus={() => { setIsFocusedPass(true) }}
                   handleBlur={() => { setIsFocusedPass(false) }}
-                  secureTextEntry={secure}
+                  secureTextEntry={!secure}
                   inputLabel='Password'
                   placeholder='*********** '
                   placeholderTextColor={themes?.light?.colors?.grey}

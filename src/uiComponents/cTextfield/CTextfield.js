@@ -7,8 +7,9 @@ import { CText } from '../../uiComponents'
 import GlobalStyle from '../../assets/stylings/GlobalStyle';
 import { icons } from '../../assets/imgs';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
+import { forwardRef } from 'react';
 
-const CTextfield = React.forwardRef((props, ref) => {
+const CTextfield = forwardRef((props, ref) => {
   const {
     inputContainerStyle,
     inputLabel,
@@ -89,11 +90,11 @@ const CTextfield = React.forwardRef((props, ref) => {
         outlineColor={outlineColor}
         outlineStyle={{ borderRadius: 10 }}
         style={[styles.inputField, bgColor]}
-        secureTextEntry={!secureTextEntry}
+        secureTextEntry={secureTextEntry}
         right={
           supportPassword && (
             <TextInput.Icon
-              icon={!secureTextEntry ? icons.CutEye : icons.Eye}
+              icon={secureTextEntry ? icons.CutEye : icons.Eye}
               iconColor={themes['light'].colors.grey}
               onPress={toggleSecure}
               size={responsiveFontSize(2.6)}

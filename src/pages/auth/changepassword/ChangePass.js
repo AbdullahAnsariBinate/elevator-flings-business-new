@@ -10,8 +10,8 @@ import { useNavigation } from '@react-navigation/native';
 
 function ChangePass(props) {
   const navigation = useNavigation();
-  const [phoneError, setPhoneError] = useState('');
-  const submit = () => { };
+  // const [phoneError, setPhoneError] = useState('');
+  const submit = (values) => {console.log(values,'change pass')};
 
   const handleSignup = () => {
    navigation.navigate('signup')

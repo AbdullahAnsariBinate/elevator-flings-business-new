@@ -1,9 +1,6 @@
 import * as Yup from "yup";
 
 const scheme = Yup.object().shape({
-    email: Yup.string()
-        .required("Please enter email address")
-        .email("Please enter valid email address"),
     password: Yup.string()
         .required("Please enter your password.")
         .min(8, "Password is too short - should be 8 chars minimum.")
@@ -23,6 +20,10 @@ const scheme = Yup.object().shape({
             RegExp('[!@#$%^&*(),.?":{}|<>]'),
             "Password should have a minimum of 1 symbol."
         ),
+
+    cpass: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required('Confirm Password is required'),
 });
 
 export default scheme;

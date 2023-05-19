@@ -26,6 +26,8 @@ function CForm(props) {
   const phone = useRef(null);
   const password = useRef(null);
   const businessName = useRef(null);
+  const cpass = useRef(null);
+
 
 
 
@@ -35,12 +37,16 @@ function CForm(props) {
       innerRef={form}
       onSubmit={(values) => submit(values)}
       initialValues={{
+        fullName:"",
+        email:"",
+        businessName:"",
         phone: "",
         password: "",
+        cpass:""
       }}
       validationSchema={Validations(selectedCountry)}
     >
-      {({ handleChange, values, handleSubmit, errors }) => {
+      {({ handleChange, values, handleSubmit, errors, resetForm }) => {
         console.log(
           "🚀 ~ file: Form.js ~ line 28 ~ CForm ~ values",
           values,
@@ -52,7 +58,6 @@ function CForm(props) {
               <View style={AuthStyle.signupCard}>
                 <CTextfield
                   ref={fullName}
-                  secureTextEntry={false}
                   handleFocus={() => { setIsFocusedName(true) }}
                   handleBlur={() => { setIsFocusedName(false) }}
                   inputLabel='Full Name'
@@ -67,12 +72,12 @@ function CForm(props) {
                   bgColor={themes?.light?.colors?.black}
                   activeOutlineColor={themes['light'].colors.pink}
                   toggleSecure
-                  values={values}
-                  error={errors?.email}
+                  values={values?.fullName}
+                  onChangeText={handleChange('fullName')}
+                  error={errors?.fullName}
                 />
                 <CTextfield
                   ref={email}
-                  secureTextEntry={false}
                   handleFocus={() => { setIsFocusedEmail(true) }}
                   handleBlur={() => { setIsFocusedEmail(false) }}
                   inputLabel='Email'
@@ -87,12 +92,12 @@ function CForm(props) {
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
-                  values={values}
+                  values={values?.email}
+                  onChangeText={handleChange('email')}
                   error={errors?.email}
                 />
                 <CTextfield
                   ref={businessName}
-                  secureTextEntry={false}
                   handleFocus={() => { setIsFocusedPassBusiness(true) }}
                   handleBlur={() => { setIsFocusedPassBusiness(false) }}
                   inputLabel='Business Name'
@@ -107,12 +112,12 @@ function CForm(props) {
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
-                  values={values}
-                  error={errors?.email}
+                  values={values?.businessName}
+                  onChangeText={handleChange('businessName')}
+                  error={errors?.businessName}
                 />
                 <CTextfield
                   ref={phone}
-                  secureTextEntry={false}
                   handleFocus={() => { setIsFocusedPhone(true) }}
                   handleBlur={() => { setIsFocusedPhone(false) }}
                   inputLabel='Phone Number'
@@ -127,12 +132,13 @@ function CForm(props) {
                   outlineColor={themes?.light?.colors?.grey}
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
-                  values={values}
-                  error={errors?.password}
+                  values={values?.phone}
+                  onChangeText={handleChange('phone')}
+                  error={errors?.phone}
                 />
                 <CTextfield
                   ref={password}
-                  secureTextEntry={secure}
+                  secureTextEntry={!secure}
                   handleFocus={() => { setIsFocusedPass(true) }}
                   handleBlur={() => { setIsFocusedPass(false) }}
                   inputLabel='Password'
@@ -148,12 +154,13 @@ function CForm(props) {
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure={() => { setSecure(!secure) }}
                   supportPassword={true}
-                  values={values}
+                  values={values?.password}
+                  onChangeText={handleChange('password')}
                   error={errors?.password}
                 />
                 <CTextfield
-                  ref={password}
-                  secureTextEntry={secureCPass}
+                  ref={cpass}
+                  secureTextEntry={!secureCPass}
                   handleFocus={() => { setIsFocusedCPass(true) }}
                   handleBlur={() => { setIsFocusedCPass(false) }}
                   inputLabel='Password Confirm'
@@ -169,8 +176,9 @@ function CForm(props) {
                   bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure={() => { setSecureCPass(!secureCPass) }}
                   supportPassword={true}
-                  values={values}
-                  error={errors?.password}
+                  values={values.cpass}
+                  onChangeText={handleChange('cpass')}
+                  error={errors?.cpass}
                 />
 
               </View>

@@ -13,8 +13,8 @@ const CLoading = ({ style, theme, loading, text, transparent = false }) => {
             <View style={[styles.wrapper,
             transparent && { backgroundColor: 'transparent' },
                 style]}>
-                <ActivityIndicator style={styles.loading} size="large"
-                    color={color} />
+                <ActivityIndicator style={styles.loading} size="large"  
+                    color={color} animating={true}/>
                 {text ? <CText style={[styles.loadingText, { color: color }]}>{text}</CText> : null}
             </View>
         );

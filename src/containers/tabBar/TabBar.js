@@ -2,18 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from "../index";
 import Styles from './TabBar.style';
-// import MyIcon from 'react-native-vector-icons'
 import { MappedElement, getLayoutDirection } from "../../utils/methods";
 import { themes } from "../../theme/colors";
-// import {CText} from "../../uiComponents";
 import posed from "react-native-pose";
-// import '../../utils/i18n/lan';
-// import {useTranslation} from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Icon as MyIcon } from 'react-native-elements';
 import { CText, ProgressiveImage } from '../../uiComponents';
-import { icons } from '../../assets/imgs';
-import FastImage from 'react-native-fast-image';
 
 const windowWidth = Dimensions.get("window").width;
 const tabWidth = windowWidth / 5;
@@ -27,9 +21,7 @@ const SpotLight = posed.View({
 });
 
 function TabBar(props) {
-    // const {t, i18n} = useTranslation();
 
-    const [currentLanguage, setLanguage] = useState('ar');
     const reduxState = useSelector(({ auth, root, language }) => {
         return {
             loading: root.categoryLoadingproduct,

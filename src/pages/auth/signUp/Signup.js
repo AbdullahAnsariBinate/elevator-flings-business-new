@@ -12,14 +12,15 @@ import { View as RNView, TouchableOpacity } from "react-native-ui-lib";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { useCallback } from "react";
 import ImageCropPicker from "react-native-image-crop-picker";
+import { themes } from "../../../theme/colors";
 
 function SignUp(props) {
   const [image, setImage] = useState(null)
   const navigation = useNavigation();
 
-  const submit = () => {
-
-  }
+  const submit = useCallback((values) => {
+    console.log('signup', values);
+  }, [])
   const handleSignup = useCallback(() => {
     navigation.navigate('signin')
   }, [])
@@ -59,15 +60,15 @@ function SignUp(props) {
         <RNView center width={responsiveHeight(16)} style={AuthStyle.imagesContainer}>
           <RNView center height={responsiveHeight(16)} width={responsiveHeight(16)} style={AuthStyle?.businessProfile}>
             <FastImage
-              source={image== null ? icons?.NoPhoto : {uri:image}}
-              style={[image== null ? {height:'50%', width:'50%'} : AuthStyle.uploadProImg]}
+              source={image == null ? icons?.NoPhoto : { uri: image }}
+              style={[image == null ? { height: '50%', width: '50%' } : AuthStyle.uploadProImg]}
               resizeMode='cover'
             />
           </RNView>
           <Pressable onPress={handleSelectImage}>
-          <RNView center height={responsiveHeight(4.5)} width={responsiveHeight(4.5)} style={AuthStyle.uploadIcon} >
-            <FastImage source={icons.Upload} style={AuthStyle.uploadIconImg} resizeMode='contain' />
-          </RNView>
+            <RNView center height={responsiveHeight(4.5)} width={responsiveHeight(4.5)} style={AuthStyle.uploadIcon} >
+              <FastImage source={icons.Upload} style={AuthStyle.uploadIconImg} resizeMode='contain' />
+            </RNView>
           </Pressable>
         </RNView>
       </RNView>

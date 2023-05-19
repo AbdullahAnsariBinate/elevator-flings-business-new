@@ -41,23 +41,22 @@ function CForm(props) {
             <View style={AuthStyle.card}>
               <View style={AuthStyle.cardBody}>
               <CTextfield
-                  ref={email}
-                  secureTextEntry={false}
                   handleFocus={() => { setIsFocusedEmail(true) }}
                   handleBlur={() => { setIsFocusedEmail(false) }}
+                  ref={email}
                   inputLabel='Email'
                   placeholder='email@example.com'
                   placeholderTextColor={themes?.light?.colors?.grey}
                   mode={'outlined'}
                   multiLine={false}
-                  activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
                   icon={icons?.Email}
                   iconColor={isFocusedEmail ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
-                  bgColor={themes?.light?.colors?.bgBlue}
-                  toggleSecure
-                  values={values}
+                  bgColor={themes?.light?.colors?.black}
+                  activeOutlineColor={themes['light'].colors.pink}
+                  values={values.email}
+                  onChangeText={handleChange('email')}
                   error={errors?.email}
                 />
               </View>
