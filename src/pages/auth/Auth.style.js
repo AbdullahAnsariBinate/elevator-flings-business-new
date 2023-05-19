@@ -199,18 +199,24 @@ export default StyleSheet.create({
         width: '100%',
     },
     uploadIcon: {
-        borderWidth: 1,
-        borderColor: themes['light'].colors.white,
+        padding: 20,
+        backgroundColor: 'red',
+        paddingHorizontal: 15,
+        paddingVertical: 15,
         borderRadius: 50,
         position: 'absolute',
         bottom: -6,
         right: 0,
-        left: 18,
-        backgroundColor: themes['light']?.colors?.red
+        width: responsiveHeight(3.5),
+        left: 80, borderWidth: 1,
+         height: responsiveHeight(3.5),
+        justifyContent: 'center',
+         alignItems: 'center',
+         borderColor:themes?.light?.colors?.white
     },
     uploadIconImg: {
-        height: '50%',
-        width: '50%',
+        height: responsiveHeight(2),
+        width: responsiveHeight(2),
     },
     heading: {
         color: themes['light'].colors?.black,
