@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pressable, View } from 'react-native'
+import { Pressable, View, TouchableOpacity } from 'react-native'
 import { Container } from "../../../containers";
 import CForm from "./Form";
 import _ from "lodash";
@@ -8,7 +8,7 @@ import AuthStyle from "../Auth.style";
 import { CText } from "../../../uiComponents";
 import FastImage from "react-native-fast-image";
 import { icons, imgs } from '../../../assets/imgs'
-import { View as RNView, TouchableOpacity } from "react-native-ui-lib";
+import { View as RNView, } from "react-native-ui-lib";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { useCallback } from "react";
 import ImageCropPicker from "react-native-image-crop-picker";
@@ -30,7 +30,6 @@ function SignUp(props) {
     headerRight: false
   }
   const handleSelectImage = () => {
-    console.log('jello')
     ImageCropPicker.openPicker({
       width: 300,
       height: 400,
@@ -43,6 +42,7 @@ function SignUp(props) {
         console.log(error)
       })
   }
+
 
   return (
     <Container
@@ -65,11 +65,11 @@ function SignUp(props) {
               resizeMode='cover'
             />
           </RNView>
-          <Pressable onPress={handleSelectImage}>
+          <TouchableOpacity onPress={handleSelectImage}>
             <RNView center height={responsiveHeight(4.5)} width={responsiveHeight(4.5)} style={AuthStyle.uploadIcon} >
               <FastImage source={icons.Upload} style={AuthStyle.uploadIconImg} resizeMode='contain' />
             </RNView>
-          </Pressable>
+          </TouchableOpacity>
         </RNView>
       </RNView>
 
