@@ -12,15 +12,15 @@ import {
 import { LOGIN, REGISTER, SEND_CODE, VERIFY_CODE } from "../../config/webservices";
 
 export const login = (payload, CB) => async (dispatch) => {
-    
+
     console.log(
         "🚀 ~ file: Auth.action.js ~ line 17 ~ login ~ payload",
         payload
     );
 
     // dispatch({ type: AUTH.LOGIN_USER_API, loading: false,});
-    
-    dispatch({ type: AUTH.LOGIN_USER_API, loading: true, isLoggedIn: false});
+
+    dispatch({ type: AUTH.LOGIN_USER_API, loading: true, isLoggedIn: false });
 
     try {
         let response = await post(LOGIN, payload);
@@ -70,31 +70,31 @@ export const sendOtp = (payload, CB) => async (dispatch) => {
     dispatch({ type: AUTH.SEND_OTP, loading: true });
 
     // try {
-        console.log('----------');
-        let response = await post(SEND_CODE, payload);
-        
-        if (response?.data?.error) {
-            handleError(response?.data?.data?.message || "");
-            CB && CB(response?.data);
-        } else {
-            // navigation.navigate("otp_verification", {
-            //     phone: payload.phone,
-            // });
-            handleSuccess(response?.data?.data?.message);
-            {
-                return (
-                    dispatch({ type: AUTH.SEND_OTP, loading: false }) && {
-                        type: AUTH.SEND_OTP,
-                        loading: false,
-                        response,
-                    }
-                );
-            }
+    console.log('----------');
+    let response = await post(SEND_CODE, payload);
 
-            CB && CB({ ...response?.data?.data, ...payload });
+    if (response?.data?.error) {
+        handleError(response?.data?.data?.message || "");
+        CB && CB(response?.data);
+    } else {
+        // navigation.navigate("otp_verification", {
+        //     phone: payload.phone,
+        // });
+        handleSuccess(response?.data?.data?.message);
+        {
+            return (
+                dispatch({ type: AUTH.SEND_OTP, loading: false }) && {
+                    type: AUTH.SEND_OTP,
+                    loading: false,
+                    response,
+                }
+            );
         }
-        console.log('-------*********');
-        dispatch({ type: AUTH.SEND_OTP, loading: false });
+
+        CB && CB({ ...response?.data?.data, ...payload });
+    }
+    console.log('-------*********');
+    dispatch({ type: AUTH.SEND_OTP, loading: false });
     // } catch (error) {
     //     console.log(error);
     //     alert(error.data.message.invalid+' | '+error.data.message.response)
@@ -103,7 +103,7 @@ export const sendOtp = (payload, CB) => async (dispatch) => {
     // }
 };
 
-export const resendOtp = (payload, CB) => async (dispatch) => {};
+export const resendOtp = (payload, CB) => async (dispatch) => { };
 
 export const verifyOtp = (payload, CB) => async (dispatch) => {
     dispatch({ type: AUTH.VERIFY_OTP, loading: true });
@@ -157,7 +157,7 @@ export const signUp = (payload, CB) => async (dispatch) => {
                 loading: false,
                 user: response?.data?.data,
                 isLoggedIn: true,
-                isIntialRootRoute:false
+                isIntialRootRoute: false
             });
         }
     } catch (error) {
@@ -202,8 +202,8 @@ export const guestCheckout = (payload, CB) => async (dispatch) => {
         } else {
             dispatch({
                 type: AUTH.GUEST_CHECKOUT,
-                guestLogin:true,
-                loading:false,
+                guestLogin: true,
+                loading: false,
                 user: response?.data,
             });
         }
@@ -212,7 +212,7 @@ export const guestCheckout = (payload, CB) => async (dispatch) => {
         handleSuccess(response?.data?.data?.message);
 
         CB && CB(response?.data)
-        
+
     } catch (error) {
         console.log(
             error
@@ -224,14 +224,14 @@ export const guestCheckout = (payload, CB) => async (dispatch) => {
 
 export const userLogout =
     (showToast = true, type, message = "Successfully logout!") =>
-    async (dispatch) => {
-        // if(showToast) {
-        //     if(type === 'expire') {
-        //         handleError(message);
-        //     } else {
-        //         // handleSuccess(message);
-        //     }
-        // }
-        dispatch({ type: AUTH.LOGOUT_USER_API , isLoggedIn:false});
-        // await removeUserDetail();
-    };
+        async (dispatch) => {
+            // if(showToast) {
+            //     if(type === 'expire') {
+            //         handleError(message);
+            //     } else {
+            //         // handleSuccess(message);
+            //     }
+            // }
+            dispatch({ type: AUTH.LOGOUT_USER_API, isLoggedIn: false });
+            // await removeUserDetail();
+        };
