@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 import Root from './src/routing/Root';
 import Auth from './src/routing/Auth';
 
-
 const App = () => {
-  return (
-    <Auth />
-  );
+  return <Auth />;
 };
 
 const styles = StyleSheet.create({
@@ -19,5 +16,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-
-
