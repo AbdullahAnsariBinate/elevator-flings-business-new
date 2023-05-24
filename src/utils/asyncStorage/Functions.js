@@ -3,6 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TOKEN, USER} from './Constants';
 
 export const _setDataToAsyncStorage = async (key, data) => {
+  console.log("🚀 ~ file: Functions.js:6 ~ const_setDataToAsyncStorage= ~ key:", key)
+  console.log("🚀 ~ file: Functions.js:6 ~ const_setDataToAsyncStorage= ~ data:", data)
   try {
     await AsyncStorage.setItem(key, data);
   } catch (error) {

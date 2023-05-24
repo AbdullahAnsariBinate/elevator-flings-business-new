@@ -1,13 +1,13 @@
-import React, {useCallback, useState, useMemo} from 'react';
-import {Pressable, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {Container} from '../../../containers';
+import React, { useCallback, useState, useMemo, useEffect } from 'react';
+import { Pressable, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Container } from '../../../containers';
 import AuthStyle from '../Auth.style';
 import CForm from './Form';
-import {CText, ProgressiveImage} from '../../../uiComponents';
-import {imgs} from '../../../assets/imgs';
-import {login} from '../../../store/actions/Auth.action';
-import {useDispatch, useSelector} from 'react-redux';
+import { CText, ProgressiveImage } from '../../../uiComponents';
+import { imgs } from '../../../assets/imgs';
+import { login } from '../../../store/actions/Auth.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SignIn = () => {
   const navigation = useNavigation();
@@ -21,6 +21,15 @@ const SignIn = () => {
     }),
     [],
   );
+
+  const getRedux = () => {
+
+    var Loading = useSelector((state) => state?.auth?.loginLoading)
+    console.log("🚀 ~ file: SignIn.js:31 ~ todo ~ todo:", Loading)
+  }
+  getRedux()
+
+
 
   const handleSignup = useCallback(() => {
     navigation.navigate('signup');
@@ -49,8 +58,8 @@ const SignIn = () => {
     <Container
       showPattern={false}
       scrollView
-      loading={false}
-      scrollViewProps={{contentContainerStyle: AuthStyle.container}}
+      loading={Loading}
+      scrollViewProps={{ contentContainerStyle: AuthStyle.container }}
       headerProps={headerProps}>
       <View style={AuthStyle.logoView}>
         <ProgressiveImage

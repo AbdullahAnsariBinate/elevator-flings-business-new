@@ -1,7 +1,7 @@
 import AUTH from '../constants/Auth.constant';
-import {handleError, handleSuccess, post, get} from '../../utils/methods';
-import {TOKEN} from '../../utils/asyncStorage/Constants';
-import {useNavigation} from '@react-navigation/native';
+import { handleError, handleSuccess, post, get } from '../../utils/methods';
+import { TOKEN } from '../../utils/asyncStorage/Constants';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   _setDataToAsyncStorage,
@@ -18,13 +18,13 @@ import {
 
 export const login = (payload, CB) => async dispatch => {
   console.log('login function  called.');
-  dispatch({type: AUTH.LOGIN_USER_API, loading: true, isLoggedIn: false});
+  dispatch({ type: AUTH.LOGIN_USER_API, loading: true, isLoggedIn: false });
 
   try {
-    console.log({LOGIN, payload});
+    console.log({ LOGIN, payload });
     let response = await post(LOGIN, payload);
     if (response?.data?.error) {
-      dispatch({type: AUTH.LOGIN_USER_API, loading: false});
+      dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
       handleError(response?.data?.data?.message || '');
     } else {
       console.log(response.data);
@@ -43,7 +43,7 @@ export const login = (payload, CB) => async dispatch => {
 };
 
 export const sendOtp = (payload, CB) => async dispatch => {
-  dispatch({type: AUTH.SEND_OTP, loading: true});
+  dispatch({ type: AUTH.SEND_OTP, loading: true });
 
   // try {
   console.log('----------');
@@ -59,7 +59,7 @@ export const sendOtp = (payload, CB) => async dispatch => {
     handleSuccess(response?.data?.data?.message);
     {
       return (
-        dispatch({type: AUTH.SEND_OTP, loading: false}) && {
+        dispatch({ type: AUTH.SEND_OTP, loading: false }) && {
           type: AUTH.SEND_OTP,
           loading: false,
           response,
@@ -67,10 +67,10 @@ export const sendOtp = (payload, CB) => async dispatch => {
       );
     }
 
-    CB && CB({...response?.data?.data, ...payload});
+    CB && CB({ ...response?.data?.data, ...payload });
   }
   console.log('-------*********');
-  dispatch({type: AUTH.SEND_OTP, loading: false});
+  dispatch({ type: AUTH.SEND_OTP, loading: false });
   // } catch (error) {
   //     console.log(error);
   //     alert(error.data.message.invalid+' | '+error.data.message.response)
@@ -79,10 +79,10 @@ export const sendOtp = (payload, CB) => async dispatch => {
   // }
 };
 
-export const resendOtp = (payload, CB) => async dispatch => {};
+export const resendOtp = (payload, CB) => async dispatch => { };
 
 export const verifyOtp = (payload, CB) => async dispatch => {
-  dispatch({type: AUTH.VERIFY_OTP, loading: true});
+  dispatch({ type: AUTH.VERIFY_OTP, loading: true });
 
   try {
     let response = await post(VERIFY_CODE, payload);
@@ -101,7 +101,7 @@ export const verifyOtp = (payload, CB) => async dispatch => {
       handleSuccess(response?.data?.data?.message);
       {
         return (
-          dispatch({type: AUTH.VERIFY_OTP, loading: false}) && {
+          dispatch({ type: AUTH.VERIFY_OTP, loading: false }) && {
             type: AUTH.VERIFY_OTP,
             loading: false,
             response,
@@ -109,21 +109,22 @@ export const verifyOtp = (payload, CB) => async dispatch => {
         );
       }
     }
-    dispatch({type: AUTH.VERIFY_OTP, loading: false});
+    dispatch({ type: AUTH.VERIFY_OTP, loading: false });
   } catch (error) {
     console.log('🚀 ~ file: Auth.action.js ~ line 58 ~ sendOtp ~ error', error);
-    handleError(error?.data?.error, {autoHide: false});
-    dispatch({type: AUTH.VERIFY_OTP, loading: false});
+    handleError(error?.data?.error, { autoHide: false });
+    dispatch({ type: AUTH.VERIFY_OTP, loading: false });
   }
 };
 
 export const signUp = (payload, CB) => async dispatch => {
-  dispatch({type: AUTH.SIGN_UP_USER_API, loading: true});
+  dispatch({ type: AUTH.SIGN_UP_USER_API, loading: true });
   try {
     let response = await post(REGISTER, payload);
+    console.log("🚀 ~ file: Auth.action.js:124 ~ signUp ~ response:", response)
     if (response?.data?.error) {
       handleError(response?.data?.message || '');
-      dispatch({type: AUTH.SIGN_UP_USER_API, loading: false});
+      dispatch({ type: AUTH.SIGN_UP_USER_API, loading: false });
     } else {
       dispatch({
         type: AUTH.SIGN_UP_USER_API,
@@ -138,8 +139,8 @@ export const signUp = (payload, CB) => async dispatch => {
       '🚀 ~ file: Auth.action.js ~ line 116 ~ signUp ~ error',
       error?.data?.message,
     );
-    handleError(error?.data?.message, {autoHide: true});
-    dispatch({type: AUTH.SIGN_UP_USER_API, loading: false});
+    handleError(error?.data?.message, { autoHide: true });
+    dispatch({ type: AUTH.SIGN_UP_USER_API, loading: false });
   }
 };
 
@@ -164,7 +165,7 @@ export const getProfile = (payload, CB) => async dispatch => {
 };
 
 export const guestCheckout = (payload, CB) => async dispatch => {
-  dispatch({type: AUTH.GUEST_CHECKOUT, loading: true});
+  dispatch({ type: AUTH.GUEST_CHECKOUT, loading: true });
   try {
     let response = await post(REGISTER, payload);
     console.log(
@@ -173,7 +174,7 @@ export const guestCheckout = (payload, CB) => async dispatch => {
     );
     if (response?.data?.error) {
       handleError(response?.data?.message || '');
-      dispatch({type: AUTH.GUEST_CHECKOUT, loading: false});
+      dispatch({ type: AUTH.GUEST_CHECKOUT, loading: false });
     } else {
       dispatch({
         type: AUTH.GUEST_CHECKOUT,
@@ -189,21 +190,21 @@ export const guestCheckout = (payload, CB) => async dispatch => {
     CB && CB(response?.data);
   } catch (error) {
     console.log(error);
-    handleError(error?.data?.data, {autoHide: true});
-    dispatch({type: AUTH.GUEST_CHECKOUT, loading: false});
+    handleError(error?.data?.data, { autoHide: true });
+    dispatch({ type: AUTH.GUEST_CHECKOUT, loading: false });
   }
 };
 
 export const userLogout =
   (showToast = true, type, message = 'Successfully logout!') =>
-  async dispatch => {
-    // if(showToast) {
-    //     if(type === 'expire') {
-    //         handleError(message);
-    //     } else {
-    //         // handleSuccess(message);
-    //     }
-    // }
-    dispatch({type: AUTH.LOGOUT_USER_API, isLoggedIn: false});
-    // await removeUserDetail();
-  };
+    async dispatch => {
+      // if(showToast) {
+      //     if(type === 'expire') {
+      //         handleError(message);
+      //     } else {
+      //         // handleSuccess(message);
+      //     }
+      // }
+      dispatch({ type: AUTH.LOGOUT_USER_API, isLoggedIn: false });
+      // await removeUserDetail();
+    };

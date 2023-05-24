@@ -1,25 +1,37 @@
-import React, {useState} from 'react';
-import {Pressable, View} from 'react-native';
-import {Container} from '../../../containers';
+import React, { useState } from 'react';
+import { Pressable, View } from 'react-native';
+import { Container } from '../../../containers';
 import CForm from './Form';
 import _ from 'lodash';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import AuthStyle from '../Auth.style';
-import {CText} from '../../../uiComponents';
+import { CText } from '../../../uiComponents';
 import FastImage from 'react-native-fast-image';
-import {icons, imgs} from '../../../assets/imgs';
-import {View as RNView, TouchableOpacity} from 'react-native-ui-lib';
-import {responsiveHeight} from 'react-native-responsive-dimensions';
-import {useCallback} from 'react';
+import { icons, imgs } from '../../../assets/imgs';
+import { View as RNView, TouchableOpacity } from 'react-native-ui-lib';
+import { responsiveHeight } from 'react-native-responsive-dimensions';
+import { useCallback } from 'react';
 import ImageCropPicker from 'react-native-image-crop-picker';
-import {themes} from '../../../theme/colors';
+import { themes } from '../../../theme/colors';
+import { signUp } from '../../../store/actions/Auth.action';
+import { useDispatch } from 'react-redux';
 
 function SignUp(props) {
   const [image, setImage] = useState(null);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const submit = useCallback(values => {
     console.log('signup', values);
+    let payload = {
+      email: values?.email,
+      password: values?.password,
+      strategy: 'abc123',
+      name: values?.fullName,
+      business_name: values?.businessName,
+      profile_image: 'abc123.png'
+    }
+    dispatch(signUp(payload));
   }, []);
   const handleSignup = useCallback(() => {
     navigation.navigate('signin');
@@ -65,10 +77,10 @@ function SignUp(props) {
             width={responsiveHeight(16)}
             style={AuthStyle?.businessProfile}>
             <FastImage
-              source={image == null ? icons?.NoPhoto : {uri: image}}
+              source={image == null ? icons?.NoPhoto : { uri: image }}
               style={[
                 image == null
-                  ? {height: '50%', width: '50%'}
+                  ? { height: '50%', width: '50%' }
                   : AuthStyle.uploadProImg,
               ]}
               resizeMode="cover"
