@@ -39,6 +39,12 @@ export const login = (payload, CB) => async dispatch => {
     }
   } catch (error) {
     alert(error?.data?.message);
+    dispatch({
+      type: AUTH.LOGIN_USER_API,
+      loading: false,
+      // user: response?.data,
+      // isLoggedIn: true,
+    });
   }
 };
 
@@ -195,16 +201,15 @@ export const guestCheckout = (payload, CB) => async dispatch => {
   }
 };
 
-export const userLogout =
-  (showToast = true, type, message = 'Successfully logout!') =>
-    async dispatch => {
-      // if(showToast) {
-      //     if(type === 'expire') {
-      //         handleError(message);
-      //     } else {
-      //         // handleSuccess(message);
-      //     }
-      // }
-      dispatch({ type: AUTH.LOGOUT_USER_API, isLoggedIn: false });
-      // await removeUserDetail();
-    };
+export const userLogout = (showToast = true, type, message = 'Successfully logout!') =>
+  async dispatch => {
+    if(showToast) {
+        if(type === 'expire') {
+            handleError(message);
+        } else {
+            handleSuccess(message);
+        }
+    }
+    dispatch({ type: AUTH.LOGOUT_USER_API, isLoggedIn: false });
+    await removeUserDetail();
+  };

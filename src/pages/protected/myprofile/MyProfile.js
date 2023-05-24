@@ -9,13 +9,22 @@ import { Switch } from 'react-native-paper'
 import { themes } from '../../../theme/colors'
 import { styles } from './MyProfile.style'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
+import { userLogout } from '../../../store/actions/Auth.action'
 
 const MyProfile = () => {
     const [isEnabled, setIsEnabled] = React.useState(true)
     const [isModalVisible, setIsModalVisible] = React.useState(false)
     const [isModalVisible2, setIsModalVisible2] = React.useState(false)
-
-    const navigation = useNavigation()
+    const dispatch = useDispatch();
+    const navigation = useNavigation();
+    const reduxState = useSelector(({ auth, root, language }) => {
+        return {
+            loading: root
+        };
+    });
+      console.log("🚀 ~ file: SignIn.js:31 ~ reduxState ~ reduxState:", reduxState?.loading)
+    
     const handleVisible = () => {
         setIsModalVisible(!isModalVisible)
     }
@@ -37,7 +46,7 @@ const MyProfile = () => {
         navigation.navigate('termandcondition')
     }, [])
     const handleLogout = React.useCallback(() => {
-
+        dispatch(userLogout())
     }, [])
 
     const handleMessage = React.useCallback(() => {
@@ -55,6 +64,7 @@ const MyProfile = () => {
             edges={['left', 'right']}
             scrollView={true}
             headerProps={headerProps}
+            loading={false}
 
 
         >

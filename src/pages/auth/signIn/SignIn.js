@@ -22,12 +22,13 @@ const SignIn = () => {
     [],
   );
 
-  const getRedux = () => {
 
-    var Loading = useSelector((state) => state?.auth?.loginLoading)
-    console.log("🚀 ~ file: SignIn.js:31 ~ todo ~ todo:", Loading)
-  }
-  getRedux()
+  const reduxState = useSelector(({ auth, root, language }) => {
+    return {
+      loading: auth?.loginLoading,
+    };
+  });
+  console.log("🚀 ~ file: SignIn.js:31 ~ reduxState ~ reduxState:", reduxState)
 
 
 
@@ -58,7 +59,9 @@ const SignIn = () => {
     <Container
       showPattern={false}
       scrollView
-      loading={Loading}
+      loading={reduxState?.loading}
+      // loading={true}
+
       scrollViewProps={{ contentContainerStyle: AuthStyle.container }}
       headerProps={headerProps}>
       <View style={AuthStyle.logoView}>
@@ -68,12 +71,6 @@ const SignIn = () => {
           resizeMode="contain"
         />
       </View>
-      <Pressable onPress={handleOtp}>
-        <CText style={AuthStyle.bottomlinkTextNav}>Otp</CText>
-      </Pressable>
-      <Pressable>
-        <CText style={AuthStyle.bottomlinkTextNav}>Home</CText>
-      </Pressable>
       <CForm
         submit={submit}
         handleForgot={handleForgot}
