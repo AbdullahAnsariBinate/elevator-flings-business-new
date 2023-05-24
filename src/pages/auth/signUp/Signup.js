@@ -56,6 +56,7 @@ function SignUp(props) {
       });
   };
 
+
   return (
     <Container
       backgroundColor={'red'}
