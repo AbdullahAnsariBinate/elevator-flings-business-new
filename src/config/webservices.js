@@ -1,6 +1,9 @@
 export const BASE_URL = 'http://10.0.2.2:3030';
 export const LOGIN = `${BASE_URL}/authentication`;
 export const REGISTER = `${BASE_URL}/users`;
+export const FORGOTPASSWORD = `${BASE_URL}/send_forget_password_otp`
+export const RESETPASSWORD = `${BASE_URL}/reset_password`
+
 
 
 // export const SEND_CODE = `${BASE_URL}sendVerification`;

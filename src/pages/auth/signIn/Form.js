@@ -29,7 +29,6 @@ function CForm(props) {
   const email = useRef(null);
 
   const toggleSecure = () => {
-    console.log("hhhhhhhh")
     setSecure(!secure)
   }
 

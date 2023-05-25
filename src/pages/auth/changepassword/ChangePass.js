@@ -1,35 +1,59 @@
 import React, { useState } from 'react';
 
-import { Pressable,  View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { Container } from '../../../containers';
 import AuthStyle from '../Auth.style';
 import CForm from './Form';
 import { CText, ProgressiveImage } from '../../../uiComponents';
 import { imgs } from '../../../assets/imgs';
 import { useNavigation } from '@react-navigation/native';
-
+import { useSelector } from 'react-redux';
+import ApiSauce from '../../../utils/network'
+import { RESETPASSWORD } from '../../../config/webservices';
 function ChangePass(props) {
   const navigation = useNavigation();
   // const [phoneError, setPhoneError] = useState('');
-  const submit = (values) => {console.log(values,'change pass')};
+  const reduxState = useSelector(({ auth }) => {
+    return {
+      email: auth?.email
+    }
+  })
+  const submit = async (values) => {
+    let payload = {
+      email: reduxState?.email,
+      password: values?.password
+    }
+    try {
+      const response = await ApiSauce.postWithToken(RESETPASSWORD, payload).then((res) => {
+        console.log(res, 'res')
+        if(res){
+          navigation.navigate('signin')
+        }
+      }).catch((err) => { console.log(err) })
+      console.log("🚀 ~ file: ChangePass.js:29 ~ submit ~ response:", response)
+    } catch (err) {
+      console.log("🚀 ~ file: ChangePass.js:25 ~ submit ~ err:", err)
+    }
+
+  };
 
   const handleSignup = () => {
-   navigation.navigate('signup')
+    navigation.navigate('signup')
   }
   const handleForgot = () => {
     navigation.navigate('forgotpass')
-   }
+  }
   const headerProps = {
     hideBackButton: true,
     headerTitle: 'Reset Password',
-    headerRight:false
+    headerRight: false
   }
   const handleOtp = () => {
     navigation.navigate('signin')
   }
-    return (
+  return (
     <Container
-    
+
       backgroundColor={'red'}
       showPattern={false}
       scrollView={true}
@@ -44,15 +68,15 @@ function ChangePass(props) {
       </View>
       <Pressable onPress={handleOtp}>
         <CText style={AuthStyle.bottomlinkTextNav}>Login</CText>
-        </Pressable>
+      </Pressable>
       <CForm
         submit={submit}
         handleForgot={handleForgot}
         // phoneErr={phoneError}
         onLoginPress={() => navigation.navigate('login')}
       />
-      
-  
+
+
     </Container>
   );
 }

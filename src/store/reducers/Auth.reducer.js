@@ -11,8 +11,9 @@ const initialState = {
     reSendOtpLoading: false,
     verifyOtpLoading: false,
     isIntialRootRoute: true,
-    guestLoading:false,
-    guestLogin: false };
+    guestLoading: false,
+    guestLogin: false
+};
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
@@ -23,11 +24,24 @@ export default (state = initialState, action = {}) => {
                 isLoggedIn: action.isLoggedIn,
                 user: action.user
             };
+            case AUTH.FORGOT_PASSWORD_API:
+                return {
+                    ...state,
+                    formLoading: action.loading,
+                    isLoggedIn: action.isLoggedIn,
+                    user: action.user,
+                    route:action.route,
+                    otp:action.otp,
+                    email:action.email
+                };
+    
 
         case AUTH.LOGOUT_USER_API:
-            return { ...state, 
+            return {
+                ...state,
                 isLoggedIn: action.isLoggedIn,
-                user: action.user , };
+                user: action.user,
+            };
 
         case AUTH.GET_USER_PROFILE:
             return {
@@ -38,7 +52,7 @@ export default (state = initialState, action = {}) => {
             };
 
         case AUTH.SIGN_UP_USER_API:
-            return { ...state, signUpLoading: action.loading  , isLoggedIn:action.isLoggedIn , user:action.user , isIntialRootRoute:action.isIntialRootRoute};
+            return { ...state, signUpLoading: action.loading, isLoggedIn: action.isLoggedIn, user: action.user, isIntialRootRoute: action.isIntialRootRoute };
 
         case AUTH.UPDATE_USER:
             return { ...state, user: action.user };
@@ -49,9 +63,9 @@ export default (state = initialState, action = {}) => {
             return { ...state, reSendOtpLoading: action.loading };
         case AUTH.VERIFY_OTP:
             return { ...state, verifyOtpLoading: action.loading };
-            case AUTH.GUEST_CHECKOUT:
-                return { ...state, guestLoading: action.loading  , guestLogin:action.guestLogin ,  user:action.user};
-    
+        case AUTH.GUEST_CHECKOUT:
+            return { ...state, guestLoading: action.loading, guestLogin: action.guestLogin, user: action.user };
+
         default:
             return state;
     }

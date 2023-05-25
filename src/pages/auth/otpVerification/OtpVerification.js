@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "../../../containers";
 import { useSelector, useDispatch } from "react-redux";
 import AuthStyle from "../Auth.style";
@@ -6,61 +6,48 @@ import CForm from "./Form";
 import events from "../../../utils/events";
 import { useNavigation } from "@react-navigation/native";
 import { sendOtp, verifyOtp } from "../../../store/actions/Auth.action";
-import ApiSauce from '../../../utils/network'
+import Toast from "react-native-toast-message";
+
 import { SEND_CODE, VERIFY_CODE } from "../../../config/webservices";
 import Auth from "../../../store/constants/Auth.constant";
-import { Pressable } from "react-native";
+import { Platform, Pressable } from "react-native";
 import { CText, ProgressiveImage } from "../../../uiComponents";
 import { imgs } from "../../../assets/imgs";
 import { View } from "react-native-ui-lib";
 function OtpVerification({ route }) {
-    const { phone } = route?.params || {};
+    const [loader, setLoader] = useState(false);
+    // const { otp } = route?.params || {};
+    // console.log("🚀 ~ file: OtpVerification.js:18 ~ OtpVerification ~ otp:", otp)
 
 
     const navigation = useNavigation();
+    const reduxState = useSelector(({ auth }) => {
+        return {
+            otp: auth?.otp,
+            email: auth?.email
+        }
+    })
+    console.log("🚀 ~ file: OtpVerification.js:28 ~ reduxState ~ reduxState:", reduxState?.email)
 
 
 
-    const submit = async (values) => {
-        console.log("values", values);
-        // const payload = {
-        //     local_storage_phone: phone,
-        //     verification: values.otp,
-        // };
-        // try {
-        //     const resp = await ApiSauce.post(VERIFY_CODE, payload)
-        //     navigation.navigate("user_information", {
-        //         phone: phone
-        //     })
-        //     // dispatch({
-        //     //             type: Auth.LOGIN_USER_API,
-        //     //             loading: false,
-        //     //             user: response?.data
-        //     //             isLoggedIn: true,
-        //     //         });
-        //     console.log('respresprespresprespresprespresprespresp', resp)
 
 
-        // } catch (error) {
-        //     alert(error.message.response);
+    const submit =  (values) => {
+        console.log("🚀 ~ file: OtpVerification.js:25 ~ submit ~ values:", values)
+        setLoader(true)
+        // values?.otp == otp.toString() ? alert("t"):
+        if (values?.otp == reduxState?.otp) {
+            setLoader(false)
+            navigation.navigate('changepass')
 
-        //     // dispatch({
-        //     //     type: Auth.LOGIN_USER_API,
-        //     //     loading: false,
-        //     //     // user: response?.data?.data?.data,
-        //     //     isLoggedIn: true,
-        //     // });
-        //     console.log('errorerrorerrorerror', error)
+        }else{
+            setLoader(false)
+        }
+        setLoader(false)
 
-        // }
-        // dispatch(verifyOtp(payload)).then((response) => {
-        //     console.log(response);
-        //     // if (response?.response.data?.success) {
-        //     //     navigation.navigate("user_information", { phone });
-        //     // }
-        // });
-        // navigation.navigate("user_information", { phone });
     };
+    // 
 
     const resendOtp = () => {
         events.emit("restartOTPTimer", {});
@@ -69,7 +56,7 @@ function OtpVerification({ route }) {
     const headerProps = {
         hideBackButton: true,
         headerTitle: 'Otp Verification',
-        headerRight:false
+        headerRight: false
 
     };
     const handleResetPw = () => {
@@ -81,7 +68,7 @@ function OtpVerification({ route }) {
             backgroundColor={'red'}
             showPattern={false}
             scrollView={true}
-            loading={false}
+            loading={loader}
             scrollViewProps={{
                 contentContainerStyle: AuthStyle.container,
             }}

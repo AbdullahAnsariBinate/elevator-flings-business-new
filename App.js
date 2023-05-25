@@ -15,9 +15,11 @@ const App = () => {
     };
 });
   const renderRouting = (value, initial) => {
+    console.log("🚀 ~ file: App.js:18 ~ renderRouting ~ initial:", initial)
+    console.log("🚀 ~ file: App.js:18 ~ renderRouting ~ value:", value)
     switch (value) {
       case true:
-        return <Root />;
+        return <Auth />;
       case false:
         return <Auth initial={initial} />;
       default:

@@ -46,12 +46,12 @@ function CForm(props) {
 
                                 <View style={AuthStyle.otpContainer}>
                                     <OtpInputs
-                                        autofillFromClipboard
+                                        ref={otp}
+                                        autofillFromClipboard={false}
                                         style={styles.otpStyles}
                                         inputStyles={styles.inputStyles}
                                         inputContainerStyles={styles.inputContainer}
-                                        // value={values?.otp}
-                                        handleChange={(otp) => console.log('hhdhdhdh',otp)}
+                                        handleChange={handleChange('otp')} 
                                         numberOfInputs={6}
                                         placeholder='0'
                                     />

@@ -10,11 +10,13 @@ import {
   removeUserDetail,
 } from '../../utils/asyncStorage/Functions';
 import {
+  FORGOTPASSWORD,
   LOGIN,
   REGISTER,
   SEND_CODE,
   VERIFY_CODE,
 } from '../../config/webservices';
+
 
 export const login = (payload, CB) => async dispatch => {
   console.log('login function  called.');
@@ -44,6 +46,46 @@ export const login = (payload, CB) => async dispatch => {
       loading: false,
       // user: response?.data,
       // isLoggedIn: true,
+    });
+  }
+};
+
+//forgot password
+
+export const forgotpassword = (payload, CB) => async dispatch => {
+  // console.log('forgot function  called.');
+  dispatch({ type: AUTH.FORGOT_PASSWORD_API, loading: true, isLoggedIn: false });
+
+  try {
+    // console.log({ LOGIN, payload });
+    let response = await post(FORGOTPASSWORD, payload);
+    if (response?.data?.error) {
+      dispatch({ type: AUTH.FORGOT_PASSWORD_API, loading: false, route:false });
+      handleError(response?.data?.data?.message || '');
+    } else {
+      console.log(response.data, 'forgot-api');
+    
+      dispatch({
+        type: AUTH.FORGOT_PASSWORD_API,
+        loading: false,
+        // user: response?.data,
+        isLoggedIn: true,
+        route:true,
+        otp:response.data?.data?.otp,
+        email:response.data?.data?.email,
+
+      });
+      // navigation.navigate('otpverify')
+    }
+  } catch (error) {
+    alert(error?.data?.message);
+    dispatch({
+      type: AUTH.FORGOT_PASSWORD_API,
+      loading: false,
+      // user: response?.data,
+      isLoggedIn: true,
+      route:false
+
     });
   }
 };

@@ -10,11 +10,12 @@ import { themes } from '../../../theme/colors';
 import { icons } from '../../../assets/imgs';
 function CForm(props) {
   const {
-    // submit,
+    submit,
     loading,
     selectedCountry,
     toggleCountryModal,
     phoneErr,
+    handleForgot
 
   } = props;
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
@@ -22,10 +23,7 @@ function CForm(props) {
   const form = React.useRef(null);
   const email = React.useRef(null);
 
-  const dispatch = useDispatch();
-  const submit = (values) => {
-   console.log(values, 'jjjjjj')
-  };
+
 
   return (
     <Formik
