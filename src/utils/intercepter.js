@@ -36,7 +36,7 @@ const interceptor = () => {
         },
         function (error) {
             console.log('error', error);
-            console.log('error message', error.response);
+            console.log('error message', error?.message);
             if(error?.response?.status === 401){
                 // store.dispatch(logout(true, 'expire', error?.response?.data?.Message))
             }

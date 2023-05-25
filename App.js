@@ -14,12 +14,13 @@ const App = () => {
         // language:language?.language?.lan
     };
 });
+  console.log("🚀 ~ file: App.js:17 ~ reduxState ~ reduxState:", reduxState)
   const renderRouting = (value, initial) => {
     console.log("🚀 ~ file: App.js:18 ~ renderRouting ~ initial:", initial)
     console.log("🚀 ~ file: App.js:18 ~ renderRouting ~ value:", value)
     switch (value) {
       case true:
-        return <Auth />;
+        return <Root />;
       case false:
         return <Auth initial={initial} />;
       default:

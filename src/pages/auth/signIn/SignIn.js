@@ -60,7 +60,7 @@ const SignIn = () => {
       showPattern={false}
       scrollView
       loading={reduxState?.loading}
-      // loading={true}
+      // loading={false}
 
       scrollViewProps={{ contentContainerStyle: AuthStyle.container }}
       headerProps={headerProps}>

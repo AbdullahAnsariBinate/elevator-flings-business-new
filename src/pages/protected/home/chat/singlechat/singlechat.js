@@ -1,14 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Pressable, Modal } from 'react-native'
 import React from 'react'
 import { Container } from '../../../../../containers'
 import { Searchbar } from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 import { themes } from '../../../../../theme/colors';
 import { icons } from '../../../../../assets/imgs';
-
+import { View as CustomView } from 'react-native-ui-lib'
+import { FlashList } from '@shopify/flash-list';
+import { Message } from './Dummydata';
+import { dummyData } from './dummy';
+import { MicroChat } from '../../../../../uiComponents/cMicroChat/CMicroChat';
+import { MacroChat } from '../../../../../uiComponents/cMacroChat/CMacroChat';
 const SingleChat = () => {
-    const [searchQuery, setSearchQuery] = React.useState('')
-    const onChangeSearch = (query) => setSearchQuery(query)
     const headerProps = {
         showCenterLogo: false,
         backButtonIcon: 'close',
@@ -17,11 +20,29 @@ const SingleChat = () => {
         headerTitle: 'Chat',
         headerRight: false
     };
+    const [searchQuery, setSearchQuery] = React.useState('')
+    const onChangeSearch = (query) => setSearchQuery(query)
+    const [isModalVisible, setIsModalVisible] = React.useState(false)
+
+    const renderItem = ({ item }) => {
+        return <MicroChat msg={item?.msg} />
+    }
+    const renderItem1 = ({ item }) => {
+        return <MacroChat msg={item?.msg} />
+    }
+    const handleSetting = () => {
+        setIsModalVisible(!isModalVisible)
+    }
+    const renderItem4 = ({ item }) => {
+        return <Requests imgs={item?.img} btn name2='Block User' name='Reject User' />
+    }
+
+
     return (
         <Container
             bottomSpace
             edges={['left', 'right']}
-            scrollView={true}
+            scrollView={false}
             headerProps={headerProps}
         >
             <Searchbar
@@ -32,8 +53,46 @@ const SingleChat = () => {
                 style={styles.search}
                 icon={() => <FastImage source={icons.Search} style={styles.img} resizeMode='contain' />}
             />
+            <ScrollView>
+                <CustomView marginH-15 marginB-10>
+                    <View style={styles.flats}>
+                        <FlashList estimatedItemSize={70} data={Message} renderItem={renderItem} />
+                    </View>
+                    <View style={styles.flats}>
+                        <FlashList estimatedItemSize={70} data={Message} renderItem={renderItem1} />
+                    </View>
+                    <View style={styles.flats}>
+                        <FlashList estimatedItemSize={70} data={Message} renderItem={renderItem} />
+                    </View>
+                </CustomView>
+                <Modal
+                    animationType='fade'
+                    transparent={true}
+                    visible={isModalVisible}
+                    onRequestClose={() => {
+                        setIsModalVisible(!isModalVisible)
+                    }}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text center bold black large marginB-15>User list</Text>
+                            <View paddingH-15 style={styles.request}>
+                                <FlashList data={dummyData} renderItem={renderItem4} estimatedItemSize={70} />
+                            </View>
+                            <View style={styles.cross}>
+                                <Pressable
+                                    onPress={() => setIsModalVisible(!isModalVisible)}
+                                    style={styles.crossBtn}
+                                >
+                                    <FastImage source={icons?.CrossRed} style={styles.image} resizeMode='contain' />
+                                </Pressable>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+            </ScrollView>
 
-        </Container>
+        </Container >
     )
 }
 

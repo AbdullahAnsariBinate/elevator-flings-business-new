@@ -26,6 +26,7 @@ export const login = (payload, CB) => async dispatch => {
     console.log({ LOGIN, payload });
     let response = await post(LOGIN, payload);
     if (response?.data?.error) {
+      console.log('errorrr')
       dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
       handleError(response?.data?.data?.message || '');
     } else {
@@ -40,12 +41,13 @@ export const login = (payload, CB) => async dispatch => {
       });
     }
   } catch (error) {
-    alert(error?.data?.message);
+    console.log("🚀 ~ file: Auth.action.js:43 ~ login ~ error:", error)
+    // alert(error?.data?.message);
     dispatch({
       type: AUTH.LOGIN_USER_API,
       loading: false,
       // user: response?.data,
-      // isLoggedIn: true,
+      isLoggedIn: true,
     });
   }
 };
