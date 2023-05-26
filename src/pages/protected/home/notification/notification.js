@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Container } from '../../../../../containers';
 import { Searchbar } from 'react-native-paper';
 import { View as CustomView } from 'react-native-ui-lib'
 import { FlashList } from '@shopify/flash-list';
-import { Profile } from './chat'
 import FastImage from 'react-native-fast-image';
-import { icons } from '../../../../../assets/imgs';
-import { themes } from '../../../../../theme/colors';
 import { useNavigation } from '@react-navigation/native';
-import { ChatComponent } from '../../../../../uiComponents';
-const ChatList = () => {
+import { ChatComponent } from '../../../../uiComponents';
+import { Container } from '../../../../containers';
+import { Profile } from './data';
+import { themes } from '../../../../theme/colors';
+import { icons } from '../../../../assets/imgs';
+const Notification = () => {
 
     const navigation = useNavigation()
     const headerProps = {
@@ -18,14 +18,18 @@ const ChatList = () => {
         backButtonIcon: 'close',
         hideBackButton: true,
         headerLeft: false,
-        headerTitle: 'Messages',
+        headerTitle: 'Notification',
         headerRight: false
     };
     const [searchQuery, setSearchQuery] = React.useState('')
 
     const onChangeSearch = (query) => setSearchQuery(query)
 
+    const navBar = React.useCallback(() => {
+    }, [])
+
     const handleChat = () => {
+        console.log('clcic')
         navigation.navigate("singlechat")
     }
     const renderItem = ({ item }) => {
@@ -65,7 +69,7 @@ const ChatList = () => {
     )
 }
 
-export default ChatList
+export default Notification
 
 const styles = StyleSheet.create({
     chatlist: {

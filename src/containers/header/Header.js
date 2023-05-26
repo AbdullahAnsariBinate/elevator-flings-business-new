@@ -11,6 +11,8 @@ import { CText, ProgressiveImage } from '../../uiComponents';
 // import {CText, ProgressiveImage} from "../../uiComponents";
 import Entypo from 'react-native-vector-icons/Entypo'
 import { View as CustomView } from 'react-native-ui-lib';
+import { icons } from '../../assets/imgs';
+import FastImage from 'react-native-fast-image';
 
 function Header(props) {
   const navigation = useNavigation();
@@ -29,7 +31,14 @@ function Header(props) {
     goBackWithRoute,
     transparent,
     theme,
-    headerLeftTitle
+    headerLeftTitle,
+    icon1,
+    icon2,
+    icon3,
+    handleIcon1,
+    handleIcon2,
+    handleIcon3,
+    icon3Style
   } = props;
 
   const { isLoggedIn } = useSelector(({ auth }) => {
@@ -87,11 +96,8 @@ function Header(props) {
 
   const menuButton = () => {
     return (
-      <View
-        style={Styles.headerButton}
-        onPress={() => navigation.toggleDrawer()}>
+      <View style={Styles.headerButton}>
         <CText style={Styles.headerLeftTitle}>{headerLeftTitle}</CText>
-
       </View>
     );
   };
@@ -123,18 +129,21 @@ function Header(props) {
   const otherOptionsButton = () => {
     return (
       <View>
-        <CText style={{ color: 'black' }}>right Options</CText>
-        {/* <CustomView style={styles.leftHeader} width={'33%'} >
-          <TouchableOpacity onPress={addPress}>
-            <FastImage source={icon3} style={Styles.icons} resizeMode='contain' />
+        {/* <CText style={{ color: 'black' }}>right Options</CText> */}
+        <CustomView style={Styles.leftHeader} row >
+          {icon1 && <TouchableOpacity onPress={handleIcon1}>
+            <FastImage source={icon1} style={Styles.icons} resizeMode='contain' />
           </TouchableOpacity>
-          <TouchableOpacity onPress={msgPress}>
-            <FastImage source={icon1} style={styles.icon} resizeMode='contain' />
+          }
+          {icon2 && <TouchableOpacity onPress={handleIcon2}>
+            <FastImage source={icon2} style={Styles.icons} resizeMode='contain' />
           </TouchableOpacity>
-          <TouchableOpacity onPress={notiPress} marginL-5>
-            <FastImage source={icon2} style={styles.icon} resizeMode='contain' />
+          }
+          {icon3 && <TouchableOpacity marginL-5 onPress={handleIcon3}>
+            <FastImage source={icon3} style={[Styles.icons, icon3Style]} resizeMode='contain' />
           </TouchableOpacity>
-        </CustomView> */}
+          }
+        </CustomView>
       </View>
     );
   };
@@ -163,10 +172,10 @@ function Header(props) {
           Styles.container,
           transparent && Styles.headerTransparentStyle,
         ]}>
-        <CustomView width={'11%'} left centerV >
+        <CustomView width={'25%'} left centerV >
           {headerLeft ? menuButton() : backButton()}
         </CustomView>
-        <CustomView width={'77%'} centerH >
+        <CustomView width={'48%'} centerH >
           {showCenterLogo
             ? centerLogo()
             : headerTitleElement
@@ -175,7 +184,7 @@ function Header(props) {
                 ? renderHeaderTitle(headerTitle)
                 : null}
         </CustomView>
-        <CustomView width={'11%'} right centerV >
+        <CustomView width={'25%'} right centerV >
           {headerRight ? otherOptionsButton() : null}
         </CustomView>
       </View>

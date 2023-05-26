@@ -4,21 +4,29 @@ import { Container } from '../../../../../containers'
 import { Searchbar } from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 import { themes } from '../../../../../theme/colors';
-import { icons } from '../../../../../assets/imgs';
+import { icons, imgs } from '../../../../../assets/imgs';
 import { View as CustomView } from 'react-native-ui-lib'
 import { FlashList } from '@shopify/flash-list';
 import { Message } from './Dummydata';
 import { dummyData } from './dummy';
 import { MicroChat } from '../../../../../uiComponents/cMicroChat/CMicroChat';
 import { MacroChat } from '../../../../../uiComponents/cMacroChat/CMacroChat';
+import { Requests } from '../../../../../uiComponents';
+import { styles } from './chatscreen.styles';
+import { responsiveFontSize } from 'react-native-responsive-dimensions';
 const SingleChat = () => {
     const headerProps = {
         showCenterLogo: false,
         backButtonIcon: 'close',
-        hideBackButton: false,
-        headerLeft: true,
+        hideBackButton: true,
+        headerLeft: false,
         headerTitle: 'Chat',
-        headerRight: false
+        headerRight: true,
+        icon2: icons?.Setting,
+        icon3: imgs?.Profile,
+        icon3Style:{height:responsiveFontSize(4.2), width:responsiveFontSize(4.2)},
+        handleIcon2: () => handleSetting(),
+        handleIcon3:() => handleNotification()
     };
     const [searchQuery, setSearchQuery] = React.useState('')
     const onChangeSearch = (query) => setSearchQuery(query)
@@ -42,6 +50,9 @@ const SingleChat = () => {
         <Container
             bottomSpace
             edges={['left', 'right']}
+            
+            
+
             scrollView={false}
             headerProps={headerProps}
         >
@@ -75,7 +86,7 @@ const SingleChat = () => {
                 >
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
-                            <Text center bold black large marginB-15>User list</Text>
+                            <Text style={styles?.postName1}>User list</Text>
                             <View paddingH-15 style={styles.request}>
                                 <FlashList data={dummyData} renderItem={renderItem4} estimatedItemSize={70} />
                             </View>
@@ -98,18 +109,18 @@ const SingleChat = () => {
 
 export default SingleChat
 
-const styles = StyleSheet.create({
-    search: {
-        flexDirection: 'row-reverse',
-        paddingRight: 20,
-        borderRadius: 10,
-        backgroundColor: themes['light'].colors.offWhite,
-        marginHorizontal: 15,
-        marginTop: 10,
-        marginBottom: 10,
-    },
-    img: {
-        height: "50%",
-        width: "50%",
-    }
-})
+// const styles = StyleSheet.create({
+//     search: {
+//         flexDirection: 'row-reverse',
+//         paddingRight: 20,
+//         borderRadius: 10,
+//         backgroundColor: themes['light'].colors.offWhite,
+//         marginHorizontal: 15,
+//         marginTop: 10,
+//         marginBottom: 10,
+//     },
+//     img: {
+//         height: "50%",
+//         width: "50%",
+//     }
+// })

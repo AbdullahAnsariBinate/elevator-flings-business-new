@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     btn: {
-        paddingHorizontal: responsiveWidth(3),
+        paddingHorizontal: responsiveWidth(1.8),
         backgroundColor: themes['light'].colors.pink,
         height: responsiveHeight(5),
         alignItems: 'center',
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     btn1: {
-        paddingHorizontal: responsiveWidth(3),
+        paddingHorizontal: responsiveWidth(1.8),
         height: responsiveHeight(5),
         backgroundColor: themes['light'].colors.white,
         alignItems: 'center',
@@ -62,17 +62,17 @@ const styles = StyleSheet.create({
     postSq: {
         fontFamily: themes?.font?.bold,
         color: themes['light']?.colors?.black,
-        fontSize: themes?.fontSize?.small
+        fontSize: themes?.fontSize?.extraSmall
     },
     postBtn: {
-        fontFamily: themes?.font?.semiBold,
+        fontFamily: themes?.font?.regular,
         color: themes['light']?.colors?.white,
-        fontSize: themes?.fontSize?.small
+        fontSize: themes?.fontSize?.extraSmall
     },
     postBtn2: {
-        fontFamily: themes?.font?.semiBold,
+        fontFamily: themes?.font?.regular,
         color: themes['light']?.colors?.black,
-        fontSize: themes?.fontSize?.small
+        fontSize: themes?.fontSize?.extraSmall
     },
     bg:{
         backgroundColor:themes?.light?.colors?.flashWhite

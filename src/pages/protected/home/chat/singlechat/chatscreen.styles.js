@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { theme } from '../../../../utils/constants'
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
+import { themes } from '../../../../../theme/colors'
 
 export const styles = StyleSheet.create({
   img: {
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     paddingRight: 20,
     borderRadius: 15,
-    backgroundColor: theme.color.offWhite,
+    backgroundColor: themes['light'].colors.offWhite,
     marginHorizontal: 15,
     marginTop: 10,
     marginBottom: 10,
@@ -33,6 +34,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     paddingVertical:25,
+    paddingHorizontal:10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -53,7 +55,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F194FF',
   },
   buttonClose: {
-    backgroundColor: theme?.color?.pink,
+    backgroundColor:themes['light'].colors?.pink,
   },
   textStyle: {
     color: 'white',
@@ -78,7 +80,7 @@ export const styles = StyleSheet.create({
   },
   btn: {
     paddingHorizontal: responsiveWidth(10.5),
-    backgroundColor: theme.color.pink,
+    backgroundColor: themes['light'].colors.pink,
     height: responsiveHeight(6),
     alignItems: 'center',
     justifyContent: 'center',
@@ -88,17 +90,43 @@ export const styles = StyleSheet.create({
   btn1: {
     paddingHorizontal: responsiveWidth(10.5),
     height: responsiveHeight(6),
-    backgroundColor: theme.color.white,
+    backgroundColor: themes['light'].colors.white,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: responsiveHeight(0.5),
     borderRadius: 10,
-    borderColor: theme.color.black,
+    borderColor: themes['light'].colors.black,
     borderWidth: 2,
     marginLeft: responsiveWidth(1),
   },
     request: {
-    minHeight: 350,
+    minHeight: responsiveHeight(50),
     minWidth: 100,
   },
+  postName1:{
+    fontFamily: themes?.font?.bold,
+    color: themes['light']?.colors?.black,
+    fontSize: themes?.fontSize?.regular,
+    textAlign:'center'
+  },
+  postName: {
+    fontFamily: themes?.font?.bold,
+    color: themes['light']?.colors?.black,
+    fontSize: themes?.fontSize?.regular
+},
+postSq: {
+    fontFamily: themes?.font?.bold,
+    color: themes['light']?.colors?.black,
+    fontSize: themes?.fontSize?.small
+},
+postHeading: {
+    fontFamily: themes?.font?.semiBold,
+    color: themes['light']?.colors?.black,
+    fontSize: themes?.fontSize?.small,
+},
+postDesp: {
+    fontFamily: themes?.font?.regular,
+    color: themes['light']?.colors?.fontBlack,
+    fontSize: themes?.fontSize?.small
+},
 })

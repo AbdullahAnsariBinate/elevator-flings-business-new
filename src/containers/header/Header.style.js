@@ -1,6 +1,6 @@
 import {StyleSheet, Platform} from "react-native";
 import {themes as theme, themes} from "../../theme/colors";
-import { responsiveScreenHeight } from "react-native-responsive-dimensions";
+import { responsiveFontSize, responsiveScreenHeight } from "react-native-responsive-dimensions";
 export const headerHeight = Platform.OS === 'ios' ? responsiveScreenHeight(4) : responsiveScreenHeight(5);
 
 const styles = StyleSheet.create({
@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     headerLogoImage: {
         width: 140.6,
         height: 36.62
+    },
+    leftHeader:{
+  gap:2,
+  alignItems:'center'
     },
     container: {
         height: headerHeight,
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
     headerTitleStyle: {
         color: themes['light'].colors.fontColor,
         fontFamily: themes?.font?.bold,
-        fontSize: themes?.fontSize?.large,
+        fontSize: themes?.fontSize?.regular,
         textAlign: 'center',
     },
     headerButton: {},
@@ -99,10 +103,14 @@ const styles = StyleSheet.create({
         color: theme['light'].colors.primary,
     },
     headerLeftTitle:{
-        fontSize:themes?.fontSize?.large,
+        fontSize:themes?.fontSize?.regular,
         color:themes['light']?.colors?.black,
         fontFamily:themes?.font?.bold
         
+    },
+    icons:{
+        height:responsiveFontSize(3.6),
+        width:responsiveFontSize(3.6)
     }
 });
 

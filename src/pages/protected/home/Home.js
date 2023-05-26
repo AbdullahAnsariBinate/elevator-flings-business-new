@@ -31,7 +31,12 @@ function Home(props) {
     backButtonIcon: 'close',
     hideBackButton: false,
     headerLeft: true,
-    headerLeftTitle: 'Hello, John'
+    headerLeftTitle: 'Hello, John',
+    icon2: icons?.Message,
+    icon3: icons?.Notification,
+    handleIcon2: () => handleMessage(),
+    handleIcon3:() => handleNotification()
+
 
   };
   const handlePastEvent = React.useCallback(() => {
@@ -45,6 +50,9 @@ function Home(props) {
   }
   const handleMessage = useCallback(() => {
     navigation.navigate('chatlist')
+  }, [])
+  const handleNotification = useCallback(() => {
+    navigation.navigate('notification')
   }, [])
 
   const FirstRoute = () => (
@@ -128,7 +136,6 @@ function Home(props) {
         style={Styles.search}
         icon={() => <FastImage source={icons.Search} style={Styles.img} resizeMode='contain' />}
       />
-      <CButton title="Message" onPress={handleMessage} />
 
       <TabView
         navigationState={{ index, routes }}
