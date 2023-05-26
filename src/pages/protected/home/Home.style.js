@@ -107,7 +107,7 @@ const Styles = StyleSheet.create({
     scrollBar: {
         marginHorizontal: 15,
         justifyContent: 'center',
-        marginBottom: responsiveHeight(2),
+        marginBottom: responsiveHeight(0),
         paddingTop: responsiveHeight(1),
     },
     scrollBar2: {

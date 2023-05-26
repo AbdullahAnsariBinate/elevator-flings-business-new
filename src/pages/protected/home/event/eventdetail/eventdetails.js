@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Modal, Pressable } from 'react-native'
 import React from 'react'
 import { Carousel, View as CustomView, TouchableOpacity } from 'react-native-ui-lib'
 import { CText, Requests } from '../../../../../uiComponents'
@@ -12,9 +12,11 @@ import { styles } from '../event.style'
 import { Container } from '../../../../../containers'
 import Styles from '../../Home.style'
 import { FlashList } from '@shopify/flash-list'
+import { useNavigation } from '@react-navigation/native'
 
 const EventDetails = () => {
   const [isModalVisible, setIsModalVisible] = React.useState(false)
+  const navigation = useNavigation()
   const headerProps = {
     showCenterLogo: false,
     backButtonIcon: 'close',
@@ -24,14 +26,14 @@ const EventDetails = () => {
     headerRight: false
   };
   const handleMessage = React.useCallback(() => {
-    // screens.push(componentId, 'ChatScreen')
+    navigation.navigate('chatlist')
   }, [])
   const handleEdit = React.useCallback(() => {
     // screens.push(componentId, 'EditEvent')
   }, [])
   const renderItem = ({ item }) => {
     console.log("🚀 ~ file: eventdetails.js:33 ~ renderItem ~ item:", item)
-    return <Requests imgs={item?.img} btn name2='Reject' name='Accept' />  
+    return <Requests imgs={item?.img} btn name2='Reject' name='Accept' />
   }
   const handleVisible = () => {
     setIsModalVisible(!isModalVisible)
@@ -138,43 +140,43 @@ const EventDetails = () => {
             <FlashList data={dummyData} renderItem={renderItem} estimatedItemSize={70} />
           </CustomView >
         </CustomView >
-        {/* <Modal
-            animationType='fade'
-            transparent={true}
-            visible={isModalVisible}
-            onRequestClose={() => {
-              setIsModalVisible(!isModalVisible)
-            }}
-          >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <CText black bold large >
-                  Are you sure?
-                </CText>
-                <Core.Text black regular marginT-20 center>
-                  Do you really want to delete the lorem ipsum property? This process cannot be
-                  undone.
-                </Core.Text>
-                <View row centerV marginT-20>
-                  <TouchableOpacity style={styles.btn} onPress={handleVisible}>
-                    <Core.Text white>Accept</Core.Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.btn1} onPress={handleVisible}>
-                    <Core.Text black>Reject</Core.Text>
-                  </TouchableOpacity>
-                </View>
-                <Core.Text style={styles.textStyle}>Done</Core.Text>
-                <View style={styles.cross}>
-                  <Pressable
-                    onPress={() => setIsModalVisible(!isModalVisible)}
-                    style={styles.crossBtn}
-                  >
-                    <FastImage source={icons?.CrossRed} style={styles.image} resizeMode='contain' />
-                  </Pressable>
-                </View>
+        <Modal
+          animationType='fade'
+          transparent={true}
+          visible={isModalVisible}
+          onRequestClose={() => {
+            setIsModalVisible(!isModalVisible)
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <CText style={styles?.postName}>
+                Are you sure?
+              </CText>
+              <CText style={styles?.postDesp}>
+                Do you really want to delete the lorem ipsum property? This process cannot be
+                undone.
+              </CText>
+              <CustomView row centerV marginT-20>
+                <TouchableOpacity style={styles.btn} onPress={handleVisible}>
+                  <CText style={styles?.btnText1}>Accept</CText>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn1} onPress={handleVisible}>
+                  <CText style={styles?.btnText2}>Reject</CText>
+                </TouchableOpacity>
+              </CustomView>
+              <CText style={styles.textStyle}>Done</CText>
+              <View style={styles.cross}>
+                <Pressable
+                  onPress={() => setIsModalVisible(!isModalVisible)}
+                  style={styles.crossBtn}
+                >
+                  <FastImage source={icons?.CrossRed} style={styles.image} resizeMode='contain' />
+                </Pressable>
               </View>
             </View>
-          </Modal> */}
+          </View>
+        </Modal>
       </View>
     </Container>
   )

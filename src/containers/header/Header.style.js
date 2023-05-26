@@ -36,16 +36,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     headerLight: {
-        color: theme['light'].colors.black,
+        fontSize:themes?.fontSize?.regular,
+        color:themes['light']?.colors?.black,
+        fontFamily:themes?.font?.semiBold
     },
     headerCartLight: {
         borderColor: 'rgba(227, 227, 224, 0.2)',
         backgroundColor: 'rgba(227, 227, 224, 0.1)',
     },
     headerTitleStyle: {
-        color: themes['light'].colors.fontColor,
-        fontFamily: themes?.font?.bold,
-        fontSize: themes?.fontSize?.regular,
+        fontSize:themes?.fontSize?.regular,
+        color:themes['light']?.colors?.black,
+        fontFamily:themes?.font?.semiBold,
         textAlign: 'center',
     },
     headerButton: {},
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     headerLeftTitle:{
         fontSize:themes?.fontSize?.regular,
         color:themes['light']?.colors?.black,
-        fontFamily:themes?.font?.bold
+        fontFamily:themes?.font?.semiBold
         
     },
     icons:{

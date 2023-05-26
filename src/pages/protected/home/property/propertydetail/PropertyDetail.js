@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Modal, Pressable } from 'react-native'
 import React from 'react'
 import { Container } from '../../../../../containers'
 import { Carousel, TouchableOpacity } from 'react-native-ui-lib'
@@ -19,8 +19,8 @@ const PropertyDetail = () => {
     const headerProps = {
         showCenterLogo: false,
         backButtonIcon: 'close',
-        hideBackButton: false,
-        headerLeft: true,
+        hideBackButton: true,
+        headerLeft: false,
         headerTitle: 'Property Details',
         headerRight: false
     };
@@ -133,7 +133,7 @@ const PropertyDetail = () => {
                     </CustomView>
                 </View>
             </View>
-            {/* <Modal
+            <Modal
                 animationType='fade'
                 transparent={true}
                 visible={isModalVisible}
@@ -143,21 +143,21 @@ const PropertyDetail = () => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <CText black bold large>
+                        <CText style={styles?.postName}>
                             Are you sure?
                         </CText>
-                        <CText black regular marginT-20 center>
+                        <CText style={styles?.postDesp}>
                             Do you really want to delete the lorem ipsum property? This process cannot be
                             undone.
                         </CText>
-                        <View row centerV marginT-20>
+                        <CustomView row centerV marginT-20>
                             <TouchableOpacity style={styles.btn} onPress={handleVisible}>
-                                <CText white>Accept</CText>
+                                <CText style={styles?.btnText1}>Accept</CText>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.btn1} onPress={handleVisible}>
-                                <CText black>Reject</CText>
+                                <CText style={styles?.btnText2}>Reject</CText>
                             </TouchableOpacity>
-                        </View>
+                        </CustomView>
                         <CText style={styles.textStyle}>Done</CText>
                         <View style={styles.cross}>
                             <Pressable
@@ -169,7 +169,7 @@ const PropertyDetail = () => {
                         </View>
                     </View>
                 </View>
-            </Modal> */}
+            </Modal>
             {/* </ScrollView> */}
         </Container>
     )

@@ -12,19 +12,21 @@ import { styles } from '../../event.style'
 import { Container } from '../../../../../../containers'
 import Styles from '../../../Home.style'
 import { FlashList } from '@shopify/flash-list'
+import { useNavigation } from '@react-navigation/native'
 
 const PastEventDetails = () => {
     const [isModalVisible, setIsModalVisible] = React.useState(false)
+    const navigation = useNavigation()
     const headerProps = {
         showCenterLogo: false,
         backButtonIcon: 'close',
-        hideBackButton: false,
-        headerLeft: true,
+        hideBackButton: true,
+        headerLeft: false,
         headerTitle: 'Event Details',
         headerRight: false
     };
     const handleMessage = React.useCallback(() => {
-        // screens.push(componentId, 'ChatScreen')
+        navigation.navigate('chatlist')
     }, [])
     const handleEdit = React.useCallback(() => {
         // screens.push(componentId, 'EditEvent')
@@ -61,7 +63,7 @@ const PastEventDetails = () => {
                         return (
                             <View key={i}>
                                 <FastImage style={styles.dataImg} source={image.image} resizeMode='cover' />
-                                <TouchableOpacity style={Style.edit} onPress={handleEdit}>
+                                <TouchableOpacity style={Style.edit} onPress={handleMessage}>
                                     <FastImage style={styles.carouselIcon} source={icons?.Message} resizeMode='contain' />
                                 </TouchableOpacity>
                                 <TouchableOpacity style={Style.dlt} >

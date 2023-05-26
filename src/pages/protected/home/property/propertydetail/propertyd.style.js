@@ -132,4 +132,20 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     marginLeft: responsiveWidth(1),
   },
+  postName: {
+    fontFamily: themes?.font?.bold,
+    color: themes['light']?.colors?.black,
+    fontSize: themes?.fontSize?.regular
+  },
+  btnText1: {
+    fontFamily: themes?.font?.regular,
+    color: themes['light']?.colors?.white,
+    fontSize: themes?.fontSize?.extraSmall
+  },
+  btnText2: {
+    fontFamily: themes?.font?.regular,
+    color: themes['light']?.colors?.black,
+    fontSize: themes?.fontSize?.extraSmall
+  },
+
 })

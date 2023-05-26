@@ -52,10 +52,7 @@ function Header(props) {
   const renderHeaderTitle = title => {
     return (
       <CText
-        style={[
-          Styles.headerTitleStyle,
-          theme === 'light' && Styles.headerLight,
-        ]}
+        style={Styles.headerTitleStyle}
         numberOfLines={1}>
         {title}
       </CText>

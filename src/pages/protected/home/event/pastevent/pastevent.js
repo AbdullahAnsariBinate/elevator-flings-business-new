@@ -12,8 +12,8 @@ const PastEvent = () => {
     const headerProps = {
         showCenterLogo: false,
         backButtonIcon: 'close',
-        hideBackButton: false,
-        headerLeft: true,
+        hideBackButton: true,
+        headerLeft: false,
         headerTitle: 'Past Events',
         headerRight: false
     };

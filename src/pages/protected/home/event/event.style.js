@@ -90,11 +90,11 @@ export const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    width: '80%',
+    width: '90%',
     backgroundColor: 'white',
     borderRadius: 10,
     // padding: 25,
-    paddingVertical:25,
+    paddingVertical: 25,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -160,5 +160,24 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     marginLeft: responsiveWidth(1),
   },
-  
+  postName: {
+    fontFamily: themes?.font?.bold,
+    color: themes['light']?.colors?.black,
+    fontSize: themes?.fontSize?.regular
+  },
+  btnText1: {
+    fontFamily: themes?.font?.regular,
+    color: themes['light']?.colors?.white,
+    fontSize: themes?.fontSize?.extraSmall
+  },
+  btnText2: {
+    fontFamily: themes?.font?.regular,
+    color: themes['light']?.colors?.black,
+    fontSize: themes?.fontSize?.extraSmall
+  },
+  postDesp: {
+    fontFamily: themes?.font?.regular,
+    color: themes['light']?.colors?.fontBlack,
+    fontSize: themes?.fontSize?.small
+},
 })
