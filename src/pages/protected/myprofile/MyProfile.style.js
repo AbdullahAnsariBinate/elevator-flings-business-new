@@ -135,7 +135,10 @@ export const styles = StyleSheet.create({
         minWidth: 100,
     },
     pass: {
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor:themes?.light?.colors?.flashWhite,
+        borderRadius:10,
+        
     },
     nameField: {
         fontFamily: themes?.font?.semiBold,
@@ -162,5 +165,10 @@ export const styles = StyleSheet.create({
         fontFamily: themes?.font?.regular,
         color: themes['light']?.colors?.fontBlack,
         fontSize: themes?.fontSize?.small
+    },
+    postName: {
+        fontFamily: themes?.font?.bold,
+        color: themes['light']?.colors?.black,
+        fontSize: themes?.fontSize?.regular
     },
 })

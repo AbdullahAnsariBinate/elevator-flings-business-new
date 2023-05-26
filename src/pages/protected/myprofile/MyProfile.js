@@ -1,8 +1,8 @@
-import { StyleSheet, Text, } from 'react-native'
+import { Modal, TextInput, Pressable } from 'react-native'
 import React from 'react'
 import { Container } from '../../../containers'
 import { View } from 'react-native-ui-lib'
-import { CButton, CText } from '../../../uiComponents'
+import { CButton, CText, Requests } from '../../../uiComponents'
 import FastImage from 'react-native-fast-image'
 import { icons, imgs } from '../../../assets/imgs'
 import { Switch } from 'react-native-paper'
@@ -11,6 +11,8 @@ import { styles } from './MyProfile.style'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../../../store/actions/Auth.action'
+import { FlashList } from '@shopify/flash-list'
+import { dummyData } from './dummy'
 
 const MyProfile = () => {
     const [isEnabled, setIsEnabled] = React.useState(true)
@@ -23,8 +25,8 @@ const MyProfile = () => {
             loading: root
         };
     });
-      console.log("🚀 ~ file: SignIn.js:31 ~ reduxState ~ reduxState:", reduxState?.loading)
-    
+    console.log("🚀 ~ file: SignIn.js:31 ~ reduxState ~ reduxState:", reduxState?.loading)
+
     const handleVisible = () => {
         setIsModalVisible(!isModalVisible)
     }
@@ -32,12 +34,19 @@ const MyProfile = () => {
     const handleVisible2 = () => {
         setIsModalVisible2(!isModalVisible2)
     }
+    const renderItem = ({ item }) => {
+        return <Requests imgs={item?.img} btn name2='Remove User' name='Unblock' />
+    }
     const headerProps = {
         showCart: false,
         backButtonIcon: 'close',
         hideBackButton: false,
         headerLeft: false,
         headerTitle: 'My Profile',
+        icon2: icons?.Message,
+        icon3: icons?.Edit,
+        handleIcon2: () => handleMessage(),
+        handleIcon3:() => handleEdit()
     };
     const handlePrivacy = React.useCallback(() => {
         navigation.navigate('privacypolicy')
@@ -50,9 +59,10 @@ const MyProfile = () => {
     }, [])
 
     const handleMessage = React.useCallback(() => {
-
+navigation.navigate('chatlist')
     }, [])
     const handleEdit = React.useCallback(() => {
+        navigation.navigate('editprofile')
 
     }, [])
     const toggleSwitch = () => {
@@ -171,6 +181,72 @@ const MyProfile = () => {
                     </View>
                 </View>
             </View>
+            <Modal
+                animationType='fade'
+                transparent={true}
+                visible={isModalVisible}
+                onRequestClose={() => {
+                    setIsModalVisible(!isModalVisible)
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <CText style={styles?.postName}>
+                            Are you sure?
+                        </CText>
+                        <CText style={styles?.postDesp}>
+                            Do you really want to delete your profile?
+                        </CText>
+                        <View row centerV marginT-20>
+                            <View bg-flashWhite width={'100%'} br30 paddingV-5>
+                                <TextInput
+                                    placeholder='Enter Password'
+                                    style={styles.pass}
+                                    placeholderTextColor={themes['light']?.colors?.grey}
+                                />
+                            </View>
+                        </View>
+                        <Pressable style={[styles.button, styles.buttonClose]} onPress={handleVisible}>
+                            <CText style={styles.textStyle}>Submit</CText>
+                        </Pressable>
+                        <View style={styles.cross}>
+                            <Pressable
+                                onPress={() => setIsModalVisible(!isModalVisible)}
+                                style={styles.crossBtn}
+                            >
+                                <FastImage source={icons?.CrossRed} style={styles.image} resizeMode='contain' />
+                            </Pressable>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+            <Modal
+                animationType='fade'
+                transparent={true}
+                visible={isModalVisible2}
+                onRequestClose={() => {
+                    setIsModalVisible2(!isModalVisible2)
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <CText style={styles?.postName}>
+                            Block Profiles
+                        </CText>
+                        <View row width={'100%'} style={styles.request} paddingT-15>
+                            <FlashList data={dummyData} renderItem={renderItem} estimatedItemSize={70} />
+                        </View>
+                        <View style={styles.cross}>
+                            <Pressable
+                                onPress={() => setIsModalVisible2(!isModalVisible2)}
+                                style={styles.crossBtn}
+                            >
+                                <FastImage source={icons?.CrossRed} style={styles.image} resizeMode='contain' />
+                            </Pressable>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
         </Container>
     )
 }

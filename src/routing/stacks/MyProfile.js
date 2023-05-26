@@ -1,7 +1,7 @@
 import * as React from "react";
 import { MyProfile } from "../../pages/protected";
 import { createStackNavigator } from "@react-navigation/stack";
-import { PrivacyPolicy, TermAndCondition } from "../../pages/protected/myprofile";
+import { EditProfile, PrivacyPolicy, TermAndCondition } from "../../pages/protected/myprofile";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +15,8 @@ function MyProfileStack() {
             <Stack.Screen name="myprofile" component={MyProfile} />
             <Stack.Screen name="termandcondition" component={TermAndCondition} />
             <Stack.Screen name="privacypolicy" component={PrivacyPolicy} />
+            <Stack.Screen   name="editprofile" component={EditProfile} />
+
         </Stack.Navigator>
     );
 }
