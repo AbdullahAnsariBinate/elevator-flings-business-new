@@ -29,7 +29,7 @@ const EventDetails = () => {
     navigation.navigate('chatlist')
   }, [])
   const handleEdit = React.useCallback(() => {
-    // screens.push(componentId, 'EditEvent')
+    navigation.navigate('editevent')
   }, [])
   const renderItem = ({ item }) => {
     console.log("🚀 ~ file: eventdetails.js:33 ~ renderItem ~ item:", item)

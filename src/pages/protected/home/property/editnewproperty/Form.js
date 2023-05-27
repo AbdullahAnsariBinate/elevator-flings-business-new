@@ -2,10 +2,10 @@ import React, { useRef, memo, useEffect, useState } from "react";
 import { Formik } from "formik";
 import Validations from "./Validations";
 import { View } from "react-native";
-import { CButton, CText, CTextfield } from "../../../uiComponents";
-import AuthStyle from "../Auth.style";
-import { themes } from "../../../theme/colors";
-import { icons } from "../../../assets/imgs";
+import AuthStyle from "../../../../auth/Auth.style";
+import { CButton, CTextfield } from "../../../../../uiComponents";
+import { themes } from "../../../../../theme/colors";
+import { icons } from "../../../../../assets/imgs";
 
 function CForm(props) {
 
@@ -21,12 +21,11 @@ function CForm(props) {
 
 
   const form = useRef(null);
-  const fullName = useRef(null);
-  const email = useRef(null);
-  const phone = useRef(null);
-  const password = useRef(null);
-  const businessName = useRef(null);
-  const cpass = useRef(null);
+  const name = useRef(null);
+  const capacity = useRef(null);
+  const location = useRef(null);
+  const address = useRef(null);
+  const description = useRef(null);
 
 
 
@@ -37,14 +36,13 @@ function CForm(props) {
       innerRef={form}
       onSubmit={(values) => submit(values)}
       initialValues={{
-        fullName:"",
-        email:"",
-        businessName:"",
-        phone: "",
-        password: "",
-        cpass:""
+        name: "",
+        capacity: "",
+        location: "",
+        address: "",
+        description: ""
       }}
-      validationSchema={Validations(selectedCountry)}
+      validationSchema={Validations}
     >
       {({ handleChange, values, handleSubmit, errors, resetForm }) => {
         console.log(
@@ -56,127 +54,105 @@ function CForm(props) {
           <View>
             <View style={AuthStyle.card}>
               <View style={AuthStyle.signupCard}>
+
                 <CTextfield
-                  ref={fullName}
+                  ref={name}
                   handleFocus={() => { setIsFocusedName(true) }}
                   handleBlur={() => { setIsFocusedName(false) }}
-                  inputLabel='Full Name'
+                  inputLabel='Name'
                   placeholder='John Smith'
                   placeholderTextColor={themes?.light?.colors?.grey}
                   mode={'outlined'}
                   multiLine={false}
                   numberOfLines={1}
-                  icon={icons?.Users}
                   iconColor={isFocusedName ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
-                  outlineColor={themes?.light?.colors?.grey}
+                  outlineColor={themes?.light?.colors?.flashWhite}
+                  bgColor={themes?.light?.colors?.black}
                   activeOutlineColor={themes['light'].colors.pink}
                   toggleSecure
-                  values={values?.fullName}
+                  values={values?.name}
                   onChangeText={handleChange('fullName')}
-                  error={errors?.fullName}
+                  error={errors?.name}
                 />
                 <CTextfield
-                  ref={email}
+                  ref={capacity}
                   handleFocus={() => { setIsFocusedEmail(true) }}
                   handleBlur={() => { setIsFocusedEmail(false) }}
-                  inputLabel='Email'
-                  placeholder='email@example.com'
+                  inputLabel='Capacity'
+                  placeholder='Capacity'
                   placeholderTextColor={themes?.light?.colors?.grey}
                   mode={'outlined'}
                   multiLine={false}
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
-                  icon={icons?.Email}
                   iconColor={isFocusedEmail ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
-                  outlineColor={themes?.light?.colors?.grey}
+                  outlineColor={themes?.light?.colors?.flashWhite}
+                  bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
-                  values={values?.email}
+                  values={values?.capacity}
                   onChangeText={handleChange('email')}
-                  error={errors?.email}
+                  error={errors?.capacity}
                 />
                 <CTextfield
-                  ref={businessName}
+                  ref={location}
                   handleFocus={() => { setIsFocusedPassBusiness(true) }}
                   handleBlur={() => { setIsFocusedPassBusiness(false) }}
-                  inputLabel='Business Name'
-                  placeholder='Business Name'
+                  inputLabel='Location'
+                  placeholder='Location'
                   placeholderTextColor={themes?.light?.colors?.grey}
                   mode={'outlined'}
                   multiLine={false}
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
-                  icon={icons?.Business}
                   iconColor={isFocusedBusiness ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
-                  outlineColor={themes?.light?.colors?.grey}
+                  outlineColor={themes?.light?.colors?.flashWhite}
+                  bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
-                  values={values?.businessName}
+                  values={values?.location}
                   onChangeText={handleChange('businessName')}
-                  error={errors?.businessName}
+                  error={errors?.location}
                 />
                 <CTextfield
-                  ref={phone}
+                  ref={address}
                   handleFocus={() => { setIsFocusedPhone(true) }}
                   handleBlur={() => { setIsFocusedPhone(false) }}
-                  inputLabel='Phone Number'
-                  placeholder='Phone Number'
+                  inputLabel='Address'
+                  placeholder='Address'
                   placeholderTextColor={themes?.light?.colors?.grey}
                   mode={'outlined'}
                   multiLine={false}
                   activeOutlineColor={themes['light'].colors.pink}
                   numberOfLines={1}
-                  icon={icons?.Smartphone}
                   iconColor={isFocusedPhone ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
-                  outlineColor={themes?.light?.colors?.grey}
+                  outlineColor={themes?.light?.colors?.flashWhite}
+                  bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure
-                  values={values?.phone}
+                  values={values?.address}
                   onChangeText={handleChange('phone')}
-                  error={errors?.phone}
+                  error={errors?.address}
                 />
                 <CTextfield
-                  ref={password}
-                  secureTextEntry={!secure}
-                  handleFocus={() => { setIsFocusedPass(true) }}
-                  handleBlur={() => { setIsFocusedPass(false) }}
-                  inputLabel='Password'
-                  placeholder='Password'
+                  ref={description}
+                  handleFocus={() => { setIsFocusedPhone(true) }}
+                  handleBlur={() => { setIsFocusedPhone(false) }}
+                  inputLabel='Description'
+                  placeholder='Address'
                   placeholderTextColor={themes?.light?.colors?.grey}
                   mode={'outlined'}
-                  multiLine={false}
+                  multiLine={true}
                   activeOutlineColor={themes['light'].colors.pink}
-                  numberOfLines={1}
-                  icon={icons?.Lock}
-                  iconColor={isFocusedPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
-                  outlineColor={themes?.light?.colors?.grey}
-                  toggleSecure={() => { setSecure(!secure) }}
-                  supportPassword={true}
-                  values={values?.password}
-                  onChangeText={handleChange('password')}
-                  error={errors?.password}
-                />
-                <CTextfield
-                  ref={cpass}
-                  secureTextEntry={!secureCPass}
-                  handleFocus={() => { setIsFocusedCPass(true) }}
-                  handleBlur={() => { setIsFocusedCPass(false) }}
-                  inputLabel='Password Confirm'
-                  placeholder='Password Confirm'
-                  placeholderTextColor={themes?.light?.colors?.grey}
-                  mode={'outlined'}
-                  multiLine={false}
-                  activeOutlineColor={themes['light'].colors.pink}
-                  numberOfLines={1}
-                  icon={icons?.Lock}
-                  iconColor={isFocusedCPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
-                  outlineColor={themes?.light?.colors?.grey}
-                  toggleSecure={() => { setSecureCPass(!secureCPass) }}
-                  supportPassword={true}
-                  values={values.cpass}
-                  onChangeText={handleChange('cpass')}
-                  error={errors?.cpass}
+                  numberOfLines={5}
+                  iconColor={isFocusedPhone ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
+                  outlineColor={themes?.light?.colors?.flashWhite}
+                  bgColor={themes?.light?.colors?.red}
+                  toggleSecure
+                  values={values?.description}
+                  onChangeText={handleChange('phone')}
+                  error={errors?.description}
                 />
 
               </View>
-              <CButton title='Sign Up' colorType='pink' onPress={() => handleSubmit()} />
+              <CButton title='Submit for Verification' colorType='pink' onPress={() => handleSubmit()} />
             </View>
           </View>
         );

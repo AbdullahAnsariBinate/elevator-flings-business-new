@@ -72,7 +72,6 @@ function CForm(props) {
                   icon={icons?.Email}
                   iconColor={isFocusedEmail ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
-                  bgColor={themes?.light?.colors?.black}
                   activeOutlineColor={themes['light'].colors.pink}
                   values={values.email}
                   onChangeText={handleChange('email')}
@@ -93,7 +92,7 @@ function CForm(props) {
                   icon={icons?.Lock}
                   iconColor={isFocusedPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
-                  bgColor={themes?.light?.colors?.bgBlue}
+                  
                   toggleSecure={toggleSecure}
                   supportPassword={true}
                   values={values.password}

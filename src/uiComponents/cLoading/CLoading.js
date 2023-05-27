@@ -26,7 +26,7 @@ const CLoading = ({ style, theme, loading, text, transparent = false }) => {
 
 CLoading.defaultProps = {
     loading: false,
-    color: themes['light'].colors.primary
+    color: themes['light'].colors.primary,
 };
 
 export default React.memo(CLoading);

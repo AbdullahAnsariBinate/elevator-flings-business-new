@@ -89,7 +89,7 @@ const CTextfield = forwardRef((props, ref) => {
         activeOutlineColor={activeOutlineColor}
         outlineColor={outlineColor}
         outlineStyle={{ borderRadius: 10 }}
-        style={[styles.inputField, bgColor]}
+        style={[styles.inputField,{backgroundColor: bgColor? themes['light'].colors.flashWhite : themes['light'].colors.white}]}
         secureTextEntry={secureTextEntry}
         right={
           supportPassword && (
@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
   },
 
   inputField: {
-    backgroundColor: themes['light'].colors.white,
     marginTop: 5,
   }
 });

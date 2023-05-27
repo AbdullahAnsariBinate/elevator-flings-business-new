@@ -10,6 +10,7 @@ import Toast from "react-native-toast-message";
 import {navigationRef} from "./src/routing/Ref";
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
+import { themes } from "./src/theme/colors";
 LogBox.ignoreAllLogs();
 
 interceptor();
@@ -25,7 +26,7 @@ const Container = () => {
 
     return (
         <NavigationContainer theme={theme} ref={navigationRef}>
-            <App />
+            <App  />
             <Toast ref={(ref) => Toast.setRef(ref)} />
         </NavigationContainer>
     )
@@ -37,7 +38,7 @@ function Angelica() {
     return (
         <Provider store={store}>
             <StatusBar
-                backgroundColor="transparent"
+                backgroundColor={themes['light']?.colors?.pink}
                 translucent={true}
                 animated={true}
                 barStyle={'dark-content'}/>

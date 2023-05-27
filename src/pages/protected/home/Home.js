@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
-import { Dimensions, View, Text, StyleSheet } from 'react-native';
+import { Dimensions, View, Text, StyleSheet, Modal, Pressable } from 'react-native';
 import { Container } from '../../../containers';
 import { Searchbar } from 'react-native-paper';
 import { themes } from '../../../theme/colors';
@@ -9,7 +9,7 @@ import Styles from './Home.style'
 import { TabView, SceneMap, TabBar, TouchableOpacity } from 'react-native-tab-view'
 import { responsiveWidth } from 'react-native-responsive-dimensions';
 import { useWindowDimensions, FlatList } from 'react-native';
-import { CButton, EventPost } from '../../../uiComponents';
+import { CButton, CText, EventPost } from '../../../uiComponents';
 import { } from 'react-native';
 import { data } from './data';
 import { data2 } from './data2';
@@ -23,6 +23,7 @@ import { useCallback } from 'react';
 function Home(props) {
   const onChangeSearch = (query) => setSearchQuery(query)
   const [searchQuery, setSearchQuery] = React.useState('')
+  const [isModalVisible, setIsModalVisible] = React.useState(false)
 
   const navigation = useNavigation()
   const headerProps = {
@@ -32,10 +33,12 @@ function Home(props) {
     hideBackButton: false,
     headerLeft: true,
     headerLeftTitle: 'Hello, John',
+    icon1: icons?.Plus,
     icon2: icons?.Message,
     icon3: icons?.Notification,
+    handleIcon1: () => handleEvent(),
     handleIcon2: () => handleMessage(),
-    handleIcon3:() => handleNotification()
+    handleIcon3: () => handleNotification()
 
 
   };
@@ -53,6 +56,18 @@ function Home(props) {
   }, [])
   const handleNotification = useCallback(() => {
     navigation.navigate('notification')
+  }, [])
+  const handleEvent = useCallback(() => {
+    setIsModalVisible(true)
+  }, [])
+  
+  const handleEditProperty = useCallback(() => {
+    navigation.navigate('editnewproperty')
+    setIsModalVisible(false)
+  }, [])
+  const handleEditEvent = useCallback(() => {
+    navigation.navigate('editnewevent')
+    setIsModalVisible(false)
   }, [])
 
   const FirstRoute = () => (
@@ -144,6 +159,33 @@ function Home(props) {
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
       />
+      <Modal
+        animationType='fade'
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => {
+          setIsModalVisible(false)
+        }}
+      >
+        <View style={Styles.centeredView}>
+          <View style={Styles.modalView}>
+            <Pressable style={[Styles.button, Styles.buttonClose]} onPress={handleEditEvent}>
+              <CText style={Styles.textStyle}>Add New Event</CText>
+            </Pressable>
+            <Pressable style={[Styles.button, Styles.buttonClose]} onPress={handleEditProperty}>
+              <CText style={Styles.textStyle}>Add New Property</CText>
+            </Pressable>
+            <View style={Styles.cross}>
+              <Pressable
+                onPress={() => setIsModalVisible(false)}
+                style={Styles.crossBtn}
+              >
+                <FastImage source={icons?.CrossRed} style={Styles.image} resizeMode='contain' />
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </Container>
   );
 }

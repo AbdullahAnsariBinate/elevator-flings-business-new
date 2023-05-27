@@ -13,9 +13,11 @@ import { icons } from '../../../../../assets/imgs'
 import { FlashList } from '@shopify/flash-list'
 import { View as CustomView } from 'react-native-ui-lib'
 import Styles from '../../Home.style'
+import { useNavigation } from '@react-navigation/native'
 
 const PropertyDetail = () => {
     const [isModalVisible, setIsModalVisible] = React.useState(false)
+    const navigation = useNavigation()
     const headerProps = {
         showCenterLogo: false,
         backButtonIcon: 'close',
@@ -27,6 +29,7 @@ const PropertyDetail = () => {
 
     const handleEdit = React.useCallback(() => {
         // screens.push(componentId, 'EditProperty')
+        navigation.navigate('editproperty')
     }, [])
     const renderItem = ({ item }) => {
         return (

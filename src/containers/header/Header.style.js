@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     headerStyle: {
         backgroundColor: theme['light'].colors.tertiary,
-        paddingVertical: responsiveScreenHeight(1),
+        paddingVertical: responsiveScreenHeight(0.8),
         position: 'relative',
         zIndex: 1
     },

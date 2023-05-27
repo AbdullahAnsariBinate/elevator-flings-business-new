@@ -22,4 +22,9 @@ export const styles = StyleSheet.create({
   imagesContainer: {
     position: 'relative',
   },
+  postDesp: {
+    fontFamily: themes?.font?.regular,
+    color: themes['light']?.colors?.fontBlack,
+    fontSize: themes?.fontSize?.small
+},
 })

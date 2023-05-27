@@ -6,7 +6,7 @@ const scheme = Yup.object().shape({
         .email("Please enter valid email address"),
     password: Yup.string()
         .required("Please enter your password.")
-        .min(8, "Password is too short - should be 8 chars minimum.")
+        .min(8, "Password is too short - should be 8 characters minimum.")
         .matches(
             RegExp("(.*[a-z].*)"),
             "Password should have a minimum of 1 lowercase letter"

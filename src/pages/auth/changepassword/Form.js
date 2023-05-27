@@ -68,7 +68,6 @@ function CForm(props) {
                   icon={icons?.Lock}
                   iconColor={isFocusedPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
-                  bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure={() => { setSecure(!secure) }}
                   supportPassword={true}
                   values={values?.password}
@@ -90,7 +89,6 @@ function CForm(props) {
                   icon={icons?.Lock}
                   iconColor={isFocusedCPass ? themes?.light?.colors?.red : themes?.light?.colors?.grey}
                   outlineColor={themes?.light?.colors?.grey}
-                  bgColor={themes?.light?.colors?.bgBlue}
                   toggleSecure={() => { setSecureCPass(!secureCPass) }}
                   supportPassword={true}
                   values={values.cpass}

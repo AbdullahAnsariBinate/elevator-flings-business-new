@@ -21,7 +21,7 @@ const Root = ({ initial }) => {
             <Tab.Screen name="Home" component={HomeStack} />
             <Tab.Screen name="MyProfile" component={MyProfileStack} />
 
-        
+
         </Tab.Navigator>
     );
 };
