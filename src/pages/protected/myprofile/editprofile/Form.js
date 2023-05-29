@@ -6,6 +6,7 @@ import AuthStyle from "../../../auth/Auth.style";
 import { themes } from "../../../../theme/colors";
 import { CButton, CTextfield } from "../../../../uiComponents";
 import { icons } from "../../../../assets/imgs";
+import { styles } from "./editprofile.styles";
 
 function CForm(props) {
 
@@ -54,7 +55,7 @@ function CForm(props) {
         );
         return (
           <View>
-            <View style={AuthStyle.card}>
+            <View style={styles.editform}>
               <View style={AuthStyle.signupCard}>
                 
                 <CTextfield

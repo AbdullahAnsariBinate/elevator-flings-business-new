@@ -27,4 +27,7 @@ export const styles = StyleSheet.create({
     color: themes['light']?.colors?.fontBlack,
     fontSize: themes?.fontSize?.small
 },
+editform:{
+  paddingHorizontal:responsiveWidth(6)
+}
 })
