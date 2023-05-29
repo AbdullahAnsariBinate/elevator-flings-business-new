@@ -17,14 +17,16 @@ import { useNavigation } from '@react-navigation/native'
 const EventDetails = () => {
   const [isModalVisible, setIsModalVisible] = React.useState(false)
   const navigation = useNavigation()
+  
   const headerProps = {
     showCenterLogo: false,
     backButtonIcon: 'close',
-    hideBackButton: false,
-    headerLeft: true,
+    hideBackButton: true,
+    headerLeft: false,
     headerTitle: 'Event Details',
     headerRight: false
-  };
+};
+
   const handleMessage = React.useCallback(() => {
     navigation.navigate('chatlist')
   }, [])
